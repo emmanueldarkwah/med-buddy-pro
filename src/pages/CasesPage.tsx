@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Clock, Users } from 'lucide-react';
+import { ArrowLeft, BookOpen, Clock, Users, Target } from 'lucide-react';
 import { useState } from 'react';
 import { BottomNav } from '@/components/BottomNav';
 import { caseStudies } from '@/data/quizzes';
@@ -12,6 +12,8 @@ export default function CasesPage() {
   const navigate = useNavigate();
   const [isTimed, setIsTimed] = useState(false);
   const [timeLimit, setTimeLimit] = useState(10);
+  const [selectedCase, setSelectedCase] = useState<string | null>(null);
+  const [questionCount, setQuestionCount] = useState<number | 'all'>('all');
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -22,12 +24,18 @@ export default function CasesPage() {
     }
   };
 
-  const startCase = (caseId: string) => {
+  const selectedCaseData = selectedCase ? caseStudies.find(c => c.id === selectedCase) : null;
+  const totalCaseQuestions = selectedCaseData?.questions.length || 0;
+  const actualQuestionCount = questionCount === 'all' ? totalCaseQuestions : Math.min(questionCount as number, totalCaseQuestions);
+
+  const startCase = () => {
+    if (!selectedCase) return;
     const params = new URLSearchParams({
       timed: isTimed.toString(),
       timeLimit: timeLimit.toString(),
+      questionCount: actualQuestionCount.toString(),
     });
-    navigate(`/case-study/${caseId}?${params.toString()}`);
+    navigate(`/case-study/${selectedCase}?${params.toString()}`);
   };
 
   return (
@@ -83,42 +91,99 @@ export default function CasesPage() {
                 </div>
               </div>
             )}
+
+            {/* Question Count Selection */}
+            {selectedCase && (
+              <div className="pt-2 border-t border-border/50">
+                <div className="flex items-center gap-2 mb-3">
+                  <Target className="w-4 h-4 text-muted-foreground" />
+                  <Label className="text-sm">Number of questions</Label>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {[1, 2, 3, 'all'].map(count => (
+                    <button
+                      key={count}
+                      onClick={() => setQuestionCount(count as number | 'all')}
+                      disabled={typeof count === 'number' && count > totalCaseQuestions}
+                      className={cn(
+                        "px-4 py-2 rounded-xl text-sm font-medium transition-colors",
+                        questionCount === count 
+                          ? "bg-cases text-cases-foreground" 
+                          : "bg-secondary hover:bg-secondary/80",
+                        typeof count === 'number' && count > totalCaseQuestions && "opacity-50 cursor-not-allowed"
+                      )}
+                    >
+                      {count === 'all' ? 'All' : count}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {totalCaseQuestions} questions in this case study
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
         {/* Case Studies List */}
         <section className="space-y-4">
-          <h2 className="font-semibold text-lg">Available Cases</h2>
+          <h2 className="font-semibold text-lg">Select a Case Study</h2>
           
-          {caseStudies.map(study => (
-            <button
-              key={study.id}
-              onClick={() => startCase(study.id)}
-              className="w-full bg-card rounded-2xl p-5 shadow-sm border border-border/50 text-left hover:shadow-md hover:border-cases/50 transition-all"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="font-semibold text-lg">{study.title}</h3>
-                <Badge className={cn("text-xs", getDifficultyColor(study.difficulty))}>
-                  {study.difficulty}
-                </Badge>
-              </div>
-              
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{study.scenario}</p>
-              
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-cases/10 text-cases rounded-lg">
-                  <Users className="w-4 h-4" />
-                  <span className="text-xs font-medium">
-                    {study.patientInfo.age}yo {study.patientInfo.gender}
-                  </span>
+          {caseStudies.map(study => {
+            const isSelected = selectedCase === study.id;
+            return (
+              <button
+                key={study.id}
+                onClick={() => setSelectedCase(study.id)}
+                className={cn(
+                  "w-full bg-card rounded-2xl p-5 shadow-sm border-2 text-left transition-all",
+                  isSelected 
+                    ? "border-cases bg-cases/5" 
+                    : "border-border/50 hover:border-cases/50"
+                )}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className={cn(
+                      "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors",
+                      isSelected ? "bg-cases border-cases" : "border-muted-foreground/30"
+                    )}>
+                      {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                    </div>
+                    <h3 className="font-semibold text-lg">{study.title}</h3>
+                  </div>
+                  <Badge className={cn("text-xs", getDifficultyColor(study.difficulty))}>
+                    {study.difficulty}
+                  </Badge>
                 </div>
-                <div className="text-xs text-muted-foreground">
-                  {study.questions.length} questions • {study.learningPoints.length} learning points
+                
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-3 pl-8">{study.scenario}</p>
+                
+                <div className="flex items-center gap-4 pl-8">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-cases/10 text-cases rounded-lg">
+                    <Users className="w-4 h-4" />
+                    <span className="text-xs font-medium">
+                      {study.patientInfo.age}yo {study.patientInfo.gender}
+                    </span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {study.questions.length} questions • {study.learningPoints.length} learning points
+                  </div>
                 </div>
-              </div>
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </section>
+
+        {/* Start Button */}
+        {selectedCase && (
+          <button
+            onClick={startCase}
+            className="w-full bg-cases text-cases-foreground py-4 rounded-2xl font-semibold shadow-lg hover:opacity-90 transition-opacity"
+          >
+            Start Case Study ({actualQuestionCount} questions)
+          </button>
+        )}
       </main>
 
       <BottomNav />

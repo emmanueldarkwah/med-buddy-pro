@@ -1,7 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calculator, GitCompare, User, AlertTriangle, Settings, Info } from 'lucide-react';
+import { ArrowLeft, Calculator, GitCompare, User, AlertTriangle, Settings, Info, Pill, Skull, HeartCrack, Brain } from 'lucide-react';
 import { BottomNav } from '@/components/BottomNav';
 import { drugs } from '@/data/drugs';
+
+interface SafetyAlert {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  details: string;
+  severity: 'critical' | 'high' | 'warning';
+}
 
 export default function MorePage() {
   const navigate = useNavigate();
@@ -33,6 +41,66 @@ export default function MorePage() {
       color: 'bg-primary/10 text-primary',
     },
   ];
+
+  const safetyAlerts: SafetyAlert[] = [
+    {
+      icon: Skull,
+      title: 'Tramadol Abuse',
+      description: 'Commonly abused opioid among youth in Ghana',
+      details: 'Tramadol abuse can lead to severe seizures, respiratory depression, serotonin syndrome, addiction, and death. Overdose symptoms include extreme drowsiness, slow breathing, cold skin, and loss of consciousness. Long-term abuse damages the liver, kidneys, and brain.',
+      severity: 'critical',
+    },
+    {
+      icon: HeartCrack,
+      title: 'Codeine & "Purple Drank"',
+      description: 'Dangerous recreational misuse of cough syrups',
+      details: 'Mixing codeine cough syrup with soft drinks creates a deadly combination. It causes respiratory depression, heart failure, and addiction. Chronic use leads to dental decay, weight gain, urinary tract infections, and severe withdrawal symptoms.',
+      severity: 'critical',
+    },
+    {
+      icon: Brain,
+      title: 'Self-Medication Dangers',
+      description: 'Taking drugs without professional guidance',
+      details: 'Self-medicating with antibiotics, painkillers, or steroids can mask serious conditions, cause drug resistance, organ damage, and dangerous interactions. Always consult a pharmacist or doctor before taking any medication.',
+      severity: 'high',
+    },
+    {
+      icon: Pill,
+      title: 'Paracetamol Overdose',
+      description: 'The silent liver killer',
+      details: 'Taking more than 4g of paracetamol daily can cause irreversible liver damage and death within days. Symptoms may not appear until liver failure is advanced. Never exceed recommended doses and avoid combining paracetamol-containing products.',
+      severity: 'high',
+    },
+    {
+      icon: AlertTriangle,
+      title: 'Expired Medications',
+      description: 'Hidden dangers of using old medicines',
+      details: 'Expired drugs can become toxic or ineffective. Tetracycline antibiotics can cause kidney damage when expired. Always check expiry dates and properly dispose of old medications at a pharmacy.',
+      severity: 'warning',
+    },
+  ];
+
+  const getSeverityStyles = (severity: SafetyAlert['severity']) => {
+    switch (severity) {
+      case 'critical':
+        return 'bg-destructive/15 border-destructive/30 text-destructive';
+      case 'high':
+        return 'bg-warning/15 border-warning/30 text-warning';
+      case 'warning':
+        return 'bg-info/15 border-info/30 text-info';
+    }
+  };
+
+  const getSeverityBadge = (severity: SafetyAlert['severity']) => {
+    switch (severity) {
+      case 'critical':
+        return 'bg-destructive text-destructive-foreground';
+      case 'high':
+        return 'bg-warning text-warning-foreground';
+      case 'warning':
+        return 'bg-info text-info-foreground';
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -75,17 +143,19 @@ export default function MorePage() {
           </div>
         </section>
 
-        {/* High-Alert Medications */}
+        {/* Safety Awareness Section */}
         <section>
-          <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Safety</h2>
-          <div className="bg-destructive/10 border border-destructive/20 rounded-2xl p-4">
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Safety Awareness</h2>
+          
+          {/* High-Alert Medications */}
+          <div className="bg-destructive/10 border border-destructive/20 rounded-2xl p-4 mb-4">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-destructive/20 rounded-xl">
                 <AlertTriangle className="w-5 h-5 text-destructive" />
               </div>
               <div>
                 <h3 className="font-semibold text-destructive">High-Alert Medications</h3>
-                <p className="text-xs text-muted-foreground">Requires extra caution</p>
+                <p className="text-xs text-muted-foreground">Drugs requiring extra caution</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -99,6 +169,32 @@ export default function MorePage() {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Safety Alerts */}
+          <div className="space-y-3">
+            {safetyAlerts.map((alert, index) => (
+              <div
+                key={index}
+                className={`rounded-2xl p-4 border ${getSeverityStyles(alert.severity)}`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className={`p-2 rounded-xl ${getSeverityBadge(alert.severity)}`}>
+                    <alert.icon className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-semibold">{alert.title}</h3>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase font-bold ${getSeverityBadge(alert.severity)}`}>
+                        {alert.severity}
+                      </span>
+                    </div>
+                    <p className="text-sm font-medium mb-2 opacity-90">{alert.description}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{alert.details}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
