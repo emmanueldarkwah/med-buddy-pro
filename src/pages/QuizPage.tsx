@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, XCircle, ChevronRight, Trophy, RotateCcw } from 'lucide-react';
-import { quizzes } from '@/data/quizzes';
+import { quizzes, type Quiz, type QuizQuestion } from '@/data/quizzes';
 import { useApp } from '@/context/AppContext';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -9,9 +9,62 @@ import { Button } from '@/components/ui/button';
 export default function QuizPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { addQuizResult, incrementCorrectAnswers, incrementTotalQuestions, updateStudyStreak, unlockAchievement, achievements } = useApp();
 
-  const quiz = quizzes.find(q => q.id === id);
+  const quiz = useMemo<Quiz | null>(() => {
+    if (!id) return null;
+
+    if (id !== 'custom') {
+      return quizzes.find((q) => q.id === id) ?? null;
+    }
+
+    const params = new URLSearchParams(location.search);
+    const quizIds = (params.get('quizzes') ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const selected = quizzes.filter((q) => quizIds.includes(q.id));
+    const pool: QuizQuestion[] = selected.flatMap((q) => q.questions);
+
+    if (selected.length === 0 || pool.length === 0) return null;
+
+    // Shuffle once per URL
+    const shuffled = [...pool];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    const rawCount = params.get('questionCount');
+    const requestedCount = rawCount ? Number(rawCount) : undefined;
+    const count =
+      typeof requestedCount === 'number' && Number.isFinite(requestedCount)
+        ? Math.max(1, Math.min(requestedCount, shuffled.length))
+        : shuffled.length;
+
+    const difficultyRank: Record<Quiz['difficulty'], number> = {
+      beginner: 0,
+      intermediate: 1,
+      advanced: 2,
+    };
+
+    const hardest = selected.reduce<Quiz['difficulty']>((acc, q) => {
+      return difficultyRank[q.difficulty] > difficultyRank[acc] ? q.difficulty : acc;
+    }, 'beginner');
+
+    return {
+      id: 'custom',
+      title: 'Custom Quiz',
+      description: `Mixed questions from ${selected.length} selected quiz${selected.length === 1 ? '' : 'zes'}.`,
+      category: 'Mixed',
+      difficulty: hardest,
+      icon: '🧩',
+      questions: shuffled.slice(0, count),
+    };
+  }, [id, location.search]);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -23,7 +76,7 @@ export default function QuizPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-2">Quiz not found</h2>
-          <button onClick={() => navigate(-1)} className="text-primary">Go back</button>
+          <button onClick={() => navigate('/quizzes')} className="text-primary">Back to Quizzes</button>
         </div>
       </div>
     );
