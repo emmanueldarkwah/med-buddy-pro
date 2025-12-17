@@ -1,12 +1,15 @@
-import { ArrowLeft, Trophy, Target, Flame, Star, Lock, Camera, Palette, Moon, Sun, Check } from 'lucide-react';
+import { ArrowLeft, Trophy, Target, Flame, Star, Lock, Camera, Palette, Moon, Sun, Check, LogOut, LogIn } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { useApp } from '@/context/AppContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
 
 const themes = [
   { id: 'default', name: 'Teal', color: 'bg-[hsl(174,62%,35%)]' },
@@ -18,6 +21,7 @@ const themes = [
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const { 
     achievements, 
     studyStreak, 
@@ -32,6 +36,22 @@ export default function ProfilePage() {
     setTheme,
     toggleDarkMode,
   } = useApp();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast({
+        title: 'Signed out',
+        description: 'You have been signed out successfully.',
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Error',
+        description: 'Failed to sign out. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
 
   const [isEditingName, setIsEditingName] = useState(false);
   const [tempName, setTempName] = useState(username);
@@ -198,6 +218,53 @@ export default function ProfilePage() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Account Section */}
+        <section>
+          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <LogIn className="w-5 h-5 text-muted-foreground" />
+            Account
+          </h2>
+          
+          <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50">
+            {user ? (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-lg font-bold text-primary">
+                      {user.email?.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium">{user.email}</p>
+                    <p className="text-xs text-muted-foreground">Signed in with Google</p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleSignOut}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <div className="text-center py-2">
+                <p className="text-sm text-muted-foreground mb-3">
+                  Sign in to sync your progress across devices
+                </p>
+                <Button
+                  onClick={() => navigate('/auth')}
+                  className="w-full"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
