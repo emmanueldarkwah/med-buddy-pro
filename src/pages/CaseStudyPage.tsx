@@ -61,7 +61,7 @@ export default function CaseStudyPage() {
         <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 px-4 py-4">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => navigate('/learn')}
+              onClick={() => navigate('/cases')}
               className="p-2 rounded-full hover:bg-secondary transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -159,7 +159,7 @@ export default function CaseStudyPage() {
       <div className="min-h-screen bg-background">
         <header className="px-4 pt-12 pb-6">
           <button
-            onClick={() => navigate('/learn')}
+            onClick={() => navigate('/cases')}
             className="p-2 rounded-full hover:bg-secondary transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -195,10 +195,10 @@ export default function CaseStudyPage() {
           </div>
 
           <Button
-            onClick={() => navigate('/learn')}
+            onClick={() => navigate('/cases')}
             className="w-full py-6 rounded-2xl gradient-primary"
           >
-            Back to Learning
+            Back to Cases
           </Button>
         </main>
       </div>
@@ -210,7 +210,7 @@ export default function CaseStudyPage() {
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 px-4 py-4">
         <div className="flex items-center justify-between mb-4">
           <button
-            onClick={() => navigate('/learn')}
+            onClick={() => navigate('/cases')}
             className="p-2 rounded-full hover:bg-secondary transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
