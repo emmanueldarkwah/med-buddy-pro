@@ -62,6 +62,22 @@ export default {
           DEFAULT: "hsl(var(--info))",
           foreground: "hsl(var(--info-foreground))",
         },
+        drugs: {
+          DEFAULT: "hsl(var(--drugs))",
+          foreground: "hsl(var(--drugs-foreground))",
+        },
+        quizzes: {
+          DEFAULT: "hsl(var(--quizzes))",
+          foreground: "hsl(var(--quizzes-foreground))",
+        },
+        cases: {
+          DEFAULT: "hsl(var(--cases))",
+          foreground: "hsl(var(--cases-foreground))",
+        },
+        more: {
+          DEFAULT: "hsl(var(--more))",
+          foreground: "hsl(var(--more-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

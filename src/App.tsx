@@ -7,12 +7,14 @@ import { AppProvider } from "./context/AppContext";
 import Index from "./pages/Index";
 import SearchPage from "./pages/SearchPage";
 import DrugDetail from "./pages/DrugDetail";
-import LearnPage from "./pages/LearnPage";
+import QuizzesPage from "./pages/QuizzesPage";
 import QuizPage from "./pages/QuizPage";
+import CasesPage from "./pages/CasesPage";
 import CaseStudyPage from "./pages/CaseStudyPage";
 import CalculatorPage from "./pages/CalculatorPage";
 import InteractionsPage from "./pages/InteractionsPage";
-import ProgressPage from "./pages/ProgressPage";
+import MorePage from "./pages/MorePage";
+import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,15 +28,18 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/drugs" element={<SearchPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/drug/:id" element={<DrugDetail />} />
-            <Route path="/learn" element={<LearnPage />} />
+            <Route path="/quizzes" element={<QuizzesPage />} />
             <Route path="/quiz/:id" element={<QuizPage />} />
+            <Route path="/cases" element={<CasesPage />} />
             <Route path="/case-study/:id" element={<CaseStudyPage />} />
-            <Route path="/case-studies" element={<LearnPage />} />
             <Route path="/calculator" element={<CalculatorPage />} />
             <Route path="/interactions" element={<InteractionsPage />} />
-            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/more" element={<MorePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/progress" element={<ProfilePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

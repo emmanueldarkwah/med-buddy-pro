@@ -15,6 +15,8 @@ interface QuizResult {
   completedAt: Date;
 }
 
+type ThemeColor = 'default' | 'ocean' | 'sunset' | 'forest' | 'royal';
+
 interface AppState {
   completedQuizzes: QuizResult[];
   achievements: Achievement[];
@@ -23,6 +25,10 @@ interface AppState {
   totalQuestionsAnswered: number;
   correctAnswers: number;
   favoriteDrugs: string[];
+  username: string;
+  avatarUrl: string;
+  theme: ThemeColor;
+  isDarkMode: boolean;
 }
 
 interface AppContextType extends AppState {
@@ -32,6 +38,10 @@ interface AppContextType extends AppState {
   updateStudyStreak: () => void;
   incrementCorrectAnswers: () => void;
   incrementTotalQuestions: () => void;
+  setUsername: (name: string) => void;
+  setAvatarUrl: (url: string) => void;
+  setTheme: (theme: ThemeColor) => void;
+  toggleDarkMode: () => void;
 }
 
 const defaultAchievements: Achievement[] = [
@@ -49,7 +59,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(() => {
-    const saved = localStorage.getItem('pharmapro-state');
+    const saved = localStorage.getItem('acupharm-state');
     if (saved) {
       return JSON.parse(saved);
     }
@@ -61,12 +71,32 @@ export function AppProvider({ children }: { children: ReactNode }) {
       totalQuestionsAnswered: 0,
       correctAnswers: 0,
       favoriteDrugs: [],
+      username: 'Student',
+      avatarUrl: '',
+      theme: 'default' as ThemeColor,
+      isDarkMode: false,
     };
   });
 
   useEffect(() => {
-    localStorage.setItem('pharmapro-state', JSON.stringify(state));
+    localStorage.setItem('acupharm-state', JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    // Remove all theme classes
+    root.classList.remove('theme-ocean', 'theme-sunset', 'theme-forest', 'theme-royal', 'dark');
+    
+    // Add current theme class
+    if (state.theme !== 'default') {
+      root.classList.add(`theme-${state.theme}`);
+    }
+    
+    // Add dark mode if enabled
+    if (state.isDarkMode) {
+      root.classList.add('dark');
+    }
+  }, [state.theme, state.isDarkMode]);
 
   const addQuizResult = (result: QuizResult) => {
     setState(prev => ({
@@ -118,6 +148,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, totalQuestionsAnswered: prev.totalQuestionsAnswered + 1 }));
   };
 
+  const setUsername = (name: string) => {
+    setState(prev => ({ ...prev, username: name }));
+  };
+
+  const setAvatarUrl = (url: string) => {
+    setState(prev => ({ ...prev, avatarUrl: url }));
+  };
+
+  const setTheme = (theme: ThemeColor) => {
+    setState(prev => ({ ...prev, theme }));
+  };
+
+  const toggleDarkMode = () => {
+    setState(prev => ({ ...prev, isDarkMode: !prev.isDarkMode }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -128,6 +174,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
         updateStudyStreak,
         incrementCorrectAnswers,
         incrementTotalQuestions,
+        setUsername,
+        setAvatarUrl,
+        setTheme,
+        toggleDarkMode,
       }}
     >
       {children}

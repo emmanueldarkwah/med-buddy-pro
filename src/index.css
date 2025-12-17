@@ -39,6 +39,19 @@
     --info: 210 90% 55%;
     --info-foreground: 0 0% 100%;
 
+    /* Section-specific colors */
+    --drugs: 262 83% 58%;
+    --drugs-foreground: 0 0% 100%;
+    
+    --quizzes: 174 62% 35%;
+    --quizzes-foreground: 0 0% 100%;
+    
+    --cases: 24 95% 55%;
+    --cases-foreground: 0 0% 100%;
+    
+    --more: 220 70% 50%;
+    --more-foreground: 0 0% 100%;
+
     --border: 200 20% 88%;
     --input: 200 20% 88%;
     --ring: 174 62% 35%;
@@ -51,6 +64,10 @@
     --gradient-danger: linear-gradient(135deg, hsl(0 72% 51%) 0%, hsl(15 80% 55%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 20% 98%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(174 62% 30%) 0%, hsl(200 60% 40%) 50%, hsl(220 50% 45%) 100%);
+    --gradient-drugs: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(280 70% 60%) 100%);
+    --gradient-quizzes: linear-gradient(135deg, hsl(174 62% 35%) 0%, hsl(180 55% 45%) 100%);
+    --gradient-cases: linear-gradient(135deg, hsl(24 95% 55%) 0%, hsl(38 92% 50%) 100%);
+    --gradient-more: linear-gradient(135deg, hsl(220 70% 50%) 0%, hsl(240 60% 55%) 100%);
 
     --shadow-sm: 0 1px 2px 0 hsl(200 20% 10% / 0.05);
     --shadow-md: 0 4px 12px -2px hsl(200 20% 10% / 0.08);
@@ -92,9 +109,46 @@
     --info: 210 85% 60%;
     --info-foreground: 0 0% 100%;
 
+    /* Section-specific colors - dark */
+    --drugs: 262 75% 65%;
+    --drugs-foreground: 0 0% 100%;
+    
+    --quizzes: 174 55% 50%;
+    --quizzes-foreground: 0 0% 100%;
+    
+    --cases: 24 90% 60%;
+    --cases-foreground: 0 0% 100%;
+    
+    --more: 220 65% 58%;
+    --more-foreground: 0 0% 100%;
+
     --border: 200 20% 20%;
     --input: 200 20% 20%;
     --ring: 174 55% 45%;
+  }
+
+  .theme-ocean {
+    --primary: 200 80% 45%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-hero: linear-gradient(135deg, hsl(200 80% 40%) 0%, hsl(220 75% 50%) 50%, hsl(240 70% 55%) 100%);
+  }
+
+  .theme-sunset {
+    --primary: 15 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-hero: linear-gradient(135deg, hsl(15 85% 50%) 0%, hsl(35 90% 55%) 50%, hsl(45 95% 60%) 100%);
+  }
+
+  .theme-forest {
+    --primary: 140 60% 40%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-hero: linear-gradient(135deg, hsl(140 60% 35%) 0%, hsl(160 55% 45%) 50%, hsl(180 50% 50%) 100%);
+  }
+
+  .theme-royal {
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 53%) 0%, hsl(280 75% 55%) 50%, hsl(300 70% 50%) 100%);
   }
 }
 
@@ -128,6 +182,22 @@
   
   .gradient-hero {
     background: var(--gradient-hero);
+  }
+  
+  .gradient-drugs {
+    background: var(--gradient-drugs);
+  }
+  
+  .gradient-quizzes {
+    background: var(--gradient-quizzes);
+  }
+  
+  .gradient-cases {
+    background: var(--gradient-cases);
+  }
+  
+  .gradient-more {
+    background: var(--gradient-more);
   }
   
   .shadow-glow {
