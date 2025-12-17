@@ -1,4 +1,4 @@
-import { Search, Bell, Pill, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Bell, Pill, AlertTriangle, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { QuickActions } from '@/components/QuickActions';
@@ -26,22 +26,13 @@ export default function Index() {
             <h1 className="text-2xl font-bold mb-1">PharmaPro</h1>
             <p className="text-primary-foreground/80 text-sm">Your Drug Reference Guide</p>
           </div>
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
             <StreakBadge />
             <button className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors">
               <Bell className="w-5 h-5" />
             </button>
           </div>
         </div>
-
-        {/* Search Bar */}
-        <button
-          onClick={() => navigate('/search')}
-          className="w-full flex items-center gap-3 bg-primary-foreground/10 hover:bg-primary-foreground/15 rounded-2xl px-4 py-3 transition-colors"
-        >
-          <Search className="w-5 h-5 text-primary-foreground/70" />
-          <span className="text-primary-foreground/70">Search drugs, classes...</span>
-        </button>
       </header>
 
       <main className="px-4 py-6 space-y-6">
