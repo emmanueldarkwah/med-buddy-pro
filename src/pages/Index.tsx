@@ -3,15 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { StreakBadge } from '@/components/StreakBadge';
 import { useApp } from '@/context/AppContext';
-import { drugs } from '@/data/drugs';
 
 export default function Index() {
   const navigate = useNavigate();
-  const { completedQuizzes, correctAnswers, totalQuestionsAnswered, username } = useApp();
-
-  const accuracy = totalQuestionsAnswered > 0 
-    ? Math.round((correctAnswers / totalQuestionsAnswered) * 100) 
-    : 0;
+  const { username } = useApp();
 
   const features = [
     {
@@ -64,22 +59,6 @@ export default function Index() {
       </header>
 
       <main className="px-4 py-6 space-y-6">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
-            <div className="text-2xl font-bold text-quizzes">{completedQuizzes.length}</div>
-            <div className="text-xs text-muted-foreground">Quizzes</div>
-          </div>
-          <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
-            <div className="text-2xl font-bold text-success">{accuracy}%</div>
-            <div className="text-xs text-muted-foreground">Accuracy</div>
-          </div>
-          <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
-            <div className="text-2xl font-bold text-drugs">{drugs.length}</div>
-            <div className="text-xs text-muted-foreground">Drugs</div>
-          </div>
-        </div>
-
         {/* Main Features */}
         <section>
           <h2 className="text-lg font-semibold mb-4">Explore Features</h2>

@@ -15,6 +15,7 @@ export default function QuizzesPage() {
   const [selectedQuizzes, setSelectedQuizzes] = useState<string[]>([]);
   const [isTimed, setIsTimed] = useState(false);
   const [timePerQuestion, setTimePerQuestion] = useState(30);
+  const [questionCount, setQuestionCount] = useState<number | 'all'>('all');
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -48,20 +49,23 @@ export default function QuizzesPage() {
     }
   };
 
+  const totalAvailableQuestions = selectedQuizzes.reduce((acc, qId) => {
+    const quiz = quizzes.find(q => q.id === qId);
+    return acc + (quiz?.questions.length || 0);
+  }, 0);
+
+  const actualQuestionCount = questionCount === 'all' ? totalAvailableQuestions : Math.min(questionCount, totalAvailableQuestions);
+
   const startQuiz = () => {
     if (selectedQuizzes.length === 0) return;
     const params = new URLSearchParams({
       quizzes: selectedQuizzes.join(','),
       timed: isTimed.toString(),
       timePerQuestion: timePerQuestion.toString(),
+      questionCount: actualQuestionCount.toString(),
     });
     navigate(`/quiz/custom?${params.toString()}`);
   };
-
-  const totalQuestions = selectedQuizzes.reduce((acc, qId) => {
-    const quiz = quizzes.find(q => q.id === qId);
-    return acc + (quiz?.questions.length || 0);
-  }, 0);
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -116,6 +120,37 @@ export default function QuizzesPage() {
                 </div>
               </div>
             )}
+
+            {/* Question Count Selection */}
+            <div className="pt-2 border-t border-border/50">
+              <div className="flex items-center gap-2 mb-3">
+                <Target className="w-4 h-4 text-muted-foreground" />
+                <Label className="text-sm">Number of questions</Label>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[5, 10, 15, 20, 'all'].map(count => (
+                  <button
+                    key={count}
+                    onClick={() => setQuestionCount(count as number | 'all')}
+                    disabled={typeof count === 'number' && count > totalAvailableQuestions && selectedQuizzes.length > 0}
+                    className={cn(
+                      "px-4 py-2 rounded-xl text-sm font-medium transition-colors",
+                      questionCount === count 
+                        ? "bg-quizzes text-quizzes-foreground" 
+                        : "bg-secondary hover:bg-secondary/80",
+                      typeof count === 'number' && count > totalAvailableQuestions && selectedQuizzes.length > 0 && "opacity-50 cursor-not-allowed"
+                    )}
+                  >
+                    {count === 'all' ? 'All' : count}
+                  </button>
+                ))}
+              </div>
+              {selectedQuizzes.length > 0 && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  {totalAvailableQuestions} questions available from selected quizzes
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
@@ -124,7 +159,7 @@ export default function QuizzesPage() {
           <div className="flex items-center gap-2">
             <Shuffle className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">
-              {selectedQuizzes.length} selected • {totalQuestions} questions
+              {selectedQuizzes.length} selected • {actualQuestionCount} questions
             </span>
           </div>
           <button
@@ -201,7 +236,7 @@ export default function QuizzesPage() {
             onClick={startQuiz}
             className="w-full bg-quizzes text-quizzes-foreground py-4 rounded-2xl font-semibold shadow-lg hover:opacity-90 transition-opacity"
           >
-            Start Quiz ({totalQuestions} questions)
+            Start Quiz ({actualQuestionCount} questions)
           </button>
         )}
       </main>
