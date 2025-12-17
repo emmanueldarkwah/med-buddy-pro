@@ -1,10 +1,11 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, AlertTriangle, Pill, Skull, HeartCrack, Brain, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, AlertTriangle, Pill, Skull, HeartCrack, Brain, ShieldAlert, LucideIcon } from 'lucide-react';
 import { BottomNav } from '@/components/BottomNav';
 import { drugs } from '@/data/drugs';
 
 interface SafetyAlert {
-  icon: React.ElementType;
+  icon: LucideIcon;
   title: string;
   description: string;
   details: string;
