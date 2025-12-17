@@ -1,13 +1,13 @@
-import { Home, Search, BookOpen, Calculator, Trophy, AlertTriangle } from 'lucide-react';
+import { Home, Pill, BookOpen, Calculator, User } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { icon: Home, label: 'Home', path: '/' },
-  { icon: Search, label: 'Search', path: '/search' },
+  { icon: Pill, label: 'Drugs', path: '/search' },
   { icon: BookOpen, label: 'Learn', path: '/learn' },
   { icon: Calculator, label: 'Calc', path: '/calculator' },
-  { icon: Trophy, label: 'Progress', path: '/progress' },
+  { icon: User, label: 'Profile', path: '/progress' },
 ];
 
 export function BottomNav() {

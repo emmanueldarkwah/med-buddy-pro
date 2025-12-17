@@ -2,13 +2,10 @@ import { ArrowLeft, Trophy, Target, Flame, Star, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { useApp } from '@/context/AppContext';
-import { quizzes } from '@/data/quizzes';
-import { cn } from '@/lib/utils';
 
 export default function ProgressPage() {
   const navigate = useNavigate();
   const { 
-    completedQuizzes, 
     achievements, 
     studyStreak, 
     totalQuestionsAnswered, 
@@ -22,13 +19,6 @@ export default function ProgressPage() {
   const unlockedAchievements = achievements.filter(a => a.unlockedAt);
   const lockedAchievements = achievements.filter(a => !a.unlockedAt);
 
-  // Calculate quiz completion for each quiz
-  const getQuizBestScore = (quizId: string) => {
-    const results = completedQuizzes.filter(r => r.quizId === quizId);
-    if (results.length === 0) return null;
-    return Math.max(...results.map(r => Math.round((r.score / r.totalQuestions) * 100)));
-  };
-
   return (
     <div className="min-h-screen bg-background pb-24">
       <header className="gradient-hero text-primary-foreground px-4 pt-12 pb-8 rounded-b-[2rem]">
@@ -39,7 +29,7 @@ export default function ProgressPage() {
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <h1 className="text-xl font-bold">Your Progress</h1>
+          <h1 className="text-xl font-bold">Your Profile</h1>
         </div>
 
         {/* Stats Grid */}
@@ -76,62 +66,6 @@ export default function ProgressPage() {
       </header>
 
       <main className="px-4 py-6 space-y-8">
-        {/* Quiz Progress */}
-        <section>
-          <h2 className="text-lg font-semibold mb-4">Quiz Progress</h2>
-          <div className="space-y-3">
-            {quizzes.map(quiz => {
-              const bestScore = getQuizBestScore(quiz.id);
-              const attempts = completedQuizzes.filter(r => r.quizId === quiz.id).length;
-
-              return (
-                <div
-                  key={quiz.id}
-                  className="bg-card rounded-2xl p-4 shadow-sm border border-border/50"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{quiz.icon}</span>
-                      <div>
-                        <h3 className="font-medium">{quiz.title}</h3>
-                        <p className="text-xs text-muted-foreground">
-                          {attempts} attempt{attempts !== 1 ? 's' : ''}
-                        </p>
-                      </div>
-                    </div>
-                    {bestScore !== null && (
-                      <span className={cn(
-                        "text-lg font-bold",
-                        bestScore >= 80 ? "text-success" : bestScore >= 60 ? "text-warning" : "text-destructive"
-                      )}>
-                        {bestScore}%
-                      </span>
-                    )}
-                  </div>
-                  
-                  {bestScore !== null ? (
-                    <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                      <div 
-                        className={cn(
-                          "h-full rounded-full transition-all",
-                          bestScore >= 80 ? "gradient-success" : bestScore >= 60 ? "gradient-accent" : "gradient-danger"
-                        )}
-                        style={{ width: `${bestScore}%` }}
-                      />
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => navigate(`/quiz/${quiz.id}`)}
-                      className="w-full py-2 text-sm text-primary font-medium"
-                    >
-                      Start Quiz →
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
 
         {/* Achievements */}
         <section>
