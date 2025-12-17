@@ -18,6 +18,7 @@ import MorePage from "./pages/MorePage";
 import ProfilePage from "./pages/ProfilePage";
 import SafetyPage from "./pages/SafetyPage";
 import AuthPage from "./pages/AuthPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/more" element={<MorePage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/safety" element={<SafetyPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/progress" element={<ProfilePage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
