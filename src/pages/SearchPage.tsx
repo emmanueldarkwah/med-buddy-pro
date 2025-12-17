@@ -36,20 +36,24 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 px-4 py-4">
-        <div className="flex items-center gap-3 bg-secondary rounded-2xl px-4 py-3">
-          <Search className="w-5 h-5 text-muted-foreground" />
+      <header className="sticky top-0 z-40 bg-drugs text-drugs-foreground px-4 pt-8 pb-4 rounded-b-2xl">
+        <div className="flex items-center gap-2 mb-4">
+          <Pill className="w-6 h-6" />
+          <h1 className="text-xl font-bold">Drug Database</h1>
+        </div>
+        <div className="flex items-center gap-3 bg-white/10 rounded-2xl px-4 py-3">
+          <Search className="w-5 h-5 opacity-80" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search drugs, uses, classes..."
-            className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent outline-none text-drugs-foreground placeholder:text-drugs-foreground/60"
             autoFocus
           />
           {query && (
             <button onClick={() => setQuery('')}>
-              <X className="w-5 h-5 text-muted-foreground" />
+              <X className="w-5 h-5 opacity-80" />
             </button>
           )}
         </div>

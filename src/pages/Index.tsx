@@ -1,37 +1,65 @@
-import { Bell, Pill, AlertTriangle, TrendingUp } from 'lucide-react';
+import { Pill, GraduationCap, BookOpen, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
-import { QuickActions } from '@/components/QuickActions';
 import { StreakBadge } from '@/components/StreakBadge';
-import { DrugCard } from '@/components/DrugCard';
-import { drugs } from '@/data/drugs';
 import { useApp } from '@/context/AppContext';
+import { drugs } from '@/data/drugs';
 
 export default function Index() {
   const navigate = useNavigate();
-  const { completedQuizzes, correctAnswers, totalQuestionsAnswered } = useApp();
-  const featuredDrugs = drugs.slice(0, 3);
-  const dangerousDrugs = drugs.filter(d => d.isDangerous);
+  const { completedQuizzes, correctAnswers, totalQuestionsAnswered, username } = useApp();
 
   const accuracy = totalQuestionsAnswered > 0 
     ? Math.round((correctAnswers / totalQuestionsAnswered) * 100) 
     : 0;
+
+  const features = [
+    {
+      icon: Pill,
+      title: 'Drug Database',
+      description: 'Explore detailed information about medications, their uses, dosages, and interactions.',
+      path: '/drugs',
+      gradient: 'gradient-drugs',
+      color: 'drugs',
+    },
+    {
+      icon: GraduationCap,
+      title: 'Quizzes',
+      description: 'Test your knowledge with customizable quizzes. Choose timed or untimed modes.',
+      path: '/quizzes',
+      gradient: 'gradient-quizzes',
+      color: 'quizzes',
+    },
+    {
+      icon: BookOpen,
+      title: 'Case Studies',
+      description: 'Apply your knowledge to real-world clinical scenarios and patient cases.',
+      path: '/cases',
+      gradient: 'gradient-cases',
+      color: 'cases',
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <header className="gradient-hero text-primary-foreground px-4 pt-12 pb-8 rounded-b-[2rem]">
         <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-2xl font-bold mb-1">PharmaPro</h1>
-            <p className="text-primary-foreground/80 text-sm">Your Drug Reference Guide</p>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-primary-foreground/20 flex items-center justify-center">
+              <Sparkles className="w-7 h-7" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold mb-0.5">AcuPharm</h1>
+              <p className="text-primary-foreground/80 text-xs">Your comprehensive pharmacy education platform</p>
+            </div>
           </div>
-        <div className="flex items-center gap-3">
-            <StreakBadge />
-            <button className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors">
-              <Bell className="w-5 h-5" />
-            </button>
-          </div>
+          <StreakBadge />
+        </div>
+        
+        <div className="bg-primary-foreground/10 rounded-2xl p-4">
+          <p className="text-sm opacity-80 mb-1">Welcome back,</p>
+          <p className="text-xl font-bold">{username}</p>
         </div>
       </header>
 
@@ -39,7 +67,7 @@ export default function Index() {
         {/* Stats Cards */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
-            <div className="text-2xl font-bold text-primary">{completedQuizzes.length}</div>
+            <div className="text-2xl font-bold text-quizzes">{completedQuizzes.length}</div>
             <div className="text-xs text-muted-foreground">Quizzes</div>
           </div>
           <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
@@ -47,76 +75,33 @@ export default function Index() {
             <div className="text-xs text-muted-foreground">Accuracy</div>
           </div>
           <div className="bg-card rounded-2xl p-3 shadow-sm border border-border/50 text-center">
-            <div className="text-2xl font-bold text-accent">{drugs.length}</div>
+            <div className="text-2xl font-bold text-drugs">{drugs.length}</div>
             <div className="text-xs text-muted-foreground">Drugs</div>
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Main Features */}
         <section>
-          <h2 className="text-lg font-semibold mb-3">Quick Actions</h2>
-          <QuickActions />
-        </section>
-
-        {/* Dangerous Drugs Alert */}
-        <section className="bg-destructive/10 border border-destructive/20 rounded-2xl p-4">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-destructive/20 rounded-xl">
-              <AlertTriangle className="w-5 h-5 text-destructive" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-destructive">High-Alert Medications</h3>
-              <p className="text-xs text-muted-foreground">Requires extra caution</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {dangerousDrugs.map(drug => (
+          <h2 className="text-lg font-semibold mb-4">Explore Features</h2>
+          <div className="space-y-4">
+            {features.map((feature) => (
               <button
-                key={drug.id}
-                onClick={() => navigate(`/drug/${drug.id}`)}
-                className="px-3 py-1.5 bg-destructive/10 hover:bg-destructive/20 text-destructive text-sm rounded-full transition-colors"
+                key={feature.path}
+                onClick={() => navigate(feature.path)}
+                className="w-full bg-card rounded-2xl p-5 shadow-sm border border-border/50 text-left hover:shadow-md transition-all group"
               >
-                {drug.name}
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 ${feature.gradient} rounded-2xl group-hover:scale-110 transition-transform`}>
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-1">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                  </div>
+                </div>
               </button>
             ))}
           </div>
-        </section>
-
-        {/* Featured Drugs */}
-        <section>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold">Featured Drugs</h2>
-            <button 
-              onClick={() => navigate('/search')}
-              className="text-sm text-primary font-medium"
-            >
-              View All
-            </button>
-          </div>
-          <div className="space-y-3">
-            {featuredDrugs.map(drug => (
-              <DrugCard key={drug.id} drug={drug} />
-            ))}
-          </div>
-        </section>
-
-        {/* Continue Learning */}
-        <section className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-4 border border-primary/10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 gradient-primary rounded-xl">
-              <TrendingUp className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <h3 className="font-semibold">Continue Learning</h3>
-              <p className="text-xs text-muted-foreground">Pick up where you left off</p>
-            </div>
-          </div>
-          <button
-            onClick={() => navigate('/learn')}
-            className="w-full gradient-primary text-primary-foreground py-3 rounded-xl font-medium shadow-md hover:shadow-lg transition-all"
-          >
-            Start a Quiz
-          </button>
         </section>
       </main>
 
