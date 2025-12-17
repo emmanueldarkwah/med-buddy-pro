@@ -1,5 +1,5 @@
 import { Pill, GraduationCap, BookOpen, Sparkles } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { StreakBadge } from '@/components/StreakBadge';
 import { useApp } from '@/context/AppContext';
@@ -82,6 +82,13 @@ export default function Index() {
             ))}
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="text-center pt-4 pb-2">
+          <Link to="/privacy-policy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            Privacy Policy
+          </Link>
+        </footer>
       </main>
 
       <BottomNav />
