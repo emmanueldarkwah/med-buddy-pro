@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft, AlertTriangle, Search, X, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { drugs } from '@/data/drugs';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { useApp } from '@/context/AppContext';
 
 export default function InteractionsPage() {
   const navigate = useNavigate();
+  const { incrementInteractionChecks, checkAndUnlockAchievements } = useApp();
   const [selectedDrugs, setSelectedDrugs] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -53,6 +55,14 @@ export default function InteractionsPage() {
       }
     });
   });
+
+  // Track interaction checks for achievements
+  useEffect(() => {
+    if (interactions.length > 0 && selectedDrugs.length >= 2) {
+      incrementInteractionChecks();
+      checkAndUnlockAchievements();
+    }
+  }, [interactions.length]);
 
   return (
     <div className="min-h-screen bg-background pb-24">

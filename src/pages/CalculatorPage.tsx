@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft, Calculator, RotateCcw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { useApp } from '@/context/AppContext';
 
 interface CalculatorType {
   id: string;
@@ -25,7 +26,16 @@ const calculators: CalculatorType[] = [
 
 export default function CalculatorPage() {
   const navigate = useNavigate();
+  const { incrementCalculatorUse, checkAndUnlockAchievements } = useApp();
   const [selectedCalc, setSelectedCalc] = useState<string | null>(null);
+
+  // Track calculator usage for achievements
+  useEffect(() => {
+    if (selectedCalc) {
+      incrementCalculatorUse();
+      checkAndUnlockAchievements();
+    }
+  }, [selectedCalc]);
 
   return (
     <div className="min-h-screen bg-background pb-24">

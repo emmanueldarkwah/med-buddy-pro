@@ -29,6 +29,8 @@ interface AppState {
   avatarUrl: string;
   theme: ThemeColor;
   isDarkMode: boolean;
+  interactionChecks: number;
+  calculatorUses: number;
 }
 
 interface AppContextType extends AppState {
@@ -42,6 +44,11 @@ interface AppContextType extends AppState {
   setAvatarUrl: (url: string) => void;
   setTheme: (theme: ThemeColor) => void;
   toggleDarkMode: () => void;
+  checkAndUnlockAchievements: () => void;
+  incrementInteractionChecks: () => void;
+  incrementCalculatorUse: () => void;
+  interactionChecks: number;
+  calculatorUses: number;
 }
 
 const defaultAchievements: Achievement[] = [
@@ -75,6 +82,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       avatarUrl: '',
       theme: 'default' as ThemeColor,
       isDarkMode: false,
+      interactionChecks: 0,
+      calculatorUses: 0,
     };
   });
 
@@ -164,6 +173,64 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, isDarkMode: !prev.isDarkMode }));
   };
 
+  const incrementInteractionChecks = () => {
+    setState(prev => ({ ...prev, interactionChecks: prev.interactionChecks + 1 }));
+  };
+
+  const incrementCalculatorUse = () => {
+    setState(prev => ({ ...prev, calculatorUses: prev.calculatorUses + 1 }));
+  };
+
+  const checkAndUnlockAchievements = () => {
+    setState(prev => {
+      const updates: Partial<Achievement>[] = [];
+      
+      // Check streak achievements
+      if (prev.studyStreak >= 3) {
+        const streak3 = prev.achievements.find(a => a.id === 'streak_3');
+        if (streak3 && !streak3.unlockedAt) updates.push({ ...streak3, unlockedAt: new Date() });
+      }
+      if (prev.studyStreak >= 7) {
+        const streak7 = prev.achievements.find(a => a.id === 'streak_7');
+        if (streak7 && !streak7.unlockedAt) updates.push({ ...streak7, unlockedAt: new Date() });
+      }
+      
+      // Check quiz master (10 quizzes)
+      if (prev.completedQuizzes.length >= 10) {
+        const quizMaster = prev.achievements.find(a => a.id === 'quiz_master');
+        if (quizMaster && !quizMaster.unlockedAt) updates.push({ ...quizMaster, unlockedAt: new Date() });
+      }
+      
+      // Check drug expert (50 correct answers)
+      if (prev.correctAnswers >= 50) {
+        const drugExpert = prev.achievements.find(a => a.id === 'drug_expert');
+        if (drugExpert && !drugExpert.unlockedAt) updates.push({ ...drugExpert, unlockedAt: new Date() });
+      }
+      
+      // Check interaction aware (5 interaction checks)
+      if (prev.interactionChecks >= 5) {
+        const interactionAware = prev.achievements.find(a => a.id === 'interaction_aware');
+        if (interactionAware && !interactionAware.unlockedAt) updates.push({ ...interactionAware, unlockedAt: new Date() });
+      }
+      
+      // Check calculator pro (10 calculator uses)
+      if (prev.calculatorUses >= 10) {
+        const calcPro = prev.achievements.find(a => a.id === 'calculator_pro');
+        if (calcPro && !calcPro.unlockedAt) updates.push({ ...calcPro, unlockedAt: new Date() });
+      }
+      
+      if (updates.length === 0) return prev;
+      
+      return {
+        ...prev,
+        achievements: prev.achievements.map(a => {
+          const update = updates.find(u => u.id === a.id);
+          return update ? { ...a, ...update } : a;
+        }),
+      };
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -178,6 +245,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setAvatarUrl,
         setTheme,
         toggleDarkMode,
+        checkAndUnlockAchievements,
+        incrementInteractionChecks,
+        incrementCalculatorUse,
       }}
     >
       {children}
