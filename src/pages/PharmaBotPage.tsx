@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2, Trash2, Pill, Calculator, AlertTriangle, Stethoscope, BookOpen, Sparkles, Bookmark, BookmarkCheck, History, X } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Loader2, Trash2, Pill, Calculator, AlertTriangle, Stethoscope, BookOpen, Sparkles, Bookmark, BookmarkCheck, History, X, Mic, MicOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useVoiceInput } from '@/hooks/useVoiceInput';
 
 type Message = { 
   id?: string;
@@ -104,6 +105,18 @@ export default function PharmaBotPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showHistory, setShowHistory] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const { isListening, transcript, isSupported, toggleListening } = useVoiceInput({
+    onResult: (text) => setInput(prev => prev + text),
+    onError: (error) => toast.error(error),
+  });
+
+  // Update input with live transcript while listening
+  useEffect(() => {
+    if (isListening && transcript) {
+      setInput(transcript);
+    }
+  }, [transcript, isListening]);
 
   // Load chat history on mount
   useEffect(() => {
@@ -579,16 +592,27 @@ export default function PharmaBotPage() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask PharmaBot anything..."
+            placeholder={isListening ? "Listening..." : "Ask PharmaBot anything..."}
             disabled={isLoading}
             className="flex-1"
           />
+          {isSupported && (
+            <Button 
+              type="button" 
+              variant={isListening ? "destructive" : "outline"}
+              onClick={toggleListening}
+              disabled={isLoading}
+              className={cn(isListening && "animate-pulse")}
+            >
+              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </Button>
+          )}
           <Button type="submit" disabled={isLoading || !input.trim()} className="gradient-bot">
             <Send className="w-4 h-4" />
           </Button>
         </form>
         <p className="text-[10px] text-muted-foreground text-center mt-2">
-          For educational purposes only. Always verify with official sources.
+          {isListening ? "Tap mic to stop recording" : "For educational purposes only. Always verify with official sources."}
         </p>
       </div>
 
