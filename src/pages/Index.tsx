@@ -1,12 +1,14 @@
-import { Pill, GraduationCap, BookOpen, Sparkles } from 'lucide-react';
+import { Pill, GraduationCap, BookOpen, Sparkles, Bot, Shield } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { StreakBadge } from '@/components/StreakBadge';
 import { useApp } from '@/context/AppContext';
+import { useAdminRole } from '@/hooks/useAdminRole';
 
 export default function Index() {
   const navigate = useNavigate();
   const { username } = useApp();
+  const { isAdmin } = useAdminRole();
 
   const features = [
     {
@@ -32,6 +34,14 @@ export default function Index() {
       path: '/cases',
       gradient: 'gradient-cases',
       color: 'cases',
+    },
+    {
+      icon: Bot,
+      title: 'PharmaBot',
+      description: 'Get instant answers to your pharmacy questions from our AI assistant.',
+      path: '/pharmabot',
+      gradient: 'gradient-bot',
+      color: 'bot',
     },
   ];
 
@@ -59,6 +69,26 @@ export default function Index() {
       </header>
 
       <main className="px-4 py-6 space-y-6">
+        {/* Admin Section */}
+        {isAdmin && (
+          <section>
+            <button
+              onClick={() => navigate('/admin')}
+              className="w-full bg-destructive/10 rounded-2xl p-5 shadow-sm border border-destructive/20 text-left hover:shadow-md transition-all group"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-destructive rounded-2xl group-hover:scale-110 transition-transform">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg mb-1 text-destructive">Admin Panel</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">Manage drugs, quizzes, case studies, and safety alerts.</p>
+                </div>
+              </div>
+            </button>
+          </section>
+        )}
+
         {/* Main Features */}
         <section>
           <h2 className="text-lg font-semibold mb-4">Explore Features</h2>

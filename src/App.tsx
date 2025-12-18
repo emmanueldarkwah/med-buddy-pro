@@ -24,6 +24,7 @@ import ProgressPage from "./pages/ProgressPage";
 import DailyChallengePage from "./pages/DailyChallengePage";
 import BookmarksPage from "./pages/BookmarksPage";
 import PharmaBotPage from "./pages/PharmaBotPage";
+import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
               <Route path="/daily-challenge" element={<DailyChallengePage />} />
               <Route path="/bookmarks" element={<BookmarksPage />} />
               <Route path="/pharmabot" element={<PharmaBotPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
