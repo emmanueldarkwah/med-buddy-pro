@@ -69,7 +69,7 @@ export default function InteractionsPage() {
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 px-4 py-4">
         <div className="flex items-center gap-3 mb-4">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate(-1)}
             className="p-2 rounded-full hover:bg-secondary transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />

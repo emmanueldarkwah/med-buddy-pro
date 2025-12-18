@@ -42,7 +42,7 @@ export default function CalculatorPage() {
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/50 px-4 py-4">
         <div className="flex items-center gap-3">
           <button
-            onClick={() => selectedCalc ? setSelectedCalc(null) : navigate('/')}
+            onClick={() => selectedCalc ? setSelectedCalc(null) : navigate(-1)}
             className="p-2 rounded-full hover:bg-secondary transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />

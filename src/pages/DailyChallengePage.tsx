@@ -71,7 +71,7 @@ export default function DailyChallengePage() {
         <header className="bg-gradient-to-br from-warning to-warning/80 text-warning-foreground px-4 pt-12 pb-6 rounded-b-[2rem]">
           <div className="flex items-center gap-3 mb-4">
             <button
-              onClick={() => navigate('/more')}
+              onClick={() => navigate(-1)}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -116,7 +116,7 @@ export default function DailyChallengePage() {
         <header className="bg-gradient-to-br from-success to-success/80 text-success-foreground px-4 pt-12 pb-6 rounded-b-[2rem]">
           <div className="flex items-center gap-3 mb-4">
             <button
-              onClick={() => navigate('/more')}
+              onClick={() => navigate(-1)}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -160,7 +160,7 @@ export default function DailyChallengePage() {
       <header className="bg-gradient-to-br from-warning to-warning/80 text-warning-foreground px-4 pt-12 pb-6 rounded-b-[2rem]">
         <div className="flex items-center gap-3 mb-4">
           <button
-            onClick={() => navigate('/more')}
+            onClick={() => navigate(-1)}
             className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
