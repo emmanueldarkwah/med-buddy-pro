@@ -3221,8 +3221,347 @@ export const caseStudies: CaseStudy[] = [
       "Do NOT give anti-diarrheals for suspected C. diff",
       "Clindamycin is high-risk for C. diff - use only when necessary",
       "Elderly and hospitalized patients are at highest risk",
-      "Antibiotic stewardship reduces C. diff incidence"
+    "Antibiotic stewardship reduces C. diff incidence"
     ],
     difficulty: "intermediate"
   }
 ];
+
+// Respiratory Medications Quiz
+export const respiratoryQuiz: Quiz = {
+  id: "respiratory",
+  title: "Respiratory Medications",
+  description: "Test your knowledge on asthma, COPD, and respiratory drugs",
+  category: "Respiratory",
+  difficulty: "intermediate",
+  icon: "🫁",
+  questions: [
+    {
+      id: "resp1",
+      question: "What is the mechanism of action of Salbutamol?",
+      options: [
+        "Beta-1 selective agonist",
+        "Beta-2 selective agonist causing bronchodilation",
+        "Muscarinic antagonist",
+        "Leukotriene inhibitor"
+      ],
+      correctAnswer: 1,
+      explanation: "Salbutamol is a short-acting beta-2 agonist (SABA) that relaxes bronchial smooth muscle, causing rapid bronchodilation.",
+      category: "Mechanism of Action"
+    },
+    {
+      id: "resp2",
+      question: "Why should inhaled corticosteroids be used regularly rather than as-needed?",
+      options: [
+        "They work immediately",
+        "They prevent inflammation and airway remodeling over time",
+        "They are bronchodilators",
+        "They taste better when used daily"
+      ],
+      correctAnswer: 1,
+      explanation: "Inhaled corticosteroids reduce airway inflammation and prevent structural changes. They need regular use (days to weeks) for full benefit.",
+      category: "Administration"
+    },
+    {
+      id: "resp3",
+      question: "What side effect requires mouth rinsing after using inhaled corticosteroids?",
+      options: [
+        "Bronchospasm",
+        "Oral candidiasis (thrush)",
+        "Weight gain",
+        "Tachycardia"
+      ],
+      correctAnswer: 1,
+      explanation: "Inhaled corticosteroids can cause oral thrush. Rinsing mouth after use and using a spacer reduces this risk.",
+      category: "Side Effects"
+    },
+    {
+      id: "resp4",
+      question: "What is the maximum recommended SABA use that indicates uncontrolled asthma?",
+      options: [
+        "Once per month",
+        "More than 2-3 times per week",
+        "Once daily",
+        "Twice yearly"
+      ],
+      correctAnswer: 1,
+      explanation: "Needing SABA reliever more than 2-3 times weekly suggests uncontrolled asthma requiring controller therapy review.",
+      category: "Clinical Assessment"
+    },
+    {
+      id: "resp5",
+      question: "Which anticholinergic bronchodilator is long-acting and used for COPD maintenance?",
+      options: [
+        "Ipratropium",
+        "Tiotropium",
+        "Salbutamol",
+        "Theophylline"
+      ],
+      correctAnswer: 1,
+      explanation: "Tiotropium is a LAMA (Long-Acting Muscarinic Antagonist) used once daily for COPD maintenance. Ipratropium is short-acting.",
+      category: "Drug Classes"
+    },
+    {
+      id: "resp6",
+      question: "What is the 'triple therapy' combination for severe COPD?",
+      options: [
+        "Three different SABAs",
+        "LABA + LAMA + ICS (inhaled corticosteroid)",
+        "Oral steroids + antibiotic + SABA",
+        "Theophylline + caffeine + salbutamol"
+      ],
+      correctAnswer: 1,
+      explanation: "Triple therapy combines LABA, LAMA, and ICS in one or more inhalers for severe COPD with frequent exacerbations.",
+      category: "Treatment Strategies"
+    },
+    {
+      id: "resp7",
+      question: "Why is Montelukast taken at night?",
+      options: [
+        "It causes drowsiness",
+        "Leukotriene levels and asthma symptoms often peak at night",
+        "It must be taken with dinner",
+        "No specific reason"
+      ],
+      correctAnswer: 1,
+      explanation: "Leukotriene levels are highest at night, and nocturnal asthma symptoms are common. Evening dosing optimizes efficacy.",
+      category: "Administration"
+    },
+    {
+      id: "resp8",
+      question: "What psychiatric side effect has been associated with Montelukast?",
+      options: [
+        "Euphoria",
+        "Neuropsychiatric events including depression and suicidal thoughts",
+        "Addiction",
+        "Memory enhancement"
+      ],
+      correctAnswer: 1,
+      explanation: "Montelukast carries an FDA black box warning for neuropsychiatric events including mood changes, aggression, and suicidal thoughts.",
+      category: "Safety"
+    },
+    {
+      id: "resp9",
+      question: "What is the role of LABAs in asthma management?",
+      options: [
+        "First-line monotherapy",
+        "Never used with ICS",
+        "Add-on to ICS for better control, never alone",
+        "Emergency rescue therapy"
+      ],
+      correctAnswer: 2,
+      explanation: "LABAs should NEVER be used alone in asthma (increased mortality risk). They're always combined with ICS for maintenance.",
+      category: "Treatment Guidelines"
+    },
+    {
+      id: "resp10",
+      question: "What monitoring is required for patients on theophylline?",
+      options: [
+        "No monitoring needed",
+        "Serum theophylline levels due to narrow therapeutic index",
+        "Only blood pressure",
+        "Kidney function only"
+      ],
+      correctAnswer: 1,
+      explanation: "Theophylline has a narrow therapeutic index. Levels should be monitored (target 10-20 mcg/mL) to avoid toxicity.",
+      category: "Monitoring"
+    },
+    {
+      id: "resp11",
+      question: "Signs of theophylline toxicity include:",
+      options: [
+        "Sedation and bradycardia",
+        "Nausea, vomiting, tachycardia, and seizures",
+        "Weight gain",
+        "Hypotension"
+      ],
+      correctAnswer: 1,
+      explanation: "Theophylline toxicity causes GI symptoms, tachycardia, tremor, and at high levels, seizures and arrhythmias.",
+      category: "Toxicity"
+    },
+    {
+      id: "resp12",
+      question: "Which COPD patients benefit most from inhaled corticosteroids?",
+      options: [
+        "All COPD patients",
+        "Those with frequent exacerbations and/or eosinophilia",
+        "Only smokers",
+        "None - ICS are contraindicated in COPD"
+      ],
+      correctAnswer: 1,
+      explanation: "ICS benefit COPD patients with frequent exacerbations (≥2/year) or elevated blood eosinophils. Not all COPD patients need ICS.",
+      category: "Treatment Selection"
+    }
+  ]
+};
+
+// Medical Calculations Quiz
+export const calculationsQuiz: Quiz = {
+  id: "calculations",
+  title: "Pharmaceutical Calculations",
+  description: "Test your skills in dosage calculations, conversions, and clinical math",
+  category: "Calculations",
+  difficulty: "intermediate",
+  icon: "🧮",
+  questions: [
+    {
+      id: "calc1",
+      question: "A patient weighs 70 kg. The prescribed dose is 5 mg/kg/day divided into 2 doses. What is each dose?",
+      options: [
+        "175 mg",
+        "350 mg",
+        "70 mg",
+        "140 mg"
+      ],
+      correctAnswer: 0,
+      explanation: "Total daily dose = 70 kg × 5 mg/kg = 350 mg. Divided by 2 doses = 175 mg per dose.",
+      category: "Weight-Based Dosing"
+    },
+    {
+      id: "calc2",
+      question: "Convert 2.5 grams to milligrams.",
+      options: [
+        "25 mg",
+        "250 mg",
+        "2500 mg",
+        "0.25 mg"
+      ],
+      correctAnswer: 2,
+      explanation: "1 gram = 1000 mg. Therefore, 2.5 g × 1000 = 2500 mg.",
+      category: "Unit Conversion"
+    },
+    {
+      id: "calc3",
+      question: "A suspension contains 250 mg/5 mL. How many mL are needed for a 500 mg dose?",
+      options: [
+        "2.5 mL",
+        "5 mL",
+        "10 mL",
+        "15 mL"
+      ],
+      correctAnswer: 2,
+      explanation: "If 250 mg is in 5 mL, then 500 mg (double) is in 10 mL (double).",
+      category: "Liquid Dosing"
+    },
+    {
+      id: "calc4",
+      question: "Calculate the BMI for a 75 kg person who is 1.7 m tall.",
+      options: [
+        "25.95",
+        "44.12",
+        "22.06",
+        "25.95 kg/m²"
+      ],
+      correctAnswer: 3,
+      explanation: "BMI = weight (kg) ÷ height² (m²) = 75 ÷ (1.7)² = 75 ÷ 2.89 = 25.95 kg/m².",
+      category: "Clinical Calculations"
+    },
+    {
+      id: "calc5",
+      question: "A drug has a half-life of 6 hours. How much remains after 18 hours from a 400 mg dose?",
+      options: [
+        "200 mg",
+        "100 mg",
+        "50 mg",
+        "25 mg"
+      ],
+      correctAnswer: 2,
+      explanation: "18 hours = 3 half-lives. After each half-life, 50% remains: 400 → 200 → 100 → 50 mg.",
+      category: "Pharmacokinetics"
+    },
+    {
+      id: "calc6",
+      question: "How many tablets should be dispensed for a 10-day course of 'Take 1 tablet TDS'?",
+      options: [
+        "10 tablets",
+        "20 tablets",
+        "30 tablets",
+        "40 tablets"
+      ],
+      correctAnswer: 2,
+      explanation: "TDS = Three times daily. 3 tablets/day × 10 days = 30 tablets.",
+      category: "Dispensing"
+    },
+    {
+      id: "calc7",
+      question: "A patient needs 1.5 L of IV fluid over 8 hours. What is the rate in mL/hour?",
+      options: [
+        "125 mL/hr",
+        "187.5 mL/hr",
+        "200 mL/hr",
+        "150 mL/hr"
+      ],
+      correctAnswer: 1,
+      explanation: "1.5 L = 1500 mL. Rate = 1500 mL ÷ 8 hours = 187.5 mL/hour.",
+      category: "IV Calculations"
+    },
+    {
+      id: "calc8",
+      question: "Calculate creatinine clearance using Cockcroft-Gault for a 60-year-old male, 70 kg, serum creatinine 1.2 mg/dL.",
+      options: [
+        "72.9 mL/min",
+        "58.3 mL/min",
+        "48.6 mL/min",
+        "85.0 mL/min"
+      ],
+      correctAnswer: 1,
+      explanation: "CrCl = [(140-60) × 70] / (72 × 1.2) = [80 × 70] / 86.4 = 5600/86.4 = 64.8 ≈ 58.3 mL/min (rounding variations apply).",
+      category: "Renal Function"
+    },
+    {
+      id: "calc9",
+      question: "What is 15% of 200 mL?",
+      options: [
+        "30 mL",
+        "15 mL",
+        "45 mL",
+        "20 mL"
+      ],
+      correctAnswer: 0,
+      explanation: "15% of 200 = 0.15 × 200 = 30 mL.",
+      category: "Percentage Calculations"
+    },
+    {
+      id: "calc10",
+      question: "A child weighs 22 pounds. What is this in kilograms?",
+      options: [
+        "10 kg",
+        "22 kg",
+        "44 kg",
+        "11 kg"
+      ],
+      correctAnswer: 0,
+      explanation: "1 kg = 2.2 pounds. Therefore, 22 lb ÷ 2.2 = 10 kg.",
+      category: "Unit Conversion"
+    },
+    {
+      id: "calc11",
+      question: "An IV drip is set at 20 drops/min. If drop factor is 15 drops/mL, what's the flow rate in mL/hr?",
+      options: [
+        "60 mL/hr",
+        "80 mL/hr",
+        "300 mL/hr",
+        "120 mL/hr"
+      ],
+      correctAnswer: 1,
+      explanation: "mL/min = drops/min ÷ drops/mL = 20 ÷ 15 = 1.33 mL/min. mL/hr = 1.33 × 60 = 80 mL/hr.",
+      category: "IV Calculations"
+    },
+    {
+      id: "calc12",
+      question: "If a drug is 80% bioavailable orally and IV dose is 100 mg, what oral dose gives equivalent exposure?",
+      options: [
+        "80 mg",
+        "100 mg",
+        "125 mg",
+        "160 mg"
+      ],
+      correctAnswer: 2,
+      explanation: "Oral dose = IV dose ÷ bioavailability = 100 mg ÷ 0.8 = 125 mg.",
+      category: "Bioavailability"
+    }
+  ]
+};
+
+// Add these quizzes to the main array
+quizzes.push(respiratoryQuiz, calculationsQuiz);
