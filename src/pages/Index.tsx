@@ -56,7 +56,7 @@ export default function Index() {
             </div>
             <div>
               <h1 className="text-2xl font-bold mb-0.5">AcuPharm</h1>
-              <p className="text-primary-foreground/80 text-xs">Your comprehensive pharmacy education platform</p>
+              <p className="text-primary-foreground/80 text-xs">Your Comprehensive Pharmacy Education Platform</p>
             </div>
           </div>
           <StreakBadge />
