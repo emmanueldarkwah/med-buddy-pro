@@ -1,4 +1,4 @@
-import { Pill, GraduationCap, BookOpen, Sparkles, Bot, Shield } from 'lucide-react';
+import { Pill, GraduationCap, BookOpen, Bot, Shield } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BottomNav } from '@/components/BottomNav';
 import { StreakBadge } from '@/components/StreakBadge';
@@ -52,7 +52,7 @@ export default function Index() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-2xl bg-primary-foreground/20 flex items-center justify-center">
-              <Sparkles className="w-7 h-7" />
+              <Pill className="w-7 h-7" />
             </div>
             <div>
               <h1 className="text-2xl font-bold mb-0.5">AcuPharm</h1>
