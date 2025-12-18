@@ -84,7 +84,7 @@ export default function FlashcardsPage() {
         <header className="bg-primary text-primary-foreground px-4 pt-12 pb-6 rounded-b-[2rem]">
           <div className="flex items-center gap-3 mb-4">
             <button
-              onClick={() => navigate('/more')}
+              onClick={() => navigate(-1)}
               className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
