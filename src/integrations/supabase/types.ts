@@ -185,6 +185,180 @@ export type Database = {
         }
         Relationships: []
       }
+      generated_quizzes: {
+        Row: {
+          created_at: string | null
+          focus_topics: string[] | null
+          id: string
+          questions: Json
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          focus_topics?: string[] | null
+          id?: string
+          questions: Json
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          focus_topics?: string[] | null
+          id?: string
+          questions?: Json
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      quiz_question_analytics: {
+        Row: {
+          answered_at: string | null
+          category: string
+          id: string
+          is_correct: boolean
+          question_index: number
+          quiz_id: string
+          time_spent_seconds: number | null
+          user_id: string
+        }
+        Insert: {
+          answered_at?: string | null
+          category: string
+          id?: string
+          is_correct: boolean
+          question_index: number
+          quiz_id: string
+          time_spent_seconds?: number | null
+          user_id: string
+        }
+        Update: {
+          answered_at?: string | null
+          category?: string
+          id?: string
+          is_correct?: boolean
+          question_index?: number
+          quiz_id?: string
+          time_spent_seconds?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      spaced_repetition: {
+        Row: {
+          card_index: number
+          created_at: string | null
+          drug_id: string
+          ease_factor: number | null
+          id: string
+          interval_days: number | null
+          last_review_date: string | null
+          next_review_date: string | null
+          repetitions: number | null
+          user_id: string
+        }
+        Insert: {
+          card_index: number
+          created_at?: string | null
+          drug_id: string
+          ease_factor?: number | null
+          id?: string
+          interval_days?: number | null
+          last_review_date?: string | null
+          next_review_date?: string | null
+          repetitions?: number | null
+          user_id: string
+        }
+        Update: {
+          card_index?: number
+          created_at?: string | null
+          drug_id?: string
+          ease_factor?: number | null
+          id?: string
+          interval_days?: number | null
+          last_review_date?: string | null
+          next_review_date?: string | null
+          repetitions?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_plans: {
+        Row: {
+          created_at: string | null
+          daily_goals: Json | null
+          description: string | null
+          duration_days: number | null
+          focus_areas: string[] | null
+          id: string
+          is_active: boolean | null
+          progress: Json | null
+          start_date: string | null
+          title: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          daily_goals?: Json | null
+          description?: string | null
+          duration_days?: number | null
+          focus_areas?: string[] | null
+          id?: string
+          is_active?: boolean | null
+          progress?: Json | null
+          start_date?: string | null
+          title: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          daily_goals?: Json | null
+          description?: string | null
+          duration_days?: number | null
+          focus_areas?: string[] | null
+          id?: string
+          is_active?: boolean | null
+          progress?: Json | null
+          start_date?: string | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_reminders: {
+        Row: {
+          created_at: string | null
+          days_of_week: number[] | null
+          id: string
+          is_enabled: boolean | null
+          last_sent: string | null
+          reminder_time: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          days_of_week?: number[] | null
+          id?: string
+          is_enabled?: boolean | null
+          last_sent?: string | null
+          reminder_time: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          days_of_week?: number[] | null
+          id?: string
+          is_enabled?: boolean | null
+          last_sent?: string | null
+          reminder_time?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_achievements: {
         Row: {
           achievement_id: string

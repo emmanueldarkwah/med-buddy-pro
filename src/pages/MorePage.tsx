@@ -1,5 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calculator, GitCompare, User, ShieldAlert, Settings, Info, LogOut, LogIn, FileText, Zap, BarChart3, BookOpen, Bookmark } from 'lucide-react';
+import { ArrowLeft, Calculator, GitCompare, User, ShieldAlert, Settings, Info, LogOut, LogIn, FileText, Zap, BarChart3, BookOpen, Bookmark, Brain, Sparkles, PieChart } from 'lucide-react';
 import { BottomNav } from '@/components/BottomNav';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -36,9 +36,9 @@ export default function MorePage() {
     },
     {
       icon: GitCompare,
-      title: 'Drug Interactions',
-      description: 'Check drug compatibility',
-      path: '/interactions',
+      title: 'Drug Comparison',
+      description: 'Compare drugs side by side',
+      path: '/drug-comparison',
       color: 'bg-warning/10 text-warning',
     },
     {
@@ -66,11 +66,32 @@ export default function MorePage() {
       color: 'bg-warning/10 text-warning',
     },
     {
+      icon: Sparkles,
+      title: 'AI Quiz Generator',
+      description: 'Custom quizzes for your weak areas',
+      path: '/ai-quiz',
+      color: 'bg-quizzes/10 text-quizzes',
+    },
+    {
+      icon: Brain,
+      title: 'AI Study Plan',
+      description: 'Personalized study schedules',
+      path: '/study-plan',
+      color: 'bg-primary/10 text-primary',
+    },
+    {
+      icon: PieChart,
+      title: 'Quiz Analytics',
+      description: 'Track performance by topic',
+      path: '/quiz-analytics',
+      color: 'bg-info/10 text-info',
+    },
+    {
       icon: BarChart3,
       title: 'Progress & Stats',
       description: 'View your learning statistics',
       path: '/progress',
-      color: 'bg-info/10 text-info',
+      color: 'bg-success/10 text-success',
     },
   ];
 

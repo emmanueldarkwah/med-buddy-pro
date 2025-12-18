@@ -25,6 +25,10 @@ import DailyChallengePage from "./pages/DailyChallengePage";
 import BookmarksPage from "./pages/BookmarksPage";
 import PharmaBotPage from "./pages/PharmaBotPage";
 import AdminPage from "./pages/AdminPage";
+import QuizAnalyticsPage from "./pages/QuizAnalyticsPage";
+import DrugComparisonPage from "./pages/DrugComparisonPage";
+import StudyPlanPage from "./pages/StudyPlanPage";
+import AIQuizPage from "./pages/AIQuizPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,6 +63,10 @@ const App = () => (
               <Route path="/bookmarks" element={<BookmarksPage />} />
               <Route path="/pharmabot" element={<PharmaBotPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/quiz-analytics" element={<QuizAnalyticsPage />} />
+              <Route path="/drug-comparison" element={<DrugComparisonPage />} />
+              <Route path="/study-plan" element={<StudyPlanPage />} />
+              <Route path="/ai-quiz" element={<AIQuizPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
