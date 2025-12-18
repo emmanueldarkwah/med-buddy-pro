@@ -1,23 +1,51 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Heart, AlertTriangle, Clock, Pill, Activity, Share2, StickyNote, Save, X } from 'lucide-react';
+import { ArrowLeft, Heart, AlertTriangle, Clock, Pill, Activity, Share2, StickyNote, Save, X, Volume2, FileDown, Loader2 } from 'lucide-react';
 import { drugs } from '@/data/drugs';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useApp } from '@/context/AppContext';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
+import { exportToPDF, formatDrugForExport } from '@/utils/pdfExport';
 
 export default function DrugDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { favoriteDrugs, toggleFavoriteDrug, drugNotes, setDrugNote } = useApp();
   const [showNotes, setShowNotes] = useState(false);
   const [noteText, setNoteText] = useState('');
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [cloudNote, setCloudNote] = useState('');
+  const [isSavingNote, setIsSavingNote] = useState(false);
 
   const drug = drugs.find(d => d.id === id);
+
+  // Load cloud note
+  useEffect(() => {
+    const loadCloudNote = async () => {
+      if (!user || !drug) return;
+      
+      const { data } = await supabase
+        .from('user_drug_notes')
+        .select('note')
+        .eq('user_id', user.id)
+        .eq('drug_id', drug.id)
+        .maybeSingle();
+      
+      if (data?.note) {
+        setCloudNote(data.note);
+        setNoteText(data.note);
+      }
+    };
+    
+    loadCloudNote();
+  }, [user, drug]);
 
   if (!drug) {
     return (
@@ -31,15 +59,40 @@ export default function DrugDetail() {
   }
 
   const isFavorite = favoriteDrugs.includes(drug.id);
-  const existingNote = drugNotes[drug.id] || '';
+  const existingNote = drugNotes[drug.id] || cloudNote || '';
 
   const handleOpenNotes = () => {
     setNoteText(existingNote);
     setShowNotes(true);
   };
 
-  const handleSaveNote = () => {
+  const handleSaveNote = async () => {
+    setIsSavingNote(true);
+    
+    // Save locally
     setDrugNote(drug.id, noteText);
+    
+    // Save to cloud if logged in
+    if (user) {
+      try {
+        const { error } = await supabase
+          .from('user_drug_notes')
+          .upsert({
+            user_id: user.id,
+            drug_id: drug.id,
+            note: noteText,
+          }, {
+            onConflict: 'user_id,drug_id',
+          });
+        
+        if (error) throw error;
+        setCloudNote(noteText);
+      } catch (error) {
+        console.error('Error saving note to cloud:', error);
+      }
+    }
+    
+    setIsSavingNote(false);
     setShowNotes(false);
     toast({
       title: 'Note saved',
@@ -47,8 +100,84 @@ export default function DrugDetail() {
     });
   };
 
+  const speakDrugName = () => {
+    if ('speechSynthesis' in window) {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(drug.name);
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      
+      window.speechSynthesis.speak(utterance);
+    } else {
+      toast({
+        title: 'Not supported',
+        description: 'Text-to-speech is not supported in your browser.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleExportPDF = () => {
+    try {
+      const content = formatDrugForExport(drug, existingNote);
+      exportToPDF(content, `${drug.name}-info`);
+      toast({
+        title: 'Export started',
+        description: 'Your PDF will open in a new window.',
+      });
+    } catch (error) {
+      toast({
+        title: 'Export failed',
+        description: error instanceof Error ? error.message : 'Could not export PDF.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background pb-8">
+      {/* Notes Modal */}
+      {showNotes && (
+        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-end sm:items-center justify-center">
+          <div className="bg-card w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 shadow-xl border border-border animate-slide-up">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold flex items-center gap-2">
+                <StickyNote className="w-5 h-5 text-primary" />
+                Notes for {drug.name}
+              </h2>
+              <Button variant="ghost" size="icon" onClick={() => setShowNotes(false)}>
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            <Textarea
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              placeholder="Add your personal notes about this drug..."
+              className="min-h-[200px] mb-4"
+            />
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setShowNotes(false)} className="flex-1">
+                Cancel
+              </Button>
+              <Button onClick={handleSaveNote} className="flex-1" disabled={isSavingNote}>
+                {isSavingNote ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <Save className="w-4 h-4 mr-2" />
+                )}
+                Save Note
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className={cn(
         "px-4 pt-12 pb-6 rounded-b-[2rem]",
@@ -63,6 +192,26 @@ export default function DrugDetail() {
           </button>
           <div className="flex items-center gap-2">
             <button
+              onClick={speakDrugName}
+              className={cn(
+                "p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors",
+                isSpeaking && "animate-pulse"
+              )}
+              title="Pronounce drug name"
+            >
+              <Volume2 className="w-5 h-5 text-primary-foreground" />
+            </button>
+            <button
+              onClick={handleOpenNotes}
+              className={cn(
+                "p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors",
+                existingNote && "ring-2 ring-primary-foreground/50"
+              )}
+              title="Add notes"
+            >
+              <StickyNote className="w-5 h-5 text-primary-foreground" />
+            </button>
+            <button
               onClick={() => toggleFavoriteDrug(drug.id)}
               className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
             >
@@ -71,8 +220,12 @@ export default function DrugDetail() {
                 isFavorite && "fill-current"
               )} />
             </button>
-            <button className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors">
-              <Share2 className="w-5 h-5 text-primary-foreground" />
+            <button 
+              onClick={handleExportPDF}
+              className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
+              title="Export to PDF"
+            >
+              <FileDown className="w-5 h-5 text-primary-foreground" />
             </button>
           </div>
         </div>
@@ -116,6 +269,22 @@ export default function DrugDetail() {
           </div>
         </div>
       </div>
+
+      {/* Personal Notes Banner */}
+      {existingNote && (
+        <div className="px-4 mt-4">
+          <button 
+            onClick={handleOpenNotes}
+            className="w-full bg-primary/5 border border-primary/20 rounded-2xl p-4 text-left hover:bg-primary/10 transition-colors"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <StickyNote className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Your Notes</span>
+            </div>
+            <p className="text-sm text-muted-foreground line-clamp-2">{existingNote}</p>
+          </button>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="px-4 mt-6">
