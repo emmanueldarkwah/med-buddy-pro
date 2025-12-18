@@ -846,6 +846,98 @@ export const quizzes: Quiz[] = [
         explanation: "Benzodiazepine withdrawal can cause life-threatening seizures and should always be done through gradual tapering, not abrupt discontinuation.",
         drugId: "18",
         category: "Safety"
+      },
+      {
+        id: "cs6",
+        question: "What is the equianalgesic dose ratio concept?",
+        options: [
+          "All opioids are equally strong",
+          "Converting between opioids based on relative potency",
+          "Taking multiple opioids together",
+          "Using the maximum dose of each opioid"
+        ],
+        correctAnswer: 1,
+        explanation: "Equianalgesic dosing helps convert between opioids safely. For example, 30mg oral morphine ≈ 20mg oral oxycodone ≈ 7.5mg oral hydromorphone.",
+        category: "Clinical Practice"
+      },
+      {
+        id: "cs7",
+        question: "What is opioid-induced hyperalgesia?",
+        options: [
+          "Pain relief from opioids",
+          "Paradoxical increased pain sensitivity from chronic opioid use",
+          "Tolerance to opioids",
+          "Opioid withdrawal"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term opioid use can paradoxically increase pain sensitivity. Patients report more pain despite increasing doses. Treatment involves dose reduction or rotation.",
+        category: "Complications"
+      },
+      {
+        id: "cs8",
+        question: "Why should naloxone be prescribed with high-risk opioid prescriptions?",
+        options: [
+          "To enhance opioid effectiveness",
+          "To reverse overdose and save lives",
+          "To prevent addiction",
+          "To reduce side effects"
+        ],
+        correctAnswer: 1,
+        explanation: "Naloxone can reverse life-threatening opioid overdose. It should be prescribed to patients on high doses, combining with benzodiazepines, or with overdose history.",
+        category: "Safety"
+      },
+      {
+        id: "cs9",
+        question: "What is the main concern with fentanyl patches in opioid-naive patients?",
+        options: [
+          "Skin irritation",
+          "Life-threatening respiratory depression due to high potency",
+          "Poor absorption",
+          "Allergic reactions"
+        ],
+        correctAnswer: 1,
+        explanation: "Fentanyl patches are only for opioid-tolerant patients. In naive patients, the high potency can cause fatal respiratory depression. Heat also increases absorption dangerously.",
+        category: "Safety"
+      },
+      {
+        id: "cs10",
+        question: "What makes gabapentinoids (gabapentin, pregabalin) concerning from an abuse perspective?",
+        options: [
+          "They have no abuse potential",
+          "Increasingly abused, especially with opioids, enhancing euphoria and respiratory depression",
+          "They are very expensive",
+          "They cause hallucinations"
+        ],
+        correctAnswer: 1,
+        explanation: "Gabapentinoids are increasingly misused, often combined with opioids. They enhance opioid euphoria and respiratory depression, contributing to overdose deaths.",
+        drugId: "50",
+        category: "Drug Abuse"
+      },
+      {
+        id: "cs11",
+        question: "What is the ceiling effect with buprenorphine?",
+        options: [
+          "Maximum pain relief reached",
+          "Respiratory depression plateaus at higher doses, making overdose less likely",
+          "The drug stops working",
+          "Tolerance develops"
+        ],
+        correctAnswer: 1,
+        explanation: "As a partial opioid agonist, buprenorphine has a ceiling effect on respiratory depression, making it safer than full agonists for treating opioid use disorder.",
+        category: "Pharmacology"
+      },
+      {
+        id: "cs12",
+        question: "What syndrome can occur when switching from full opioid agonist to buprenorphine too quickly?",
+        options: [
+          "Serotonin syndrome",
+          "Precipitated withdrawal",
+          "Overdose",
+          "Seizures"
+        ],
+        correctAnswer: 1,
+        explanation: "Starting buprenorphine before full opioid agonist has cleared can cause precipitated withdrawal due to buprenorphine's high receptor affinity displacing the agonist.",
+        category: "Clinical Practice"
       }
     ]
   },
@@ -897,6 +989,103 @@ export const quizzes: Quiz[] = [
         correctAnswer: 1,
         explanation: "Omeprazole inhibits CYP2C19, the enzyme that converts Clopidogrel to its active metabolite, potentially reducing its cardioprotective effect.",
         drugId: "10",
+        category: "Drug Interactions"
+      },
+      {
+        id: "gi4",
+        question: "What is 'PPI rebound' and why does it matter?",
+        options: [
+          "PPIs stop working",
+          "Stopping PPIs causes rebound acid hypersecretion",
+          "PPIs cause dependency",
+          "PPIs become more effective over time"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term PPI use leads to hypergastrinemia. When stopped abruptly, rebound acid hypersecretion occurs, causing symptoms worse than before. Gradual tapering is recommended.",
+        drugId: "10",
+        category: "Discontinuation"
+      },
+      {
+        id: "gi5",
+        question: "Why is pantoprazole often preferred with clopidogrel?",
+        options: [
+          "It's cheaper",
+          "Less CYP2C19 inhibition than omeprazole",
+          "It works faster",
+          "It has no drug interactions"
+        ],
+        correctAnswer: 1,
+        explanation: "Pantoprazole has less CYP2C19 inhibition than omeprazole, making it a safer choice for patients requiring both PPI and clopidogrel therapy.",
+        drugId: "64",
+        category: "Drug Selection"
+      },
+      {
+        id: "gi6",
+        question: "What is the role of H2 blockers vs PPIs?",
+        options: [
+          "H2 blockers are stronger",
+          "H2 blockers have faster onset but are less potent; PPIs are more effective for healing",
+          "They work identically",
+          "PPIs work faster"
+        ],
+        correctAnswer: 1,
+        explanation: "H2 blockers work faster (within 1 hour) but are less potent. PPIs take longer to work but provide more complete acid suppression and are better for healing erosive disease.",
+        drugId: "63",
+        category: "Drug Comparison"
+      },
+      {
+        id: "gi7",
+        question: "What infection risk is associated with long-term PPI use?",
+        options: [
+          "UTI",
+          "C. difficile and pneumonia",
+          "Skin infections",
+          "No infection risk"
+        ],
+        correctAnswer: 1,
+        explanation: "Stomach acid provides a barrier against pathogens. PPIs increase risk of C. difficile colitis and community-acquired pneumonia by reducing this protection.",
+        drugId: "10",
+        category: "Safety"
+      },
+      {
+        id: "gi8",
+        question: "What nutritional deficiencies can PPIs cause?",
+        options: [
+          "Vitamin C deficiency",
+          "Vitamin B12, magnesium, and iron deficiency",
+          "Protein deficiency",
+          "No nutritional effects"
+        ],
+        correctAnswer: 1,
+        explanation: "Stomach acid aids absorption of B12, magnesium, iron, and calcium. Long-term PPI use can lead to deficiencies and increase fracture risk from poor calcium absorption.",
+        drugId: "10",
+        category: "Long-term Effects"
+      },
+      {
+        id: "gi9",
+        question: "How does metoclopramide work and what limits its use?",
+        options: [
+          "It's an antacid with no concerns",
+          "Dopamine antagonist promoting motility; risk of tardive dyskinesia limits long-term use",
+          "It reduces acid secretion",
+          "It's an antibiotic"
+        ],
+        correctAnswer: 1,
+        explanation: "Metoclopramide is a D2 antagonist that increases GI motility. Black box warning for tardive dyskinesia limits use to ≤12 weeks, and it's avoided in Parkinson's disease.",
+        drugId: "27",
+        category: "Mechanism & Safety"
+      },
+      {
+        id: "gi10",
+        question: "What is the proper way to take antacids with other medications?",
+        options: [
+          "Take them together for best effect",
+          "Separate by at least 2 hours due to absorption interference",
+          "Take antacids first always",
+          "No timing considerations needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Antacids can bind to and reduce absorption of many drugs including fluoroquinolones, tetracyclines, and iron. Separate administration by 2+ hours.",
         category: "Drug Interactions"
       }
     ]
@@ -1186,6 +1375,104 @@ export const quizzes: Quiz[] = [
         explanation: "Corticosteroids typically cause weight GAIN, not loss, along with cushingoid features, osteoporosis, hyperglycemia, and immunosuppression.",
         drugId: "14",
         category: "Side Effects"
+      },
+      {
+        id: "st4",
+        question: "What bone protection should accompany long-term steroid use?",
+        options: [
+          "Extra rest",
+          "Calcium, vitamin D, and consider bisphosphonate",
+          "Increased exercise only",
+          "No specific measures needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Steroids cause bone loss rapidly. Patients should receive calcium (1000-1200mg) + vitamin D (800-1000 IU) daily, and bisphosphonates if high fracture risk.",
+        drugId: "14",
+        category: "Prevention"
+      },
+      {
+        id: "st5",
+        question: "What blood glucose effects do corticosteroids have?",
+        options: [
+          "They lower blood glucose",
+          "They cause hyperglycemia, especially postprandial",
+          "No effect on glucose",
+          "They cause hypoglycemia"
+        ],
+        correctAnswer: 1,
+        explanation: "Steroids cause hyperglycemia through multiple mechanisms. Effect is typically worst in afternoon/evening. Diabetics may need significant medication adjustment.",
+        drugId: "14",
+        category: "Metabolic Effects"
+      },
+      {
+        id: "st6",
+        question: "What is steroid psychosis?",
+        options: [
+          "Fear of taking steroids",
+          "Psychiatric effects including mood swings, insomnia, and rarely psychosis",
+          "Improved mental clarity",
+          "Addiction to steroids"
+        ],
+        correctAnswer: 1,
+        explanation: "Corticosteroids can cause psychiatric effects ranging from euphoria and insomnia to depression, mania, and psychosis. Higher doses increase risk.",
+        drugId: "14",
+        category: "Side Effects"
+      },
+      {
+        id: "st7",
+        question: "Why do corticosteroids increase infection risk?",
+        options: [
+          "They don't affect immunity",
+          "They suppress immune response and mask infection signs",
+          "They kill healthy bacteria",
+          "They cause fever"
+        ],
+        correctAnswer: 1,
+        explanation: "Steroids suppress multiple immune pathways and can mask typical infection signs (fever, inflammation), allowing infections to progress undetected.",
+        drugId: "14",
+        category: "Immunosuppression"
+      },
+      {
+        id: "st8",
+        question: "What is the significance of 'stress dosing' with steroids?",
+        options: [
+          "Taking steroids when stressed emotionally",
+          "Increasing steroid dose during illness/surgery to prevent adrenal crisis",
+          "Reducing dose to decrease stress",
+          "Taking steroids only under stress"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term steroid use suppresses natural cortisol production. During physical stress (surgery, illness), the body needs extra cortisol - 'stress dosing' prevents adrenal crisis.",
+        drugId: "14",
+        category: "Clinical Practice"
+      },
+      {
+        id: "st9",
+        question: "What eye complications can long-term steroids cause?",
+        options: [
+          "Improved vision",
+          "Cataracts and glaucoma",
+          "Color blindness",
+          "No eye effects"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term steroid use increases risk of posterior subcapsular cataracts and can elevate intraocular pressure leading to glaucoma. Regular eye exams are recommended.",
+        drugId: "14",
+        category: "Side Effects"
+      },
+      {
+        id: "st10",
+        question: "How do inhaled corticosteroids differ in side effect profile from oral?",
+        options: [
+          "They have more side effects",
+          "Local delivery minimizes systemic side effects",
+          "They work differently",
+          "No difference"
+        ],
+        correctAnswer: 1,
+        explanation: "Inhaled steroids act locally in lungs with minimal systemic absorption, reducing systemic side effects. Main concerns are local: oral thrush and hoarseness.",
+        drugId: "80",
+        category: "Route Comparison"
       }
     ]
   },
@@ -1280,6 +1567,112 @@ export const quizzes: Quiz[] = [
         explanation: "Risperidone causes significant hyperprolactinemia, leading to amenorrhea, galactorrhea, gynecomastia, and sexual dysfunction, more than most other antipsychotics.",
         drugId: "34",
         category: "Side Effects"
+      },
+      {
+        id: "psy7",
+        question: "What is serotonin syndrome and how does it present?",
+        options: [
+          "Depression from low serotonin",
+          "Life-threatening excess serotonin causing hyperthermia, agitation, tremor, and rigidity",
+          "Improved mood",
+          "Anxiety disorder"
+        ],
+        correctAnswer: 1,
+        explanation: "Serotonin syndrome is a potentially fatal condition from excess serotonergic activity. Classic triad: mental status changes, autonomic instability, neuromuscular abnormalities.",
+        category: "Safety"
+      },
+      {
+        id: "psy8",
+        question: "Which antidepressant has the lowest risk of sexual dysfunction?",
+        options: [
+          "Sertraline",
+          "Bupropion",
+          "Paroxetine",
+          "Venlafaxine"
+        ],
+        correctAnswer: 1,
+        explanation: "Bupropion (NDRI) does not affect serotonin and has minimal sexual side effects. It's often chosen for patients concerned about this or as augmentation for SSRI-induced sexual dysfunction.",
+        drugId: "70",
+        category: "Drug Selection"
+      },
+      {
+        id: "psy9",
+        question: "Why is paroxetine generally avoided in elderly patients?",
+        options: [
+          "It's too expensive",
+          "Strongest anticholinergic effects among SSRIs, causing confusion and falls",
+          "It doesn't work in elderly",
+          "It causes weight loss"
+        ],
+        correctAnswer: 1,
+        explanation: "Paroxetine has the strongest anticholinergic activity among SSRIs, increasing risk of confusion, cognitive impairment, constipation, and falls in elderly patients.",
+        category: "Special Populations"
+      },
+      {
+        id: "psy10",
+        question: "What is the 'cheese reaction' with MAO inhibitors?",
+        options: [
+          "Allergy to cheese",
+          "Hypertensive crisis from tyramine in aged foods",
+          "Improved digestion",
+          "Cheese cravings"
+        ],
+        correctAnswer: 1,
+        explanation: "MAOIs prevent tyramine breakdown. Tyramine in aged cheeses, wine, and cured meats can cause severe hypertension ('cheese reaction'). Strict dietary restrictions required.",
+        category: "Drug Interactions"
+      },
+      {
+        id: "psy11",
+        question: "What monitoring is essential for clozapine therapy?",
+        options: [
+          "Blood pressure only",
+          "Absolute neutrophil count (ANC) due to agranulocytosis risk",
+          "Liver function only",
+          "No special monitoring"
+        ],
+        correctAnswer: 1,
+        explanation: "Clozapine causes agranulocytosis in ~1% of patients. Mandatory weekly WBC/ANC monitoring initially, then less frequent. Available only through restricted programs.",
+        category: "Monitoring"
+      },
+      {
+        id: "psy12",
+        question: "What advantage does mirtazapine have for depressed patients with poor appetite and insomnia?",
+        options: [
+          "It causes weight loss",
+          "It increases appetite and causes sedation, helping both symptoms",
+          "It has no sedation",
+          "It's stimulating"
+        ],
+        correctAnswer: 1,
+        explanation: "Mirtazapine causes significant appetite stimulation and sedation (especially at lower doses), making it ideal for depressed patients with weight loss and insomnia.",
+        drugId: "69",
+        category: "Clinical Use"
+      },
+      {
+        id: "psy13",
+        question: "What is tardive dyskinesia and which drugs cause it?",
+        options: [
+          "Temporary tremor from any medication",
+          "Permanent involuntary movements from long-term dopamine blockers",
+          "Muscle weakness",
+          "Sedation"
+        ],
+        correctAnswer: 1,
+        explanation: "Tardive dyskinesia causes involuntary repetitive movements (often facial), usually from long-term antipsychotic use. Can be irreversible. Risk increases with duration and dose.",
+        category: "Side Effects"
+      },
+      {
+        id: "psy14",
+        question: "What is QTc prolongation risk with antipsychotics?",
+        options: [
+          "No cardiac risk",
+          "Can cause fatal arrhythmias; requires ECG monitoring with some agents",
+          "Improves heart function",
+          "Causes bradycardia only"
+        ],
+        correctAnswer: 1,
+        explanation: "Many antipsychotics prolong QTc interval. Ziprasidone, haloperidol IV, and thioridazine have highest risk. Can cause torsades de pointes and sudden death.",
+        category: "Safety"
       }
     ]
   },
@@ -1360,6 +1753,114 @@ export const quizzes: Quiz[] = [
         explanation: "Gabapentin absorption is saturable - as the dose increases, the percentage absorbed decreases. Divided dosing improves overall bioavailability.",
         drugId: "50",
         category: "Pharmacokinetics"
+      },
+      {
+        id: "neuro6",
+        question: "What cosmetic side effect is common with phenytoin?",
+        options: [
+          "Hair loss",
+          "Gingival hyperplasia and coarse facial features",
+          "Skin lightening",
+          "Weight loss"
+        ],
+        correctAnswer: 1,
+        explanation: "Phenytoin commonly causes gingival (gum) hyperplasia, hirsutism, and coarsening of facial features. Good oral hygiene helps prevent gingival overgrowth.",
+        drugId: "29",
+        category: "Side Effects"
+      },
+      {
+        id: "neuro7",
+        question: "Why is levetiracetam often preferred as a first-line anticonvulsant?",
+        options: [
+          "It's the oldest",
+          "Minimal drug interactions and well-tolerated",
+          "It's the strongest",
+          "No side effects"
+        ],
+        correctAnswer: 1,
+        explanation: "Levetiracetam has minimal CYP450 interactions (unlike carbamazepine, phenytoin), doesn't require therapeutic monitoring, and is generally well-tolerated. Main side effects are behavioral.",
+        category: "Drug Selection"
+      },
+      {
+        id: "neuro8",
+        question: "What behavioral side effect is associated with levetiracetam?",
+        options: [
+          "Euphoria",
+          "Irritability, aggression, and mood changes",
+          "Improved cognition",
+          "Sedation only"
+        ],
+        correctAnswer: 1,
+        explanation: "Levetiracetam can cause significant behavioral side effects including irritability, aggression, anxiety, and depression in some patients, especially with rapid titration.",
+        category: "Side Effects"
+      },
+      {
+        id: "neuro9",
+        question: "What is the DRESS syndrome and which anticonvulsants commonly cause it?",
+        options: [
+          "A type of seizure",
+          "Drug Reaction with Eosinophilia and Systemic Symptoms - aromatic anticonvulsants",
+          "Skin rash only",
+          "Allergic rhinitis"
+        ],
+        correctAnswer: 1,
+        explanation: "DRESS is a severe hypersensitivity reaction with fever, rash, lymphadenopathy, and organ involvement. Carbamazepine, phenytoin, and lamotrigine are common causes.",
+        category: "Safety"
+      },
+      {
+        id: "neuro10",
+        question: "Why must lamotrigine be titrated very slowly?",
+        options: [
+          "It works better slowly",
+          "To reduce risk of Stevens-Johnson syndrome/toxic epidermal necrolysis",
+          "To prevent sedation",
+          "It's more effective that way"
+        ],
+        correctAnswer: 1,
+        explanation: "Rapid lamotrigine titration significantly increases risk of SJS/TEN. Standard titration takes 6+ weeks. Risk is highest with concurrent valproate (which doubles lamotrigine levels).",
+        category: "Safety"
+      },
+      {
+        id: "neuro11",
+        question: "What blood monitoring is required for carbamazepine?",
+        options: [
+          "Only drug levels",
+          "CBC, LFTs, sodium, and drug levels due to multiple effects",
+          "Blood glucose",
+          "No monitoring needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Carbamazepine can cause aplastic anemia, agranulocytosis, hepatotoxicity, and SIADH (hyponatremia). Regular monitoring of CBC, LFTs, sodium, and drug levels is essential.",
+        drugId: "28",
+        category: "Monitoring"
+      },
+      {
+        id: "neuro12",
+        question: "What is the significance of enzyme induction by carbamazepine?",
+        options: [
+          "No clinical significance",
+          "Induces own metabolism (autoinduction) and many other drugs",
+          "Inhibits drug metabolism",
+          "Only affects antibiotics"
+        ],
+        correctAnswer: 1,
+        explanation: "Carbamazepine induces CYP3A4 and other enzymes, reducing levels of many drugs AND itself (autoinduction). Dose may need adjustment 2-4 weeks after starting.",
+        drugId: "28",
+        category: "Drug Interactions"
+      },
+      {
+        id: "neuro13",
+        question: "How does valproate interact with lamotrigine?",
+        options: [
+          "No interaction",
+          "Valproate inhibits lamotrigine metabolism, doubling its levels",
+          "Valproate reduces lamotrigine levels",
+          "They can't be combined"
+        ],
+        correctAnswer: 1,
+        explanation: "Valproate inhibits glucuronidation of lamotrigine, approximately doubling its half-life and levels. Lamotrigine dose must be reduced by 50% when combined.",
+        drugId: "30",
+        category: "Drug Interactions"
       }
     ]
   },
