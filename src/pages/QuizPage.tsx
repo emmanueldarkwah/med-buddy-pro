@@ -10,7 +10,7 @@ export default function QuizPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { addQuizResult, incrementCorrectAnswers, incrementTotalQuestions, updateStudyStreak, unlockAchievement, achievements } = useApp();
+  const { addQuizResult, incrementCorrectAnswers, incrementTotalQuestions, updateStudyStreak, unlockAchievement, achievements, checkAndUnlockAchievements } = useApp();
 
   const quiz = useMemo<Quiz | null>(() => {
     if (!id) return null;
@@ -129,6 +129,9 @@ export default function QuizPage() {
           unlockAchievement(perfectAchievement);
         }
       }
+
+      // Check all other achievements
+      setTimeout(() => checkAndUnlockAchievements(), 100);
 
       setIsComplete(true);
     }
