@@ -11,9 +11,12 @@ export default function SearchPage() {
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = [...new Set(drugs.map(d => d.category))];
+  const categories = [...new Set(drugs.map(d => d.category))].sort();
 
-  const filteredDrugs = drugs.filter(drug => {
+  // Sort drugs alphabetically
+  const sortedDrugs = [...drugs].sort((a, b) => a.name.localeCompare(b.name));
+
+  const filteredDrugs = sortedDrugs.filter(drug => {
     const matchesQuery = query === '' || 
       drug.name.toLowerCase().includes(query.toLowerCase()) ||
       drug.genericName.toLowerCase().includes(query.toLowerCase()) ||

@@ -507,6 +507,90 @@ export const quizzes: Quiz[] = [
         explanation: "Atorvastatin has a half-life of about 14 hours, allowing it to be taken at any time of day, unlike shorter-acting statins that should be taken at bedtime.",
         drugId: "7",
         category: "Pharmacokinetics"
+      },
+      {
+        id: "cv7",
+        question: "Why is carvedilol preferred over other beta-blockers for heart failure?",
+        options: [
+          "It's cheaper",
+          "It provides additional alpha-blockade for vasodilation",
+          "It works faster",
+          "It has fewer side effects"
+        ],
+        correctAnswer: 1,
+        explanation: "Carvedilol blocks beta-1, beta-2, AND alpha-1 receptors, providing additional vasodilation. It has proven mortality benefits in heart failure.",
+        drugId: "76",
+        category: "Clinical Evidence"
+      },
+      {
+        id: "cv8",
+        question: "What is the 'first-dose effect' with alpha-blockers like tamsulosin?",
+        options: [
+          "Enhanced effectiveness",
+          "Orthostatic hypotension causing dizziness or fainting",
+          "Increased heart rate",
+          "Improved sleep"
+        ],
+        correctAnswer: 1,
+        explanation: "Alpha-blockers can cause significant drop in blood pressure with the first dose. Patients should take the first dose at bedtime and rise slowly.",
+        drugId: "55",
+        category: "Safety"
+      },
+      {
+        id: "cv9",
+        question: "Why must patients inform their ophthalmologist about tamsulosin use?",
+        options: [
+          "It affects vision",
+          "Risk of intraoperative floppy iris syndrome during cataract surgery",
+          "It causes glaucoma",
+          "No reason needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Tamsulosin can cause floppy iris syndrome during cataract surgery, complicating the procedure. The effect can persist even after stopping the drug.",
+        drugId: "55",
+        category: "Drug-Surgery Interactions"
+      },
+      {
+        id: "cv10",
+        question: "What is the mechanism by which spironolactone helps in heart failure?",
+        options: [
+          "Increases heart contractility",
+          "Blocks aldosterone, reducing fibrosis and potassium loss",
+          "Increases sodium retention",
+          "Speeds up heart rate"
+        ],
+        correctAnswer: 1,
+        explanation: "Spironolactone blocks aldosterone, which causes harmful cardiac fibrosis. It also preserves potassium (unlike loop diuretics) and has proven mortality benefits.",
+        drugId: "77",
+        category: "Mechanism of Action"
+      },
+      {
+        id: "cv11",
+        question: "What dangerous combination involves spironolactone?",
+        options: [
+          "With aspirin",
+          "With ACE inhibitors/ARBs + potassium supplements (hyperkalemia)",
+          "With antibiotics",
+          "With antacids"
+        ],
+        correctAnswer: 1,
+        explanation: "Spironolactone + ACE-I/ARB + potassium supplements can cause life-threatening hyperkalemia. Close monitoring of potassium is essential.",
+        drugId: "77",
+        category: "Drug Interactions"
+      },
+      {
+        id: "cv12",
+        question: "What monitoring is required for patients on rosuvastatin?",
+        options: [
+          "Blood pressure only",
+          "Liver function tests and symptoms of myopathy",
+          "Kidney function only",
+          "No monitoring needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Statins can elevate liver enzymes and cause myopathy/rhabdomyolysis. Patients should have baseline LFTs and report any unexplained muscle pain.",
+        drugId: "65",
+        category: "Monitoring"
       }
     ]
   },
@@ -587,6 +671,101 @@ export const quizzes: Quiz[] = [
         explanation: "Azithromycin has an extremely long tissue half-life (68+ hours), allowing short courses like the Z-Pack (5 days) while maintaining antibacterial activity for days after the last dose.",
         drugId: "22",
         category: "Pharmacokinetics"
+      },
+      {
+        id: "ab6",
+        question: "Which antibiotic is most associated with C. difficile colitis?",
+        options: [
+          "Azithromycin",
+          "Clindamycin",
+          "Penicillin",
+          "Metronidazole"
+        ],
+        correctAnswer: 1,
+        explanation: "Clindamycin is most strongly associated with C. diff, though fluoroquinolones and cephalosporins are also high risk. Any antibiotic can cause it.",
+        category: "Safety"
+      },
+      {
+        id: "ab7",
+        question: "Why must patients stay upright after taking doxycycline?",
+        options: [
+          "It works better upright",
+          "To prevent esophageal ulceration",
+          "To improve absorption",
+          "No specific reason"
+        ],
+        correctAnswer: 1,
+        explanation: "Doxycycline can cause severe esophageal ulcers if it lodges in the esophagus. Take with full glass of water and remain upright for 30 minutes.",
+        drugId: "39",
+        category: "Administration"
+      },
+      {
+        id: "ab8",
+        question: "What makes metronidazole unique among antibiotics?",
+        options: [
+          "It treats viruses",
+          "It causes disulfiram-like reaction with alcohol",
+          "It has no side effects",
+          "It only works on skin infections"
+        ],
+        correctAnswer: 1,
+        explanation: "Metronidazole causes severe nausea, vomiting, and flushing when combined with alcohol (disulfiram-like reaction). Avoid alcohol during and 48h after treatment.",
+        category: "Drug Interactions"
+      },
+      {
+        id: "ab9",
+        question: "What is antibiotic stewardship?",
+        options: [
+          "Using the strongest antibiotic always",
+          "Optimizing antibiotic use to combat resistance",
+          "Giving antibiotics for all infections",
+          "Stopping antibiotics early"
+        ],
+        correctAnswer: 1,
+        explanation: "Antibiotic stewardship promotes appropriate antibiotic use - right drug, right dose, right duration - to preserve effectiveness and combat resistance.",
+        category: "Best Practices"
+      },
+      {
+        id: "ab10",
+        question: "Why is amoxicillin-clavulanate preferred over amoxicillin alone for some infections?",
+        options: [
+          "It tastes better",
+          "Clavulanate inhibits beta-lactamase enzymes",
+          "It has fewer side effects",
+          "It works faster"
+        ],
+        correctAnswer: 1,
+        explanation: "Clavulanate inhibits bacterial beta-lactamase enzymes that would otherwise destroy amoxicillin, extending coverage to resistant organisms.",
+        drugId: "5",
+        category: "Mechanism of Action"
+      },
+      {
+        id: "ab11",
+        question: "What foods should be avoided when taking tetracyclines?",
+        options: [
+          "Vegetables",
+          "Dairy products and calcium-rich foods",
+          "Carbohydrates",
+          "Proteins"
+        ],
+        correctAnswer: 1,
+        explanation: "Calcium in dairy chelates tetracyclines, dramatically reducing absorption. Take tetracyclines 2 hours before or after dairy/calcium supplements.",
+        drugId: "39",
+        category: "Administration"
+      },
+      {
+        id: "ab12",
+        question: "What is the concern with fluoroquinolones in children?",
+        options: [
+          "They don't work in children",
+          "Risk of cartilage damage and growth problems",
+          "They taste bad",
+          "No concerns"
+        ],
+        correctAnswer: 1,
+        explanation: "Fluoroquinolones can damage cartilage in growing children and are generally avoided in pediatrics except when benefits outweigh risks.",
+        drugId: "12",
+        category: "Special Populations"
       }
     ]
   },
@@ -2086,6 +2265,462 @@ export const caseStudies: CaseStudy[] = [
       "Benzodiazepines should be avoided in elderly - use non-pharmacological sleep hygiene first",
       "Long-acting sulfonylureas increase hypoglycemia and fall risk in elderly",
       "Polypharmacy reviews are essential in elderly patients with new symptoms"
+    ],
+    difficulty: "intermediate"
+  },
+  {
+    id: "case13",
+    title: "GLP-1 Agonist Side Effects",
+    scenario: "A 58-year-old obese patient started semaglutide 4 weeks ago for weight loss. She presents with severe nausea, vomiting, and abdominal pain radiating to her back. She lost 8 kg in 4 weeks.",
+    patientInfo: {
+      age: 58,
+      gender: "Female",
+      weight: 102,
+      height: 160,
+      allergies: ["None known"],
+      conditions: ["Obesity", "Type 2 Diabetes", "Hypertension", "History of gallstones"],
+      currentMedications: ["Semaglutide 1mg weekly", "Metformin 1000mg BD", "Lisinopril 10mg daily"]
+    },
+    questions: [
+      {
+        question: "What is the most concerning diagnosis to rule out?",
+        options: [
+          "Common GI side effects",
+          "Acute pancreatitis",
+          "Food poisoning",
+          "Gastroenteritis"
+        ],
+        correctAnswer: 1,
+        explanation: "GLP-1 agonists have been associated with pancreatitis. The combination of severe abdominal pain radiating to back with nausea and vomiting requires urgent evaluation for pancreatitis."
+      },
+      {
+        question: "What risk factor makes this patient particularly vulnerable?",
+        options: [
+          "Her age",
+          "History of gallstones and rapid weight loss",
+          "Taking metformin",
+          "Being female"
+        ],
+        correctAnswer: 1,
+        explanation: "History of gallstones is a risk factor for pancreatitis. Rapid weight loss can also trigger gallstone complications. GLP-1 agonists may further increase risk."
+      },
+      {
+        question: "What was wrong with her semaglutide dosing?",
+        options: [
+          "Dose was too low",
+          "She should have titrated up slowly from 0.25mg",
+          "She should have taken it daily",
+          "The timing was wrong"
+        ],
+        correctAnswer: 1,
+        explanation: "Semaglutide should start at 0.25mg weekly for 4 weeks, then 0.5mg, before reaching 1mg. Starting at 1mg causes severe GI side effects and may increase complication risk."
+      }
+    ],
+    learningPoints: [
+      "GLP-1 agonists must be titrated slowly to minimize GI side effects",
+      "Pancreatitis is a serious potential complication - monitor for symptoms",
+      "History of gallstones increases pancreatitis risk",
+      "Rapid weight loss can trigger gallbladder complications",
+      "Patient education on gradual dose titration is essential"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case14",
+    title: "DOAC Bleeding Complication",
+    scenario: "A 75-year-old man on rivaroxaban for atrial fibrillation presents after a fall, hitting his head. He has a large forehead bruise but no loss of consciousness. CT shows a small subdural hematoma.",
+    patientInfo: {
+      age: 75,
+      gender: "Male",
+      weight: 78,
+      height: 172,
+      allergies: ["None"],
+      conditions: ["Atrial fibrillation", "Hypertension", "Mild CKD (eGFR 45)"],
+      currentMedications: ["Rivaroxaban 15mg daily", "Amlodipine 5mg daily", "Aspirin 81mg daily"]
+    },
+    questions: [
+      {
+        question: "What is the specific reversal agent for rivaroxaban?",
+        options: [
+          "Vitamin K",
+          "Andexanet alfa",
+          "Protamine sulfate",
+          "Fresh frozen plasma"
+        ],
+        correctAnswer: 1,
+        explanation: "Andexanet alfa is the specific reversal agent for factor Xa inhibitors (rivaroxaban, apixaban). Vitamin K only works for warfarin."
+      },
+      {
+        question: "What concerning combination is this patient on?",
+        options: [
+          "Amlodipine and rivaroxaban",
+          "Rivaroxaban and aspirin together",
+          "All three medications",
+          "No concerning combinations"
+        ],
+        correctAnswer: 1,
+        explanation: "Combining DOAC with aspirin significantly increases bleeding risk. This combination should be avoided unless absolutely necessary (e.g., recent stent)."
+      },
+      {
+        question: "Was his rivaroxaban dose appropriate?",
+        options: [
+          "Yes, correct dose",
+          "No, should be reduced due to renal function",
+          "No, should be increased",
+          "Doesn't matter"
+        ],
+        correctAnswer: 1,
+        explanation: "With eGFR 45, rivaroxaban dose should be reduced to 15mg daily for AF (which he was on). However, careful monitoring is needed as renal function may decline."
+      }
+    ],
+    learningPoints: [
+      "DOACs require dose adjustment in renal impairment",
+      "DOAC + aspirin significantly increases bleeding risk",
+      "Andexanet alfa reverses factor Xa inhibitors",
+      "Head injuries in anticoagulated patients need urgent imaging",
+      "Regular reassessment of anticoagulation need is important in elderly"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case15",
+    title: "Steroid-Induced Diabetes",
+    scenario: "A 62-year-old woman with rheumatoid arthritis has been on prednisone 20mg daily for 6 months. She comes for a check-up complaining of increased thirst and urination. Her random blood glucose is 18.5 mmol/L.",
+    patientInfo: {
+      age: 62,
+      gender: "Female",
+      weight: 74,
+      height: 162,
+      allergies: ["Sulfa drugs"],
+      conditions: ["Rheumatoid arthritis", "Osteoporosis", "Hypertension"],
+      currentMedications: ["Prednisone 20mg daily", "Methotrexate 15mg weekly", "Folic acid 5mg weekly", "Alendronate 70mg weekly", "Omeprazole 20mg daily"]
+    },
+    questions: [
+      {
+        question: "What is the cause of her hyperglycemia?",
+        options: [
+          "Pre-existing diabetes",
+          "Steroid-induced diabetes/hyperglycemia",
+          "Methotrexate side effect",
+          "Dehydration"
+        ],
+        correctAnswer: 1,
+        explanation: "Corticosteroids cause hyperglycemia by increasing gluconeogenesis, causing insulin resistance, and reducing insulin secretion. This is dose-dependent."
+      },
+      {
+        question: "What other complications should be monitored in this patient?",
+        options: [
+          "Hair loss only",
+          "Osteoporosis, infections, adrenal suppression, cataracts",
+          "Weight loss",
+          "Improved immunity"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term steroids cause multiple complications: osteoporosis, infections, adrenal suppression, cataracts, skin thinning, weight gain, and mood changes."
+      },
+      {
+        question: "Why is she also on alendronate and omeprazole?",
+        options: [
+          "For arthritis",
+          "To prevent steroid-induced osteoporosis and GI complications",
+          "For weight loss",
+          "To improve steroid effectiveness"
+        ],
+        correctAnswer: 1,
+        explanation: "Bisphosphonates prevent steroid-induced osteoporosis. PPIs may be used to prevent GI complications, though evidence for this indication is mixed."
+      }
+    ],
+    learningPoints: [
+      "Steroids commonly cause hyperglycemia - monitor blood glucose",
+      "Long-term steroid use requires bone protection",
+      "Multiple organ systems are affected by chronic steroid use",
+      "Steroid dose should be minimized and tapered when possible",
+      "Prophylactic treatments for steroid complications should be considered"
+    ],
+    difficulty: "intermediate"
+  },
+  {
+    id: "case16",
+    title: "Acute Kidney Injury from OTC Medications",
+    scenario: "A 45-year-old construction worker presents with decreased urine output and leg swelling. He admits to taking ibuprofen 800mg three times daily for back pain for 3 weeks, along with a herbal supplement for 'kidney health'.",
+    patientInfo: {
+      age: 45,
+      gender: "Male",
+      weight: 95,
+      height: 180,
+      allergies: ["None known"],
+      conditions: ["Chronic back pain", "Mild hypertension"],
+      currentMedications: ["Lisinopril 10mg daily", "Ibuprofen 800mg TID", "Unknown herbal supplement"]
+    },
+    questions: [
+      {
+        question: "What is the most likely cause of his kidney problems?",
+        options: [
+          "The herbal supplement alone",
+          "NSAID-induced acute kidney injury, worsened by ACE inhibitor",
+          "Dehydration from work",
+          "Natural age-related decline"
+        ],
+        correctAnswer: 1,
+        explanation: "High-dose chronic NSAID use combined with ACE inhibitor is a classic cause of AKI. NSAIDs reduce renal prostaglandins while ACE-I reduce efferent arteriolar tone."
+      },
+      {
+        question: "What should be done immediately?",
+        options: [
+          "Continue medications and drink more water",
+          "Stop NSAIDs, possibly hold ACE-I, check renal function urgently",
+          "Add a diuretic",
+          "Increase NSAID dose"
+        ],
+        correctAnswer: 1,
+        explanation: "NSAIDs must be stopped immediately. ACE-I may need to be held temporarily. Urgent renal function tests and nephrology consultation may be needed."
+      },
+      {
+        question: "What pain management alternative should be recommended?",
+        options: [
+          "Higher dose NSAIDs",
+          "Paracetamol with physiotherapy and lifestyle modifications",
+          "Aspirin instead",
+          "Continue current regimen"
+        ],
+        correctAnswer: 1,
+        explanation: "Paracetamol is safer for kidneys. Non-pharmacological approaches (physio, heat, exercise) should be emphasized. Short-term NSAID use at lowest dose if absolutely necessary."
+      }
+    ],
+    learningPoints: [
+      "Chronic NSAID use is a major cause of preventable AKI",
+      "ACE-I + NSAID combination significantly increases renal risk",
+      "OTC medications can cause serious harm",
+      "Herbal supplements may also harm kidneys and interact with medications",
+      "Alternative pain management strategies should be explored"
+    ],
+    difficulty: "intermediate"
+  },
+  {
+    id: "case17",
+    title: "QT Prolongation Risk",
+    scenario: "A 68-year-old woman is prescribed azithromycin for bronchitis. Her other medications include escitalopram, ondansetron PRN, and sotalol for atrial fibrillation.",
+    patientInfo: {
+      age: 68,
+      gender: "Female",
+      weight: 58,
+      height: 158,
+      allergies: ["Penicillin"],
+      conditions: ["Atrial fibrillation", "Depression", "Frequent nausea"],
+      currentMedications: ["Sotalol 80mg BD", "Escitalopram 10mg daily", "Ondansetron 4mg PRN"]
+    },
+    questions: [
+      {
+        question: "What dangerous drug interaction exists?",
+        options: [
+          "Drug allergy risk",
+          "Multiple QT-prolonging medications increasing arrhythmia risk",
+          "Reduced antibiotic effectiveness",
+          "No significant interactions"
+        ],
+        correctAnswer: 1,
+        explanation: "Sotalol, escitalopram, ondansetron, and azithromycin ALL prolong QT interval. Combined use significantly increases risk of torsades de pointes, a potentially fatal arrhythmia."
+      },
+      {
+        question: "Which medication(s) should be reconsidered?",
+        options: [
+          "Only azithromycin",
+          "The combination needs review - consider alternative antibiotic or reducing other QT-prolonging drugs",
+          "Stop all medications",
+          "Add more medications"
+        ],
+        correctAnswer: 1,
+        explanation: "A different antibiotic (not QT-prolonging) should be considered. Alternatively, PRN ondansetron should be avoided during azithromycin course. Overall QT burden should be reviewed."
+      },
+      {
+        question: "What monitoring should occur if azithromycin is used?",
+        options: [
+          "No monitoring needed",
+          "ECG monitoring for QT interval",
+          "Blood pressure only",
+          "Temperature monitoring"
+        ],
+        correctAnswer: 1,
+        explanation: "ECG should be obtained to assess baseline QT interval. If azithromycin is used, repeat ECG may be warranted, and patient should be educated on arrhythmia symptoms."
+      }
+    ],
+    learningPoints: [
+      "Many common medications prolong QT interval",
+      "QT-prolonging drug combinations dramatically increase arrhythmia risk",
+      "Macrolides (azithromycin, clarithromycin) are significant QT prolongers",
+      "Elderly and those with heart disease are at higher risk",
+      "Always check QT risk before prescribing in high-risk patients"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case18",
+    title: "Bisphosphonate Complications",
+    scenario: "A 72-year-old woman on alendronate for 8 years presents with severe thigh pain for 2 weeks. X-ray shows cortical thickening of the lateral femur with a small stress fracture.",
+    patientInfo: {
+      age: 72,
+      gender: "Female",
+      weight: 52,
+      height: 155,
+      allergies: ["None"],
+      conditions: ["Osteoporosis", "Hypothyroidism", "GERD"],
+      currentMedications: ["Alendronate 70mg weekly", "Levothyroxine 75mcg daily", "Omeprazole 20mg daily", "Calcium/Vitamin D supplement"]
+    },
+    questions: [
+      {
+        question: "What complication is this patient likely experiencing?",
+        options: [
+          "Normal aging",
+          "Atypical femur fracture from long-term bisphosphonate use",
+          "Calcium deficiency",
+          "Exercise injury"
+        ],
+        correctAnswer: 1,
+        explanation: "Atypical femur fractures are a known rare complication of long-term bisphosphonate use (>5 years). The location and prodromal thigh pain are characteristic."
+      },
+      {
+        question: "What should happen with her bisphosphonate therapy?",
+        options: [
+          "Continue as prescribed",
+          "Discontinue and consider bisphosphonate holiday",
+          "Increase the dose",
+          "Switch to IV bisphosphonate"
+        ],
+        correctAnswer: 1,
+        explanation: "Bisphosphonate should be stopped. After 5+ years, a 'drug holiday' is often recommended. The risk-benefit should be reassessed, and alternative osteoporosis treatments considered."
+      },
+      {
+        question: "What other issue might be affecting her bisphosphonate absorption?",
+        options: [
+          "Levothyroxine",
+          "Long-term PPI use reducing absorption",
+          "Vitamin D supplement",
+          "Her age"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-term PPI use may reduce bisphosphonate absorption and is itself associated with fracture risk. The combination may reduce osteoporosis treatment effectiveness."
+      }
+    ],
+    learningPoints: [
+      "Bisphosphonate therapy should be reassessed after 5 years",
+      "Atypical femur fractures are rare but serious complications",
+      "Prodromal thigh pain warrants investigation in long-term bisphosphonate users",
+      "PPIs may interfere with bisphosphonate effectiveness",
+      "Drug holidays may be appropriate for long-term bisphosphonate users"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case19",
+    title: "Hypoglycemia Emergency",
+    scenario: "A 78-year-old diabetic man is brought to the pharmacy by his wife. He is confused, sweating, and trembling. She says he skipped lunch but took his usual medications. His blood glucose reads 2.1 mmol/L.",
+    patientInfo: {
+      age: 78,
+      gender: "Male",
+      weight: 68,
+      height: 170,
+      allergies: ["None"],
+      conditions: ["Type 2 Diabetes", "Hypertension", "Mild CKD"],
+      currentMedications: ["Glibenclamide 10mg daily", "Metformin 500mg BD", "Lisinopril 10mg daily"]
+    },
+    questions: [
+      {
+        question: "What is the immediate priority?",
+        options: [
+          "Check blood pressure",
+          "Give fast-acting glucose immediately",
+          "Call his doctor",
+          "Give him insulin"
+        ],
+        correctAnswer: 1,
+        explanation: "Hypoglycemia is a medical emergency. Fast-acting glucose (15-20g) must be given immediately - glucose tablets, juice, or regular soda. Then recheck in 15 minutes."
+      },
+      {
+        question: "Which medication is the likely cause of this severe hypoglycemia?",
+        options: [
+          "Metformin",
+          "Glibenclamide",
+          "Lisinopril",
+          "All of them equally"
+        ],
+        correctAnswer: 1,
+        explanation: "Glibenclamide (sulfonylurea) causes hypoglycemia by stimulating insulin release regardless of blood glucose. Its long half-life makes it especially dangerous in elderly."
+      },
+      {
+        question: "What medication change should be recommended to his doctor?",
+        options: [
+          "Increase glibenclamide",
+          "Replace glibenclamide with a shorter-acting or different class agent",
+          "Stop all diabetes medications",
+          "Add insulin"
+        ],
+        correctAnswer: 1,
+        explanation: "Long-acting sulfonylureas like glibenclamide should be avoided in elderly. Shorter-acting sulfonylureas (glimepiride, gliclazide) or other classes (DPP-4 inhibitors, SGLT2-I) are safer."
+      }
+    ],
+    learningPoints: [
+      "Hypoglycemia is a medical emergency requiring immediate glucose",
+      "Sulfonylureas are a major cause of hypoglycemia, especially in elderly",
+      "Missed meals with continued diabetes medication is dangerous",
+      "Long-acting sulfonylureas should be avoided in elderly patients",
+      "Patient and family education on hypoglycemia recognition and treatment is essential"
+    ],
+    difficulty: "intermediate"
+  },
+  {
+    id: "case20",
+    title: "Antibiotic-Associated Diarrhea",
+    scenario: "A 65-year-old woman completed a 2-week course of clindamycin for a skin infection. She now presents with severe watery diarrhea (10+ episodes/day), abdominal cramping, and low-grade fever for 4 days.",
+    patientInfo: {
+      age: 65,
+      gender: "Female",
+      weight: 70,
+      height: 163,
+      allergies: ["Penicillin"],
+      conditions: ["Cellulitis (treated)", "Diabetes Type 2"],
+      currentMedications: ["Metformin 1000mg BD", "Completed clindamycin course 5 days ago"]
+    },
+    questions: [
+      {
+        question: "What is the most likely diagnosis?",
+        options: [
+          "Viral gastroenteritis",
+          "Clostridioides difficile (C. diff) infection",
+          "Food poisoning",
+          "Metformin side effect"
+        ],
+        correctAnswer: 1,
+        explanation: "Clindamycin is a high-risk antibiotic for C. diff. The timing (during or within weeks of antibiotic use), severity, and fever strongly suggest C. diff colitis."
+      },
+      {
+        question: "What is the most important immediate instruction?",
+        options: [
+          "Take anti-diarrheal medications",
+          "Seek urgent medical evaluation and avoid anti-diarrheals",
+          "Drink more water and wait",
+          "Restart clindamycin"
+        ],
+        correctAnswer: 1,
+        explanation: "Anti-diarrheals (loperamide) can worsen C. diff by retaining toxins. Patient needs urgent evaluation, stool testing, and specific treatment (vancomycin or fidaxomicin oral)."
+      },
+      {
+        question: "What antibiotics are highest risk for C. diff?",
+        options: [
+          "Penicillins only",
+          "Clindamycin, fluoroquinolones, and broad-spectrum cephalosporins",
+          "All antibiotics equally",
+          "Topical antibiotics"
+        ],
+        correctAnswer: 1,
+        explanation: "Clindamycin, fluoroquinolones, and broad-spectrum cephalosporins carry the highest C. diff risk. However, any antibiotic can cause C. diff."
+      }
+    ],
+    learningPoints: [
+      "C. diff should be suspected in severe diarrhea during or after antibiotic use",
+      "Do NOT give anti-diarrheals for suspected C. diff",
+      "Clindamycin is high-risk for C. diff - use only when necessary",
+      "Elderly and hospitalized patients are at highest risk",
+      "Antibiotic stewardship reduces C. diff incidence"
     ],
     difficulty: "intermediate"
   }
