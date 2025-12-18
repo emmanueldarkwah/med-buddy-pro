@@ -46,6 +46,8 @@ export default function DrugDetail() {
       description: `Your note for ${drug.name} has been saved.`,
     });
   };
+
+  return (
     <div className="min-h-screen bg-background pb-8">
       {/* Header */}
       <header className={cn(
