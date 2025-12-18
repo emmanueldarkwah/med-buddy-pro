@@ -23,6 +23,7 @@ import FlashcardsPage from "./pages/FlashcardsPage";
 import ProgressPage from "./pages/ProgressPage";
 import DailyChallengePage from "./pages/DailyChallengePage";
 import BookmarksPage from "./pages/BookmarksPage";
+import PharmaBotPage from "./pages/PharmaBotPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/daily-challenge" element={<DailyChallengePage />} />
               <Route path="/bookmarks" element={<BookmarksPage />} />
+              <Route path="/pharmabot" element={<PharmaBotPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
