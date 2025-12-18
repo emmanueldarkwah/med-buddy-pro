@@ -1,5 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calculator, GitCompare, User, ShieldAlert, Settings, Info, LogOut, LogIn, HelpCircle, FileText } from 'lucide-react';
+import { ArrowLeft, Calculator, GitCompare, User, ShieldAlert, Settings, Info, LogOut, LogIn, FileText, Zap, BarChart3, BookOpen, Bookmark } from 'lucide-react';
 import { BottomNav } from '@/components/BottomNav';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -40,6 +40,37 @@ export default function MorePage() {
       description: 'Check drug compatibility',
       path: '/interactions',
       color: 'bg-warning/10 text-warning',
+    },
+    {
+      icon: BookOpen,
+      title: 'Flashcards',
+      description: 'Study drugs with flashcards',
+      path: '/flashcards',
+      color: 'bg-primary/10 text-primary',
+    },
+    {
+      icon: Bookmark,
+      title: 'Bookmarks',
+      description: 'Saved drugs and quizzes',
+      path: '/bookmarks',
+      color: 'bg-success/10 text-success',
+    },
+  ];
+
+  const learningSection = [
+    {
+      icon: Zap,
+      title: 'Daily Challenge',
+      description: '5 random questions daily',
+      path: '/daily-challenge',
+      color: 'bg-warning/10 text-warning',
+    },
+    {
+      icon: BarChart3,
+      title: 'Progress & Stats',
+      description: 'View your learning statistics',
+      path: '/progress',
+      color: 'bg-info/10 text-info',
     },
   ];
 
@@ -114,7 +145,27 @@ export default function MorePage() {
           </div>
         </section>
 
-        {/* Safety Section */}
+        {/* Learning Section */}
+        <section>
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Learning</h2>
+          <div className="space-y-3">
+            {learningSection.map((item) => (
+              <button
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className="w-full bg-card rounded-2xl p-4 shadow-sm border border-border/50 text-left hover:shadow-md transition-all flex items-center gap-4"
+              >
+                <div className={`p-3 rounded-xl ${item.color}`}>
+                  <item.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
         <section>
           <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">Safety</h2>
           <div className="space-y-3">

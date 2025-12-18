@@ -1,15 +1,21 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Heart, AlertTriangle, Clock, Pill, Activity, Share2 } from 'lucide-react';
+import { ArrowLeft, Heart, AlertTriangle, Clock, Pill, Activity, Share2, StickyNote, Save, X } from 'lucide-react';
 import { drugs } from '@/data/drugs';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useApp } from '@/context/AppContext';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
 
 export default function DrugDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { favoriteDrugs, toggleFavoriteDrug } = useApp();
+  const { favoriteDrugs, toggleFavoriteDrug, drugNotes, setDrugNote } = useApp();
+  const [showNotes, setShowNotes] = useState(false);
+  const [noteText, setNoteText] = useState('');
 
   const drug = drugs.find(d => d.id === id);
 
@@ -25,8 +31,21 @@ export default function DrugDetail() {
   }
 
   const isFavorite = favoriteDrugs.includes(drug.id);
+  const existingNote = drugNotes[drug.id] || '';
 
-  return (
+  const handleOpenNotes = () => {
+    setNoteText(existingNote);
+    setShowNotes(true);
+  };
+
+  const handleSaveNote = () => {
+    setDrugNote(drug.id, noteText);
+    setShowNotes(false);
+    toast({
+      title: 'Note saved',
+      description: `Your note for ${drug.name} has been saved.`,
+    });
+  };
     <div className="min-h-screen bg-background pb-8">
       {/* Header */}
       <header className={cn(

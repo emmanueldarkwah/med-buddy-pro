@@ -19,6 +19,10 @@ import ProfilePage from "./pages/ProfilePage";
 import SafetyPage from "./pages/SafetyPage";
 import AuthPage from "./pages/AuthPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import FlashcardsPage from "./pages/FlashcardsPage";
+import ProgressPage from "./pages/ProgressPage";
+import DailyChallengePage from "./pages/DailyChallengePage";
+import BookmarksPage from "./pages/BookmarksPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,7 +51,10 @@ const App = () => (
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/safety" element={<SafetyPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/progress" element={<ProfilePage />} />
+              <Route path="/flashcards" element={<FlashcardsPage />} />
+              <Route path="/progress" element={<ProgressPage />} />
+              <Route path="/daily-challenge" element={<DailyChallengePage />} />
+              <Route path="/bookmarks" element={<BookmarksPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

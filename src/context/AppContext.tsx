@@ -15,6 +15,13 @@ interface QuizResult {
   completedAt: Date;
 }
 
+interface DailyChallenge {
+  date: string;
+  completed: boolean;
+  score: number;
+  questionsAnswered: number;
+}
+
 type ThemeColor = 'default' | 'ocean' | 'sunset' | 'forest' | 'royal';
 
 interface AppState {
@@ -25,18 +32,24 @@ interface AppState {
   totalQuestionsAnswered: number;
   correctAnswers: number;
   favoriteDrugs: string[];
+  favoriteQuizzes: string[];
+  drugNotes: Record<string, string>;
   username: string;
   avatarUrl: string;
   theme: ThemeColor;
   isDarkMode: boolean;
   interactionChecks: number;
   calculatorUses: number;
+  dailyChallenges: DailyChallenge[];
+  flashcardProgress: Record<string, number[]>;
 }
 
 interface AppContextType extends AppState {
   addQuizResult: (result: QuizResult) => void;
   unlockAchievement: (achievement: Achievement) => void;
   toggleFavoriteDrug: (drugId: string) => void;
+  toggleFavoriteQuiz: (quizId: string) => void;
+  setDrugNote: (drugId: string, note: string) => void;
   updateStudyStreak: () => void;
   incrementCorrectAnswers: () => void;
   incrementTotalQuestions: () => void;
@@ -47,8 +60,10 @@ interface AppContextType extends AppState {
   checkAndUnlockAchievements: () => void;
   incrementInteractionChecks: () => void;
   incrementCalculatorUse: () => void;
-  interactionChecks: number;
-  calculatorUses: number;
+  completeDailyChallenge: (score: number, questionsAnswered: number) => void;
+  getTodayChallenge: () => DailyChallenge | undefined;
+  markFlashcardKnown: (drugId: string, cardIndex: number) => void;
+  resetFlashcardProgress: (drugId: string) => void;
 }
 
 const defaultAchievements: Achievement[] = [
@@ -68,7 +83,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(() => {
     const saved = localStorage.getItem('acupharm-state');
     if (saved) {
-      return JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      return {
+        ...parsed,
+        favoriteQuizzes: parsed.favoriteQuizzes || [],
+        drugNotes: parsed.drugNotes || {},
+        dailyChallenges: parsed.dailyChallenges || [],
+        flashcardProgress: parsed.flashcardProgress || {},
+      };
     }
     return {
       completedQuizzes: [],
@@ -78,12 +100,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
       totalQuestionsAnswered: 0,
       correctAnswers: 0,
       favoriteDrugs: [],
+      favoriteQuizzes: [],
+      drugNotes: {},
       username: 'Student',
       avatarUrl: '',
       theme: 'default' as ThemeColor,
       isDarkMode: false,
       interactionChecks: 0,
       calculatorUses: 0,
+      dailyChallenges: [],
+      flashcardProgress: {},
     };
   });
 
@@ -129,6 +155,66 @@ export function AppProvider({ children }: { children: ReactNode }) {
       favoriteDrugs: prev.favoriteDrugs.includes(drugId)
         ? prev.favoriteDrugs.filter(id => id !== drugId)
         : [...prev.favoriteDrugs, drugId],
+    }));
+  };
+
+  const toggleFavoriteQuiz = (quizId: string) => {
+    setState(prev => ({
+      ...prev,
+      favoriteQuizzes: prev.favoriteQuizzes.includes(quizId)
+        ? prev.favoriteQuizzes.filter(id => id !== quizId)
+        : [...prev.favoriteQuizzes, quizId],
+    }));
+  };
+
+  const setDrugNote = (drugId: string, note: string) => {
+    setState(prev => ({
+      ...prev,
+      drugNotes: {
+        ...prev.drugNotes,
+        [drugId]: note,
+      },
+    }));
+  };
+
+  const completeDailyChallenge = (score: number, questionsAnswered: number) => {
+    const today = new Date().toDateString();
+    setState(prev => {
+      const existingIndex = prev.dailyChallenges.findIndex(dc => dc.date === today);
+      if (existingIndex >= 0) {
+        const updated = [...prev.dailyChallenges];
+        updated[existingIndex] = { date: today, completed: true, score, questionsAnswered };
+        return { ...prev, dailyChallenges: updated };
+      }
+      return {
+        ...prev,
+        dailyChallenges: [...prev.dailyChallenges, { date: today, completed: true, score, questionsAnswered }],
+      };
+    });
+  };
+
+  const getTodayChallenge = () => {
+    const today = new Date().toDateString();
+    return state.dailyChallenges.find(dc => dc.date === today);
+  };
+
+  const markFlashcardKnown = (drugId: string, cardIndex: number) => {
+    setState(prev => ({
+      ...prev,
+      flashcardProgress: {
+        ...prev.flashcardProgress,
+        [drugId]: [...(prev.flashcardProgress[drugId] || []), cardIndex],
+      },
+    }));
+  };
+
+  const resetFlashcardProgress = (drugId: string) => {
+    setState(prev => ({
+      ...prev,
+      flashcardProgress: {
+        ...prev.flashcardProgress,
+        [drugId]: [],
+      },
     }));
   };
 
@@ -238,6 +324,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         addQuizResult,
         unlockAchievement,
         toggleFavoriteDrug,
+        toggleFavoriteQuiz,
+        setDrugNote,
         updateStudyStreak,
         incrementCorrectAnswers,
         incrementTotalQuestions,
@@ -248,6 +336,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
         checkAndUnlockAchievements,
         incrementInteractionChecks,
         incrementCalculatorUse,
+        completeDailyChallenge,
+        getTodayChallenge,
+        markFlashcardKnown,
+        resetFlashcardProgress,
       }}
     >
       {children}
