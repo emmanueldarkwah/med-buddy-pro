@@ -1,21 +1,99 @@
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2, Trash2 } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Loader2, Trash2, Pill, Calculator, AlertTriangle, Stethoscope, BookOpen, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { BottomNav } from '@/components/BottomNav';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pharmabot`;
+
+const questionCategories = [
+  {
+    id: 'interactions',
+    label: 'Drug Interactions',
+    icon: AlertTriangle,
+    color: 'text-destructive',
+    bgColor: 'bg-destructive/10',
+    questions: [
+      "What happens if I take warfarin with aspirin?",
+      "Can metformin be taken with alcohol?",
+      "What are the interactions between SSRIs and MAOIs?",
+      "Is it safe to combine ACE inhibitors with potassium supplements?",
+    ]
+  },
+  {
+    id: 'dosage',
+    label: 'Dosage Calculations',
+    icon: Calculator,
+    color: 'text-info',
+    bgColor: 'bg-info/10',
+    questions: [
+      "How do I calculate creatinine clearance using Cockcroft-Gault?",
+      "What is the pediatric dose calculation formula?",
+      "How do I convert IV to oral dosing for antibiotics?",
+      "Calculate the infusion rate for dopamine at 5 mcg/kg/min",
+    ]
+  },
+  {
+    id: 'mechanisms',
+    label: 'Drug Mechanisms',
+    icon: Pill,
+    color: 'text-drugs',
+    bgColor: 'bg-drugs/10',
+    questions: [
+      "Explain how beta-blockers work",
+      "What is the mechanism of action of statins?",
+      "How do proton pump inhibitors reduce acid secretion?",
+      "Explain the difference between ACE inhibitors and ARBs",
+    ]
+  },
+  {
+    id: 'clinical',
+    label: 'Clinical Pearls',
+    icon: Stethoscope,
+    color: 'text-success',
+    bgColor: 'bg-success/10',
+    questions: [
+      "What are the key counseling points for metformin?",
+      "When should I recommend taking levothyroxine?",
+      "What are the signs of digoxin toxicity?",
+      "How do I counsel patients on warfarin therapy?",
+    ]
+  },
+  {
+    id: 'study',
+    label: 'Study Help',
+    icon: BookOpen,
+    color: 'text-quizzes',
+    bgColor: 'bg-quizzes/10',
+    questions: [
+      "List the classes of antihypertensive drugs",
+      "What are the generations of cephalosporins and their coverage?",
+      "Explain the differences between bactericidal and bacteriostatic antibiotics",
+      "What are the key drug classes for diabetes management?",
+    ]
+  },
+];
+
+const quickPrompts = [
+  { label: "Side effects", prompt: "What are the common side effects of" },
+  { label: "Mechanism", prompt: "Explain the mechanism of action of" },
+  { label: "Interactions", prompt: "What are the drug interactions with" },
+  { label: "Dosing", prompt: "What is the standard dosing for" },
+  { label: "Counseling", prompt: "Key counseling points for" },
+];
 
 export default function PharmaBotPage() {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,10 +188,22 @@ export default function PharmaBotPage() {
     }
   };
 
+  const handleQuestionClick = (question: string) => {
+    setInput(question);
+  };
+
+  const handleQuickPrompt = (prompt: string) => {
+    setInput(prompt + " ");
+  };
+
   const clearChat = () => {
     setMessages([]);
     toast.success('Chat cleared');
   };
+
+  const activeQuestions = activeCategory 
+    ? questionCategories.find(c => c.id === activeCategory)?.questions || []
+    : [];
 
   return (
     <div className="min-h-screen bg-background flex flex-col pb-24">
@@ -125,7 +215,7 @@ export default function PharmaBotPage() {
               <ArrowLeft className="w-5 h-5" />
             </Button>
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl gradient-bot">
+              <div className="p-2 rounded-xl gradient-bot animate-pulse-soft">
                 <Bot className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -145,28 +235,96 @@ export default function PharmaBotPage() {
       {/* Chat Area */}
       <ScrollArea className="flex-1 p-4" ref={scrollRef}>
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full min-h-[50vh] text-center px-4">
-            <div className="p-4 rounded-2xl gradient-bot mb-4">
-              <Bot className="w-12 h-12 text-white" />
+          <div className="flex flex-col items-center px-4 animate-fade-in">
+            {/* Hero Section */}
+            <div className="text-center mb-6 mt-4">
+              <div className="p-4 rounded-2xl gradient-bot mb-4 inline-block">
+                <Bot className="w-12 h-12 text-white" />
+              </div>
+              <h2 className="text-xl font-bold mb-2">Welcome to PharmaBot</h2>
+              <p className="text-muted-foreground text-sm max-w-sm">
+                Your AI pharmacy assistant. Ask about drugs, dosages, interactions, or any pharmacy-related questions.
+              </p>
             </div>
-            <h2 className="text-xl font-bold mb-2">Welcome to PharmaBot</h2>
-            <p className="text-muted-foreground mb-6 max-w-sm">
-              Your AI pharmacy assistant. Ask me about drugs, dosages, interactions, or any pharmacy-related questions.
-            </p>
-            <div className="grid gap-2 w-full max-w-sm">
-              {[
-                "What are the common side effects of metformin?",
-                "Explain the mechanism of action of ACE inhibitors",
-                "How do I calculate creatinine clearance?",
-              ].map((suggestion) => (
-                <button
-                  key={suggestion}
-                  onClick={() => setInput(suggestion)}
-                  className="text-left p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-sm"
-                >
-                  {suggestion}
-                </button>
-              ))}
+
+            {/* Quick Prompts */}
+            <div className="w-full max-w-lg mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-4 h-4 text-bot" />
+                <span className="text-sm font-medium">Quick prompts</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {quickPrompts.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleQuickPrompt(item.prompt)}
+                    className="px-3 py-1.5 rounded-full bg-bot/10 text-bot text-xs font-medium hover:bg-bot/20 transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Category Tabs */}
+            <div className="w-full max-w-lg mb-4">
+              <p className="text-sm font-medium mb-3">Or explore by topic</p>
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {questionCategories.map((category) => {
+                  const Icon = category.icon;
+                  const isActive = activeCategory === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveCategory(isActive ? null : category.id)}
+                      className={cn(
+                        "flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all",
+                        isActive
+                          ? `${category.bgColor} ${category.color}`
+                          : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                      )}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {category.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Questions Grid */}
+            <div className="w-full max-w-lg">
+              {activeCategory ? (
+                <div className="grid gap-2 animate-slide-up">
+                  {activeQuestions.map((question) => (
+                    <button
+                      key={question}
+                      onClick={() => handleQuestionClick(question)}
+                      className="text-left p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-sm border border-border/50"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid gap-2">
+                  <p className="text-xs text-muted-foreground mb-1">Popular questions</p>
+                  {[
+                    "What are the common side effects of metformin?",
+                    "Can I take ibuprofen with blood pressure medication?",
+                    "How do I calculate pediatric doses?",
+                    "Explain the mechanism of action of antibiotics",
+                  ].map((question) => (
+                    <button
+                      key={question}
+                      onClick={() => handleQuestionClick(question)}
+                      className="text-left p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-sm border border-border/50"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -174,36 +332,41 @@ export default function PharmaBotPage() {
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={cn(
+                  "flex gap-3 animate-slide-up",
+                  msg.role === 'user' ? 'justify-end' : 'justify-start'
+                )}
               >
                 {msg.role === 'assistant' && (
-                  <div className="p-2 rounded-xl gradient-bot h-fit">
+                  <div className="p-2 rounded-xl gradient-bot h-fit shrink-0">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] p-3 rounded-2xl ${
+                  className={cn(
+                    "max-w-[80%] p-3 rounded-2xl",
                     msg.role === 'user'
                       ? 'gradient-primary text-white'
                       : 'bg-muted'
-                  }`}
+                  )}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
                 </div>
                 {msg.role === 'user' && (
-                  <div className="p-2 rounded-xl bg-muted h-fit">
+                  <div className="p-2 rounded-xl bg-muted h-fit shrink-0">
                     <User className="w-4 h-4" />
                   </div>
                 )}
               </div>
             ))}
             {isLoading && messages[messages.length - 1]?.role === 'user' && (
-              <div className="flex gap-3 justify-start">
+              <div className="flex gap-3 justify-start animate-slide-up">
                 <div className="p-2 rounded-xl gradient-bot h-fit">
                   <Bot className="w-4 h-4 text-white" />
                 </div>
-                <div className="p-3 rounded-2xl bg-muted">
+                <div className="p-3 rounded-2xl bg-muted flex items-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-xs text-muted-foreground">Thinking...</span>
                 </div>
               </div>
             )}
@@ -226,7 +389,7 @@ export default function PharmaBotPage() {
           </Button>
         </form>
         <p className="text-[10px] text-muted-foreground text-center mt-2">
-          For educational purposes only. Verify information with official sources.
+          For educational purposes only. Always verify with official sources.
         </p>
       </div>
 
