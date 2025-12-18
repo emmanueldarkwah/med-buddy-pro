@@ -110,6 +110,131 @@ export const quizzes: Quiz[] = [
         explanation: "Glibenclamide has a long half-life (10-16 hours) which increases the risk of prolonged hypoglycemia, especially dangerous in elderly patients.",
         drugId: "23",
         category: "Special Populations"
+      },
+      {
+        id: "ad7",
+        question: "What cardiovascular benefit has been shown with SGLT2 inhibitors like Empagliflozin?",
+        options: [
+          "Increased heart rate",
+          "Reduced heart failure hospitalizations and CV death",
+          "Higher blood pressure",
+          "No cardiovascular effects"
+        ],
+        correctAnswer: 1,
+        explanation: "SGLT2 inhibitors have shown significant reduction in heart failure hospitalizations and cardiovascular death, independent of glucose control.",
+        drugId: "57",
+        category: "Clinical Benefits"
+      },
+      {
+        id: "ad8",
+        question: "What is a unique warning associated with SGLT2 inhibitors?",
+        options: [
+          "Hyperglycemia",
+          "Euglycemic diabetic ketoacidosis",
+          "Weight gain",
+          "Increased appetite"
+        ],
+        correctAnswer: 1,
+        explanation: "SGLT2 inhibitors can cause DKA even with normal or near-normal blood glucose (euglycemic DKA). They should be held before surgery.",
+        drugId: "57",
+        category: "Safety"
+      },
+      {
+        id: "ad9",
+        question: "How do GLP-1 agonists like Semaglutide cause weight loss?",
+        options: [
+          "They increase metabolism only",
+          "They promote satiety, slow gastric emptying, and reduce appetite",
+          "They cause malabsorption",
+          "They increase exercise tolerance"
+        ],
+        correctAnswer: 1,
+        explanation: "GLP-1 agonists promote satiety through central appetite suppression and slow gastric emptying, leading to reduced food intake and significant weight loss.",
+        drugId: "59",
+        category: "Mechanism of Action"
+      },
+      {
+        id: "ad10",
+        question: "What is the black box warning for GLP-1 receptor agonists?",
+        options: [
+          "Liver failure",
+          "Thyroid C-cell tumors (in rodent studies)",
+          "Heart attacks",
+          "Kidney failure"
+        ],
+        correctAnswer: 1,
+        explanation: "GLP-1 agonists carry a black box warning for thyroid C-cell tumors seen in rodent studies. They're contraindicated in patients with MTC or MEN2.",
+        drugId: "58",
+        category: "Safety"
+      },
+      {
+        id: "ad11",
+        question: "Why should Semaglutide oral tablets be taken on an empty stomach?",
+        options: [
+          "It tastes better",
+          "Food significantly reduces absorption",
+          "It works faster with food",
+          "No specific reason"
+        ],
+        correctAnswer: 1,
+        explanation: "Oral semaglutide has very low bioavailability (~1%) that's further reduced by food. Must be taken fasting with minimal water.",
+        drugId: "59",
+        category: "Administration"
+      },
+      {
+        id: "ad12",
+        question: "What common side effect is most limiting for GLP-1 agonist therapy?",
+        options: [
+          "Hypoglycemia",
+          "Gastrointestinal side effects (nausea, vomiting)",
+          "Weight gain",
+          "Dry mouth"
+        ],
+        correctAnswer: 1,
+        explanation: "GI side effects, especially nausea and vomiting, are the most common reason for discontinuation. Starting low and titrating slowly helps minimize these.",
+        drugId: "58",
+        category: "Side Effects"
+      },
+      {
+        id: "ad13",
+        question: "What is the mechanism of genital mycotic infections with SGLT2 inhibitors?",
+        options: [
+          "Direct fungal growth stimulation",
+          "Increased urinary glucose creates favorable environment for yeast",
+          "Immune suppression",
+          "Altered vaginal pH only"
+        ],
+        correctAnswer: 1,
+        explanation: "SGLT2 inhibitors increase urinary glucose excretion, creating a glucose-rich environment that promotes yeast overgrowth, especially in genital areas.",
+        drugId: "57",
+        category: "Side Effects"
+      },
+      {
+        id: "ad14",
+        question: "Which insulin has the fastest onset and is used for mealtime coverage?",
+        options: [
+          "Insulin glargine",
+          "Insulin lispro/aspart (rapid-acting)",
+          "NPH insulin",
+          "Insulin detemir"
+        ],
+        correctAnswer: 1,
+        explanation: "Rapid-acting insulins (lispro, aspart, glulisine) have onset in 10-15 minutes and are used to cover meals.",
+        category: "Pharmacokinetics"
+      },
+      {
+        id: "ad15",
+        question: "What renal benefit has been demonstrated with SGLT2 inhibitors?",
+        options: [
+          "Increased protein excretion",
+          "Slowed progression of diabetic kidney disease",
+          "Increased GFR",
+          "No renal effects"
+        ],
+        correctAnswer: 1,
+        explanation: "SGLT2 inhibitors have shown significant nephroprotective effects, slowing progression of diabetic kidney disease independent of glucose lowering.",
+        drugId: "57",
+        category: "Clinical Benefits"
       }
     ]
   },
@@ -190,6 +315,104 @@ export const quizzes: Quiz[] = [
         explanation: "Clopidogrel irreversibly inhibits platelets, so it should be stopped 5-7 days before surgery to allow new platelets to form.",
         drugId: "25",
         category: "Clinical Practice"
+      },
+      {
+        id: "ac6",
+        question: "What is the main advantage of DOACs over Warfarin?",
+        options: [
+          "They are cheaper",
+          "No routine monitoring needed, fewer drug interactions",
+          "They work faster",
+          "They are safer in all patients"
+        ],
+        correctAnswer: 1,
+        explanation: "DOACs don't require routine INR monitoring and have fewer food/drug interactions, making them more convenient for many patients.",
+        drugId: "51",
+        category: "Clinical Practice"
+      },
+      {
+        id: "ac7",
+        question: "When should Rivaroxaban be taken with food?",
+        options: [
+          "Never - always on empty stomach",
+          "For doses greater than 10mg",
+          "Only at bedtime",
+          "Food doesn't matter"
+        ],
+        correctAnswer: 1,
+        explanation: "Rivaroxaban doses >10mg should be taken with food to ensure adequate absorption (food increases absorption by ~39%).",
+        drugId: "51",
+        category: "Administration"
+      },
+      {
+        id: "ac8",
+        question: "What is the reversal agent for factor Xa inhibitors (Rivaroxaban, Apixaban)?",
+        options: [
+          "Vitamin K",
+          "Andexanet alfa",
+          "Protamine",
+          "Fresh frozen plasma only"
+        ],
+        correctAnswer: 1,
+        explanation: "Andexanet alfa is a specific reversal agent for factor Xa inhibitors. It's a modified factor Xa that binds and sequesters the drugs.",
+        drugId: "52",
+        category: "Emergency Management"
+      },
+      {
+        id: "ac9",
+        question: "Why is Apixaban often preferred in patients with renal impairment?",
+        options: [
+          "It's cheaper",
+          "Lower renal excretion compared to other DOACs",
+          "It works better",
+          "No dose adjustment ever needed"
+        ],
+        correctAnswer: 1,
+        explanation: "Apixaban has the lowest renal excretion (~27%) among DOACs, making it safer in mild-moderate renal impairment with appropriate dose adjustments.",
+        drugId: "52",
+        category: "Special Populations"
+      },
+      {
+        id: "ac10",
+        question: "What neurological complication is a concern with spinal procedures in anticoagulated patients?",
+        options: [
+          "Headache",
+          "Spinal/epidural hematoma",
+          "Dizziness",
+          "Memory loss"
+        ],
+        correctAnswer: 1,
+        explanation: "Spinal/epidural hematoma is a rare but devastating complication. All anticoagulants carry black box warnings about neuraxial anesthesia.",
+        drugId: "51",
+        category: "Safety"
+      },
+      {
+        id: "ac11",
+        question: "How long does it take for Warfarin to achieve full anticoagulant effect?",
+        options: [
+          "Immediately",
+          "2-7 days",
+          "2-4 weeks",
+          "1 month"
+        ],
+        correctAnswer: 1,
+        explanation: "Warfarin takes 2-7 days for full effect because existing clotting factors must be cleared. Bridge therapy with heparin is often used initially.",
+        drugId: "2",
+        category: "Pharmacokinetics"
+      },
+      {
+        id: "ac12",
+        question: "What is the target INR range for most indications?",
+        options: [
+          "0.5-1.0",
+          "2.0-3.0",
+          "3.5-4.5",
+          "5.0-6.0"
+        ],
+        correctAnswer: 1,
+        explanation: "Target INR is typically 2.0-3.0 for most indications (AF, DVT/PE). Higher targets (2.5-3.5) are used for mechanical heart valves.",
+        drugId: "2",
+        category: "Monitoring"
       }
     ]
   },
