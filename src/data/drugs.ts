@@ -843,6 +843,824 @@ export const drugs: Drug[] = [
     isDangerous: false,
     halfLife: "6 hours (parent drug); irreversible platelet inhibition",
     onsetOfAction: "2 hours (peak effect 3-7 days)"
+  },
+  {
+    id: "26",
+    name: "Levothyroxine",
+    genericName: "Levothyroxine Sodium",
+    brandNames: ["Synthroid", "Levoxyl", "Euthyrox"],
+    class: "Thyroid Hormones",
+    category: "Endocrine",
+    uses: [
+      "Hypothyroidism",
+      "Thyroid cancer suppression",
+      "Myxedema coma"
+    ],
+    mechanism: "Synthetic T4 (thyroxine) that converts to T3, binding to thyroid receptors and regulating metabolism, growth, and development.",
+    dosage: "25-200mcg once daily, individualized based on TSH",
+    administration: {
+      route: "Oral",
+      timing: "On empty stomach, 30-60 minutes before breakfast",
+      withFood: false,
+      reason: "Food, especially fiber, calcium, and iron, significantly reduces absorption. Consistent timing is essential."
+    },
+    sideEffects: ["Tachycardia", "Weight loss", "Tremor", "Insomnia", "Heat intolerance"],
+    contraindications: ["Uncorrected adrenal insufficiency", "Recent MI", "Thyrotoxicosis"],
+    interactions: [
+      { drug: "Calcium supplements", severity: "moderate", effect: "Reduced levothyroxine absorption - separate by 4 hours" },
+      { drug: "Iron supplements", severity: "moderate", effect: "Reduced absorption - separate by 4 hours" },
+      { drug: "Warfarin", severity: "moderate", effect: "Increased warfarin effect - monitor INR" }
+    ],
+    warnings: ["Start low in elderly and cardiac patients", "Takes 6-8 weeks to reach steady state", "Monitor TSH regularly"],
+    isDangerous: false,
+    halfLife: "6-7 days",
+    onsetOfAction: "3-5 days for initial effect"
+  },
+  {
+    id: "27",
+    name: "Metoclopramide",
+    genericName: "Metoclopramide Hydrochloride",
+    brandNames: ["Reglan", "Maxolon", "Primperan"],
+    class: "Dopamine Antagonists/Prokinetics",
+    category: "Gastrointestinal",
+    uses: [
+      "Nausea and vomiting",
+      "Gastroparesis",
+      "GERD",
+      "Chemotherapy-induced nausea"
+    ],
+    mechanism: "Blocks dopamine D2 receptors in the CTZ (antiemetic) and stimulates gastric motility by enhancing acetylcholine release.",
+    dosage: "10mg three times daily, 30 minutes before meals",
+    administration: {
+      route: "Oral, IV, IM",
+      timing: "30 minutes before meals and at bedtime",
+      withFood: false,
+      reason: "Should be taken before meals to enhance gastric emptying when food is consumed."
+    },
+    sideEffects: ["Drowsiness", "Restlessness", "Tardive dyskinesia", "Extrapyramidal symptoms", "Galactorrhea"],
+    contraindications: ["GI obstruction", "Pheochromocytoma", "Parkinson's disease", "Seizure disorders"],
+    interactions: [
+      { drug: "Antipsychotics", severity: "moderate", effect: "Increased risk of extrapyramidal symptoms" },
+      { drug: "Levodopa", severity: "moderate", effect: "Reduced levodopa effectiveness" },
+      { drug: "Opioids", severity: "mild", effect: "Enhanced sedation" }
+    ],
+    warnings: ["Black box warning for tardive dyskinesia", "Limit use to 12 weeks", "Higher risk in elderly"],
+    isDangerous: true,
+    halfLife: "5-6 hours",
+    onsetOfAction: "1-3 minutes IV, 30-60 minutes oral"
+  },
+  {
+    id: "28",
+    name: "Carbamazepine",
+    genericName: "Carbamazepine",
+    brandNames: ["Tegretol", "Carbatrol", "Epitol"],
+    class: "Anticonvulsants (Iminostilbene)",
+    category: "Neurological",
+    uses: [
+      "Epilepsy (partial and tonic-clonic seizures)",
+      "Trigeminal neuralgia",
+      "Bipolar disorder"
+    ],
+    mechanism: "Blocks voltage-gated sodium channels, reducing neuronal firing and stabilizing hyperexcited neural membranes.",
+    dosage: "200-1200mg daily in divided doses",
+    administration: {
+      route: "Oral",
+      timing: "With food to reduce GI upset",
+      withFood: true,
+      reason: "Taking with food improves absorption and reduces stomach irritation."
+    },
+    sideEffects: ["Dizziness", "Drowsiness", "Diplopia", "Hyponatremia", "Rash"],
+    contraindications: ["Bone marrow depression", "MAO inhibitor use", "AV block"],
+    interactions: [
+      { drug: "Oral contraceptives", severity: "severe", effect: "Reduces contraceptive efficacy - use alternative methods" },
+      { drug: "Warfarin", severity: "moderate", effect: "Reduces warfarin levels" },
+      { drug: "Phenytoin", severity: "moderate", effect: "Complex interaction - monitor levels" }
+    ],
+    warnings: ["Stevens-Johnson syndrome risk (HLA-B*1502)", "Monitor blood counts", "Autoinduction - levels decrease over time"],
+    isDangerous: true,
+    halfLife: "25-65 hours initially, 12-17 hours after autoinduction",
+    onsetOfAction: "Several days to weeks"
+  },
+  {
+    id: "29",
+    name: "Phenytoin",
+    genericName: "Phenytoin Sodium",
+    brandNames: ["Dilantin", "Epanutin", "Phenytek"],
+    class: "Hydantoins",
+    category: "Neurological",
+    uses: [
+      "Epilepsy (tonic-clonic and partial seizures)",
+      "Status epilepticus",
+      "Seizure prophylaxis after neurosurgery"
+    ],
+    mechanism: "Stabilizes neuronal membranes by blocking voltage-gated sodium channels, preventing repetitive firing.",
+    dosage: "300-400mg daily in divided doses",
+    administration: {
+      route: "Oral, IV",
+      timing: "Consistent timing daily with or without food",
+      withFood: false,
+      reason: "Can be taken with food if GI upset occurs. Extended-release should be taken at same time daily."
+    },
+    sideEffects: ["Gingival hyperplasia", "Hirsutism", "Ataxia", "Nystagmus", "Osteomalacia"],
+    contraindications: ["Bradycardia", "SA or AV block", "Adams-Stokes syndrome"],
+    interactions: [
+      { drug: "Enteral feeds", severity: "moderate", effect: "Reduced absorption - hold feeds 2 hours before and after" },
+      { drug: "Warfarin", severity: "moderate", effect: "Variable effect on INR - monitor closely" },
+      { drug: "Alcohol", severity: "moderate", effect: "Acute alcohol increases phenytoin levels, chronic decreases them" }
+    ],
+    warnings: ["Narrow therapeutic index - monitor levels", "Zero-order kinetics - small dose changes cause large level changes", "Folic acid depletion"],
+    isDangerous: true,
+    halfLife: "22 hours (range 7-42)",
+    onsetOfAction: "7-10 days for steady state"
+  },
+  {
+    id: "30",
+    name: "Sodium Valproate",
+    genericName: "Valproic Acid/Sodium Valproate",
+    brandNames: ["Depakote", "Epilim", "Convulex"],
+    class: "Valproates",
+    category: "Neurological",
+    uses: [
+      "Epilepsy (all seizure types)",
+      "Bipolar disorder",
+      "Migraine prophylaxis"
+    ],
+    mechanism: "Enhances GABA activity, blocks voltage-gated sodium channels, and inhibits T-type calcium channels.",
+    dosage: "500-2000mg daily in divided doses",
+    administration: {
+      route: "Oral, IV",
+      timing: "With food to reduce GI side effects",
+      withFood: true,
+      reason: "Taking with food significantly reduces nausea and GI upset common with valproate."
+    },
+    sideEffects: ["Nausea", "Weight gain", "Hair loss", "Tremor", "Hepatotoxicity"],
+    contraindications: ["Liver disease", "Pregnancy", "Urea cycle disorders", "Mitochondrial disorders"],
+    interactions: [
+      { drug: "Lamotrigine", severity: "severe", effect: "Doubles lamotrigine levels - reduce lamotrigine dose" },
+      { drug: "Carbamazepine", severity: "moderate", effect: "Complex interaction - both levels affected" },
+      { drug: "Aspirin", severity: "moderate", effect: "Increased valproate levels and bleeding risk" }
+    ],
+    warnings: ["Teratogenic - pregnancy category X", "Hepatotoxicity risk especially in children under 2", "Monitor LFTs and platelets"],
+    isDangerous: true,
+    halfLife: "9-16 hours",
+    onsetOfAction: "1-4 days"
+  },
+  {
+    id: "31",
+    name: "Sertraline",
+    genericName: "Sertraline Hydrochloride",
+    brandNames: ["Zoloft", "Lustral"],
+    class: "SSRIs",
+    category: "Psychiatric",
+    uses: [
+      "Major depressive disorder",
+      "Panic disorder",
+      "PTSD",
+      "OCD",
+      "Social anxiety disorder"
+    ],
+    mechanism: "Selectively inhibits serotonin reuptake at the presynaptic membrane, increasing serotonin availability in the synaptic cleft.",
+    dosage: "50-200mg once daily",
+    administration: {
+      route: "Oral",
+      timing: "Once daily, morning or evening",
+      withFood: false,
+      reason: "Can be taken with or without food. Morning dosing may help if insomnia occurs."
+    },
+    sideEffects: ["Nausea", "Insomnia", "Sexual dysfunction", "Diarrhea", "Headache"],
+    contraindications: ["MAO inhibitor use within 14 days", "Concurrent pimozide", "Concurrent disulfiram (liquid form)"],
+    interactions: [
+      { drug: "MAO inhibitors", severity: "severe", effect: "Serotonin syndrome - contraindicated" },
+      { drug: "Tramadol", severity: "severe", effect: "Increased risk of serotonin syndrome and seizures" },
+      { drug: "Warfarin", severity: "moderate", effect: "Increased bleeding risk" }
+    ],
+    warnings: ["Black box warning for suicidality in young adults", "Discontinuation syndrome with abrupt stopping", "May take 4-6 weeks for full effect"],
+    isDangerous: false,
+    halfLife: "26 hours",
+    onsetOfAction: "1-4 weeks for therapeutic effect"
+  },
+  {
+    id: "32",
+    name: "Amitriptyline",
+    genericName: "Amitriptyline Hydrochloride",
+    brandNames: ["Elavil", "Endep"],
+    class: "Tricyclic Antidepressants",
+    category: "Psychiatric",
+    uses: [
+      "Depression",
+      "Neuropathic pain",
+      "Migraine prophylaxis",
+      "Fibromyalgia",
+      "Insomnia"
+    ],
+    mechanism: "Inhibits reuptake of norepinephrine and serotonin. Also has antihistamine, anticholinergic, and sodium channel blocking effects.",
+    dosage: "25-150mg daily, usually at bedtime",
+    administration: {
+      route: "Oral",
+      timing: "At bedtime due to sedating effects",
+      withFood: false,
+      reason: "Can be taken with or without food. Bedtime dosing utilizes sedation for sleep."
+    },
+    sideEffects: ["Sedation", "Dry mouth", "Constipation", "Blurred vision", "Weight gain", "Orthostatic hypotension"],
+    contraindications: ["Recent MI", "MAO inhibitor use", "Acute angle glaucoma", "Urinary retention"],
+    interactions: [
+      { drug: "MAO inhibitors", severity: "severe", effect: "Serotonin syndrome and hypertensive crisis" },
+      { drug: "Anticholinergics", severity: "moderate", effect: "Additive anticholinergic effects" },
+      { drug: "Alcohol", severity: "moderate", effect: "Enhanced CNS depression" }
+    ],
+    warnings: ["Cardiotoxic in overdose", "Dangerous in elderly (falls, confusion)", "Taper gradually when stopping"],
+    isDangerous: true,
+    halfLife: "10-50 hours",
+    onsetOfAction: "2-4 weeks for antidepressant effect"
+  },
+  {
+    id: "33",
+    name: "Olanzapine",
+    genericName: "Olanzapine",
+    brandNames: ["Zyprexa", "Zalasta"],
+    class: "Atypical Antipsychotics",
+    category: "Psychiatric",
+    uses: [
+      "Schizophrenia",
+      "Bipolar disorder",
+      "Treatment-resistant depression (with fluoxetine)",
+      "Acute agitation"
+    ],
+    mechanism: "Antagonizes dopamine D2, serotonin 5-HT2A, histamine H1, and muscarinic receptors, with high affinity for 5-HT2A.",
+    dosage: "5-20mg daily",
+    administration: {
+      route: "Oral, IM",
+      timing: "Once daily, usually at bedtime",
+      withFood: false,
+      reason: "Can be taken with or without food. Bedtime dosing helps with sedation and reduces daytime drowsiness."
+    },
+    sideEffects: ["Significant weight gain", "Metabolic syndrome", "Sedation", "Hyperlipidemia", "Hyperglycemia"],
+    contraindications: ["Hypersensitivity", "Elderly with dementia-related psychosis"],
+    interactions: [
+      { drug: "CNS depressants", severity: "moderate", effect: "Enhanced sedation" },
+      { drug: "Carbamazepine", severity: "moderate", effect: "Reduced olanzapine levels" },
+      { drug: "Fluvoxamine", severity: "moderate", effect: "Increased olanzapine levels" }
+    ],
+    warnings: ["Black box warning for elderly dementia mortality", "Monitor weight and metabolic parameters", "Risk of diabetes"],
+    isDangerous: false,
+    halfLife: "21-54 hours",
+    onsetOfAction: "Days to weeks for full effect"
+  },
+  {
+    id: "34",
+    name: "Risperidone",
+    genericName: "Risperidone",
+    brandNames: ["Risperdal", "Rispen"],
+    class: "Atypical Antipsychotics",
+    category: "Psychiatric",
+    uses: [
+      "Schizophrenia",
+      "Bipolar mania",
+      "Irritability in autism",
+      "Tourette syndrome"
+    ],
+    mechanism: "Blocks dopamine D2 and serotonin 5-HT2A receptors, with higher affinity for 5-HT2A, reducing both positive and negative symptoms.",
+    dosage: "1-6mg daily",
+    administration: {
+      route: "Oral, IM (long-acting)",
+      timing: "Once or twice daily",
+      withFood: false,
+      reason: "Can be taken with or without food. Oral solution can be mixed with water, coffee, or orange juice."
+    },
+    sideEffects: ["Hyperprolactinemia", "Weight gain", "EPS (dose-related)", "Sedation", "Orthostatic hypotension"],
+    contraindications: ["Hypersensitivity", "Elderly with dementia-related psychosis"],
+    interactions: [
+      { drug: "CYP2D6 inhibitors", severity: "moderate", effect: "Increased risperidone levels" },
+      { drug: "Carbamazepine", severity: "moderate", effect: "Reduced risperidone levels" },
+      { drug: "Antihypertensives", severity: "moderate", effect: "Additive hypotension" }
+    ],
+    warnings: ["Hyperprolactinemia can cause amenorrhea, galactorrhea", "EPS more common at higher doses", "Black box warning in elderly dementia"],
+    isDangerous: false,
+    halfLife: "20 hours (including active metabolite)",
+    onsetOfAction: "Days to weeks"
+  },
+  {
+    id: "35",
+    name: "Lithium",
+    genericName: "Lithium Carbonate/Citrate",
+    brandNames: ["Lithobid", "Eskalith", "Priadel"],
+    class: "Mood Stabilizers",
+    category: "Psychiatric",
+    uses: [
+      "Bipolar disorder (acute mania and maintenance)",
+      "Depression augmentation",
+      "Cluster headache prophylaxis"
+    ],
+    mechanism: "Exact mechanism unknown. Modulates neurotransmitter systems, inhibits inositol monophosphatase, and affects intracellular signaling cascades.",
+    dosage: "600-1800mg daily in divided doses, guided by serum levels",
+    administration: {
+      route: "Oral",
+      timing: "With food in divided doses",
+      withFood: true,
+      reason: "Taking with food reduces GI upset. Divided dosing maintains stable levels."
+    },
+    sideEffects: ["Tremor", "Polyuria", "Polydipsia", "Weight gain", "Hypothyroidism", "Renal impairment"],
+    contraindications: ["Severe renal impairment", "Severe cardiovascular disease", "Dehydration"],
+    interactions: [
+      { drug: "NSAIDs", severity: "severe", effect: "Reduced lithium excretion - toxicity risk" },
+      { drug: "ACE inhibitors", severity: "severe", effect: "Reduced lithium excretion - toxicity risk" },
+      { drug: "Diuretics (thiazide)", severity: "severe", effect: "Significantly increased lithium levels" }
+    ],
+    warnings: ["Narrow therapeutic index (0.6-1.2 mEq/L)", "Maintain adequate hydration and sodium intake", "Monitor renal and thyroid function"],
+    isDangerous: true,
+    halfLife: "18-36 hours",
+    onsetOfAction: "1-3 weeks for mood stabilization"
+  },
+  {
+    id: "36",
+    name: "Methotrexate",
+    genericName: "Methotrexate",
+    brandNames: ["Trexall", "Rheumatrex", "Otrexup"],
+    class: "Antimetabolites/DMARDs",
+    category: "Immunosuppressant",
+    uses: [
+      "Rheumatoid arthritis",
+      "Psoriasis",
+      "Various cancers",
+      "Ectopic pregnancy"
+    ],
+    mechanism: "Inhibits dihydrofolate reductase, blocking folic acid metabolism and DNA synthesis, with anti-inflammatory effects at low doses.",
+    dosage: "7.5-25mg weekly for RA; much higher for oncology",
+    administration: {
+      route: "Oral, SC, IM, IV",
+      timing: "Once weekly (NOT daily for RA/psoriasis)",
+      withFood: false,
+      reason: "Can be taken with or without food. CRITICAL: Weekly dosing for RA/psoriasis - daily dosing causes fatal toxicity."
+    },
+    sideEffects: ["Nausea", "Mucositis", "Hepatotoxicity", "Bone marrow suppression", "Pneumonitis"],
+    contraindications: ["Pregnancy", "Breastfeeding", "Severe liver/kidney disease", "Immunodeficiency"],
+    interactions: [
+      { drug: "NSAIDs", severity: "severe", effect: "Reduced methotrexate excretion - toxicity risk" },
+      { drug: "Trimethoprim-sulfamethoxazole", severity: "severe", effect: "Additive folate antagonism - bone marrow suppression" },
+      { drug: "Probenecid", severity: "moderate", effect: "Increased methotrexate levels" }
+    ],
+    warnings: ["WEEKLY dosing for RA - daily is fatal error", "Supplement with folic acid", "Monitor CBC and LFTs", "Teratogenic"],
+    isDangerous: true,
+    halfLife: "3-10 hours (low dose)",
+    onsetOfAction: "3-6 weeks for RA"
+  },
+  {
+    id: "37",
+    name: "Allopurinol",
+    genericName: "Allopurinol",
+    brandNames: ["Zyloprim", "Lopurin"],
+    class: "Xanthine Oxidase Inhibitors",
+    category: "Antigout",
+    uses: [
+      "Gout (chronic)",
+      "Tumor lysis syndrome prophylaxis",
+      "Kidney stones (uric acid)"
+    ],
+    mechanism: "Inhibits xanthine oxidase, reducing the conversion of hypoxanthine to xanthine and xanthine to uric acid.",
+    dosage: "100-800mg daily, start low",
+    administration: {
+      route: "Oral",
+      timing: "After meals to reduce GI upset",
+      withFood: true,
+      reason: "Taking with food reduces stomach upset. Start with low doses to avoid precipitating gout flares."
+    },
+    sideEffects: ["Rash", "GI upset", "Elevated LFTs", "Gout flare (initial)", "Hypersensitivity syndrome"],
+    contraindications: ["Acute gout attack (do not initiate)", "Previous severe reaction"],
+    interactions: [
+      { drug: "Azathioprine", severity: "severe", effect: "Blocks azathioprine metabolism - reduce dose by 75%" },
+      { drug: "6-mercaptopurine", severity: "severe", effect: "Same as azathioprine - reduce dose significantly" },
+      { drug: "ACE inhibitors", severity: "moderate", effect: "Increased hypersensitivity risk" }
+    ],
+    warnings: ["Start during non-acute period with colchicine/NSAID cover", "HLA-B*5801 testing in high-risk populations", "Severe hypersensitivity syndrome can be fatal"],
+    isDangerous: false,
+    halfLife: "1-2 hours (active metabolite oxipurinol: 18-30 hours)",
+    onsetOfAction: "2-3 days for uric acid reduction"
+  },
+  {
+    id: "38",
+    name: "Colchicine",
+    genericName: "Colchicine",
+    brandNames: ["Colcrys", "Mitigare"],
+    class: "Antigout Agents",
+    category: "Antigout",
+    uses: [
+      "Acute gout",
+      "Gout prophylaxis",
+      "Familial Mediterranean fever",
+      "Pericarditis"
+    ],
+    mechanism: "Inhibits microtubule polymerization, reducing neutrophil migration and inflammatory response to urate crystals.",
+    dosage: "Acute: 1.2mg then 0.6mg 1 hour later; Prophylaxis: 0.6mg daily or twice daily",
+    administration: {
+      route: "Oral",
+      timing: "At first sign of gout flare for acute; daily for prophylaxis",
+      withFood: false,
+      reason: "Can be taken with or without food. For acute gout, timing is critical - take at first sign of attack."
+    },
+    sideEffects: ["Diarrhea", "Nausea", "Vomiting", "Abdominal pain", "Bone marrow suppression (high dose)"],
+    contraindications: ["Severe renal impairment with P-gp inhibitors", "Severe hepatic impairment"],
+    interactions: [
+      { drug: "Clarithromycin", severity: "severe", effect: "Increased colchicine levels - fatal toxicity reported" },
+      { drug: "Cyclosporine", severity: "severe", effect: "Increased colchicine toxicity - dose reduction needed" },
+      { drug: "Statins", severity: "moderate", effect: "Increased myopathy risk" }
+    ],
+    warnings: ["Narrow therapeutic index", "Do not exceed recommended doses", "GI symptoms are early sign of toxicity"],
+    isDangerous: true,
+    halfLife: "27-31 hours",
+    onsetOfAction: "12-24 hours for gout relief"
+  },
+  {
+    id: "39",
+    name: "Doxycycline",
+    genericName: "Doxycycline Hyclate/Monohydrate",
+    brandNames: ["Vibramycin", "Doryx", "Monodox"],
+    class: "Tetracyclines",
+    category: "Antibiotic",
+    uses: [
+      "Respiratory infections",
+      "Acne",
+      "Chlamydia",
+      "Malaria prophylaxis",
+      "Lyme disease"
+    ],
+    mechanism: "Binds to 30S ribosomal subunit, inhibiting bacterial protein synthesis by blocking aminoacyl-tRNA binding.",
+    dosage: "100mg twice daily or 200mg once daily",
+    administration: {
+      route: "Oral, IV",
+      timing: "With food to reduce GI upset; avoid lying down for 30 minutes",
+      withFood: true,
+      reason: "Can be taken with food (unlike other tetracyclines). Stay upright to prevent esophageal irritation."
+    },
+    sideEffects: ["GI upset", "Photosensitivity", "Esophageal ulceration", "Yeast infections", "Tooth discoloration"],
+    contraindications: ["Pregnancy", "Children under 8 years", "Hypersensitivity"],
+    interactions: [
+      { drug: "Antacids/Iron/Calcium", severity: "moderate", effect: "Reduced absorption - separate by 2-3 hours" },
+      { drug: "Warfarin", severity: "moderate", effect: "Increased anticoagulant effect" },
+      { drug: "Isotretinoin", severity: "moderate", effect: "Increased intracranial pressure risk" }
+    ],
+    warnings: ["Severe photosensitivity - use sunscreen", "Can cause permanent tooth staining in children", "Risk of esophagitis - take with water and remain upright"],
+    isDangerous: false,
+    halfLife: "18-22 hours",
+    onsetOfAction: "1-4 hours"
+  },
+  {
+    id: "40",
+    name: "Fluconazole",
+    genericName: "Fluconazole",
+    brandNames: ["Diflucan"],
+    class: "Triazole Antifungals",
+    category: "Antifungal",
+    uses: [
+      "Candidiasis (oral, vaginal, systemic)",
+      "Cryptococcal meningitis",
+      "Prophylaxis in immunocompromised"
+    ],
+    mechanism: "Inhibits fungal cytochrome P450 enzyme lanosterol 14-alpha-demethylase, disrupting ergosterol synthesis and cell membrane integrity.",
+    dosage: "Varies by indication: 50-400mg daily",
+    administration: {
+      route: "Oral, IV",
+      timing: "Once daily, with or without food",
+      withFood: false,
+      reason: "Well absorbed regardless of food. Single dose (150mg) common for vaginal candidiasis."
+    },
+    sideEffects: ["Nausea", "Headache", "Abdominal pain", "Elevated LFTs", "QT prolongation"],
+    contraindications: ["Concurrent terfenadine/cisapride", "Severe hypersensitivity"],
+    interactions: [
+      { drug: "Warfarin", severity: "severe", effect: "Significantly increased INR - monitor closely" },
+      { drug: "Simvastatin", severity: "severe", effect: "Increased statin levels - rhabdomyolysis risk" },
+      { drug: "Phenytoin", severity: "moderate", effect: "Increased phenytoin levels" }
+    ],
+    warnings: ["Hepatotoxicity risk - monitor LFTs", "QT prolongation with certain drugs", "Strong CYP inhibitor - many interactions"],
+    isDangerous: false,
+    halfLife: "30 hours",
+    onsetOfAction: "1-2 hours"
+  },
+  {
+    id: "41",
+    name: "Cetirizine",
+    genericName: "Cetirizine Hydrochloride",
+    brandNames: ["Zyrtec", "Reactine"],
+    class: "Second-generation Antihistamines",
+    category: "Antiallergy",
+    uses: [
+      "Allergic rhinitis",
+      "Chronic urticaria",
+      "Allergic conjunctivitis"
+    ],
+    mechanism: "Selective H1 receptor antagonist with minimal CNS penetration, blocking histamine-mediated allergic responses.",
+    dosage: "10mg once daily",
+    administration: {
+      route: "Oral",
+      timing: "Once daily, evening if sedation occurs",
+      withFood: false,
+      reason: "Can be taken with or without food. Evening dosing helps if drowsiness is experienced."
+    },
+    sideEffects: ["Drowsiness (mild)", "Dry mouth", "Fatigue", "Headache"],
+    contraindications: ["Hypersensitivity to cetirizine or hydroxyzine", "Severe renal impairment (reduce dose)"],
+    interactions: [
+      { drug: "CNS depressants", severity: "mild", effect: "Additive sedation" },
+      { drug: "Theophylline", severity: "mild", effect: "Slight reduction in cetirizine clearance" },
+      { drug: "Alcohol", severity: "mild", effect: "Enhanced sedation" }
+    ],
+    warnings: ["Less sedating than first-gen but may still cause drowsiness", "Dose adjust in renal impairment", "Not as effective as first-gen for acute allergic reactions"],
+    isDangerous: false,
+    halfLife: "8-9 hours",
+    onsetOfAction: "1 hour"
+  },
+  {
+    id: "42",
+    name: "Montelukast",
+    genericName: "Montelukast Sodium",
+    brandNames: ["Singulair"],
+    class: "Leukotriene Receptor Antagonists",
+    category: "Respiratory",
+    uses: [
+      "Asthma prophylaxis",
+      "Exercise-induced bronchoconstriction",
+      "Allergic rhinitis"
+    ],
+    mechanism: "Blocks cysteinyl leukotriene receptor CysLT1, reducing bronchoconstriction, mucus secretion, and airway inflammation.",
+    dosage: "10mg once daily in evening (adults)",
+    administration: {
+      route: "Oral",
+      timing: "Once daily in the evening",
+      withFood: false,
+      reason: "Can be taken with or without food. Evening dosing is recommended for asthma."
+    },
+    sideEffects: ["Headache", "Abdominal pain", "Neuropsychiatric effects", "Upper respiratory infection"],
+    contraindications: ["Hypersensitivity"],
+    interactions: [
+      { drug: "Phenobarbital", severity: "moderate", effect: "Reduced montelukast levels" },
+      { drug: "CYP3A4 inducers", severity: "moderate", effect: "May reduce effectiveness" },
+      { drug: "Gemfibrozil", severity: "moderate", effect: "Increased montelukast exposure" }
+    ],
+    warnings: ["Black box warning for neuropsychiatric events (depression, suicidal thoughts)", "Not for acute asthma attacks", "Monitor for behavior changes"],
+    isDangerous: false,
+    halfLife: "2.7-5.5 hours",
+    onsetOfAction: "Within hours for bronchoconstriction prevention"
+  },
+  {
+    id: "43",
+    name: "Spironolactone",
+    genericName: "Spironolactone",
+    brandNames: ["Aldactone", "CaroSpir"],
+    class: "Potassium-sparing Diuretics (Aldosterone Antagonist)",
+    category: "Diuretic",
+    uses: [
+      "Heart failure",
+      "Resistant hypertension",
+      "Liver cirrhosis with ascites",
+      "Hirsutism and acne (off-label)"
+    ],
+    mechanism: "Competitive aldosterone antagonist in the distal tubule, promoting sodium and water excretion while retaining potassium.",
+    dosage: "25-200mg daily",
+    administration: {
+      route: "Oral",
+      timing: "With food to enhance absorption",
+      withFood: true,
+      reason: "Food significantly increases absorption. Taking in morning may prevent nocturia."
+    },
+    sideEffects: ["Hyperkalemia", "Gynecomastia", "Menstrual irregularities", "GI upset", "Dizziness"],
+    contraindications: ["Hyperkalemia", "Addison's disease", "Severe renal impairment", "Concurrent potassium supplements"],
+    interactions: [
+      { drug: "ACE inhibitors/ARBs", severity: "severe", effect: "Increased hyperkalemia risk - monitor potassium" },
+      { drug: "NSAIDs", severity: "moderate", effect: "Reduced diuretic effect and increased hyperkalemia" },
+      { drug: "Lithium", severity: "moderate", effect: "Possible reduced lithium clearance" }
+    ],
+    warnings: ["Monitor potassium closely", "Gynecomastia is dose-dependent", "Avoid potassium-rich foods and supplements"],
+    isDangerous: false,
+    halfLife: "1.4 hours (active metabolites: 10-35 hours)",
+    onsetOfAction: "2-3 days for diuretic effect"
+  },
+  {
+    id: "44",
+    name: "Losartan",
+    genericName: "Losartan Potassium",
+    brandNames: ["Cozaar"],
+    class: "Angiotensin II Receptor Blockers (ARBs)",
+    category: "Antihypertensive",
+    uses: [
+      "Hypertension",
+      "Diabetic nephropathy",
+      "Stroke prevention in hypertensive patients with LVH",
+      "Heart failure (when ACE inhibitor intolerant)"
+    ],
+    mechanism: "Blocks angiotensin II AT1 receptors, causing vasodilation, reduced aldosterone secretion, and decreased sympathetic activity.",
+    dosage: "25-100mg daily",
+    administration: {
+      route: "Oral",
+      timing: "Once or twice daily, any time",
+      withFood: false,
+      reason: "Can be taken with or without food. Consistent timing is important."
+    },
+    sideEffects: ["Dizziness", "Hyperkalemia", "Hypotension", "Renal impairment", "Back pain"],
+    contraindications: ["Pregnancy", "Bilateral renal artery stenosis", "Concurrent aliskiren in diabetics"],
+    interactions: [
+      { drug: "Potassium supplements", severity: "moderate", effect: "Hyperkalemia risk" },
+      { drug: "NSAIDs", severity: "moderate", effect: "Reduced antihypertensive effect and renal function decline" },
+      { drug: "Lithium", severity: "moderate", effect: "Increased lithium levels" }
+    ],
+    warnings: ["Monitor renal function and potassium", "Black box warning for fetal toxicity", "Does not cause cough like ACE inhibitors"],
+    isDangerous: false,
+    halfLife: "2 hours (active metabolite 6-9 hours)",
+    onsetOfAction: "6 hours, max effect 3-6 weeks"
+  },
+  {
+    id: "45",
+    name: "Ranitidine",
+    genericName: "Ranitidine Hydrochloride",
+    brandNames: ["Zantac"],
+    class: "H2 Receptor Antagonists",
+    category: "Gastrointestinal",
+    uses: [
+      "GERD",
+      "Peptic ulcer disease",
+      "Zollinger-Ellison syndrome",
+      "Stress ulcer prophylaxis"
+    ],
+    mechanism: "Competitively blocks histamine H2 receptors on gastric parietal cells, reducing acid secretion.",
+    dosage: "150mg twice daily or 300mg at bedtime",
+    administration: {
+      route: "Oral, IV",
+      timing: "With or without food; bedtime dosing for nocturnal acid",
+      withFood: false,
+      reason: "Can be taken regardless of meals. Bedtime dosing is effective for nighttime acid suppression."
+    },
+    sideEffects: ["Headache", "Dizziness", "Constipation", "Diarrhea", "Confusion (elderly)"],
+    contraindications: ["Hypersensitivity", "Acute porphyria"],
+    interactions: [
+      { drug: "Ketoconazole", severity: "moderate", effect: "Reduced ketoconazole absorption" },
+      { drug: "Warfarin", severity: "mild", effect: "Possible slight increase in warfarin effect" },
+      { drug: "Procainamide", severity: "moderate", effect: "Reduced procainamide clearance" }
+    ],
+    warnings: ["Note: Many products withdrawn due to NDMA contamination concerns", "Less effective than PPIs", "May cause rebound hyperacidity"],
+    isDangerous: false,
+    halfLife: "2-3 hours",
+    onsetOfAction: "1-3 hours"
+  },
+  {
+    id: "46",
+    name: "Domperidone",
+    genericName: "Domperidone",
+    brandNames: ["Motilium", "Motinorm"],
+    class: "Dopamine Antagonists (Peripheral)",
+    category: "Gastrointestinal",
+    uses: [
+      "Nausea and vomiting",
+      "Gastroparesis",
+      "Functional dyspepsia"
+    ],
+    mechanism: "Blocks peripheral dopamine D2 receptors in the GI tract and CTZ, enhancing gastric motility without crossing blood-brain barrier.",
+    dosage: "10mg three times daily before meals",
+    administration: {
+      route: "Oral",
+      timing: "15-30 minutes before meals",
+      withFood: false,
+      reason: "Must be taken before meals to be present when food enters stomach and stimulates motility."
+    },
+    sideEffects: ["Headache", "Dry mouth", "Galactorrhea", "QT prolongation", "Cardiac arrhythmias"],
+    contraindications: ["QT prolongation", "Concurrent QT-prolonging drugs", "GI obstruction", "Prolactinoma"],
+    interactions: [
+      { drug: "CYP3A4 inhibitors", severity: "severe", effect: "Increased domperidone levels and QT risk" },
+      { drug: "Ketoconazole", severity: "severe", effect: "Contraindicated - increased cardiac risk" },
+      { drug: "Erythromycin", severity: "severe", effect: "Additive QT prolongation" }
+    ],
+    warnings: ["Use lowest effective dose for shortest duration", "ECG before starting in high-risk patients", "Avoid in patients over 60 or with cardiac history"],
+    isDangerous: true,
+    halfLife: "7-8 hours",
+    onsetOfAction: "30-60 minutes"
+  },
+  {
+    id: "47",
+    name: "Ceftriaxone",
+    genericName: "Ceftriaxone Sodium",
+    brandNames: ["Rocephin"],
+    class: "Third-generation Cephalosporins",
+    category: "Antibiotic",
+    uses: [
+      "Meningitis",
+      "Pneumonia",
+      "Gonorrhea",
+      "Lyme disease",
+      "Surgical prophylaxis"
+    ],
+    mechanism: "Binds to penicillin-binding proteins, inhibiting bacterial cell wall synthesis with broad gram-negative and some gram-positive coverage.",
+    dosage: "1-2g daily; up to 4g for meningitis",
+    administration: {
+      route: "IV, IM",
+      timing: "Once or twice daily",
+      withFood: false,
+      reason: "Given parenterally. Long half-life allows once-daily dosing for most infections."
+    },
+    sideEffects: ["Diarrhea", "Rash", "Injection site pain", "Biliary sludge", "C. difficile colitis"],
+    contraindications: ["Cephalosporin allergy", "Neonates with hyperbilirubinemia receiving calcium", "Severe penicillin allergy (caution)"],
+    interactions: [
+      { drug: "Calcium-containing IV solutions", severity: "severe", effect: "Precipitation - fatal in neonates; separate in all ages" },
+      { drug: "Warfarin", severity: "moderate", effect: "May increase INR" },
+      { drug: "Aminoglycosides", severity: "moderate", effect: "Synergistic but give separately" }
+    ],
+    warnings: ["Do not mix with calcium-containing fluids", "Cross-reactivity with penicillin allergy (1-2%)", "Can cause biliary pseudolithiasis"],
+    isDangerous: false,
+    halfLife: "6-9 hours",
+    onsetOfAction: "Immediate (IV)"
+  },
+  {
+    id: "48",
+    name: "Loperamide",
+    genericName: "Loperamide Hydrochloride",
+    brandNames: ["Imodium", "Lomotil"],
+    class: "Opioid Antidiarrheals",
+    category: "Gastrointestinal",
+    uses: [
+      "Acute diarrhea",
+      "Chronic diarrhea",
+      "Traveler's diarrhea",
+      "Ileostomy output control"
+    ],
+    mechanism: "Activates opioid receptors in the gut wall, slowing intestinal motility and increasing fluid absorption without CNS effects at normal doses.",
+    dosage: "Initial 4mg, then 2mg after each loose stool (max 16mg/day)",
+    administration: {
+      route: "Oral",
+      timing: "After each loose stool",
+      withFood: false,
+      reason: "Can be taken regardless of food. Dose after diarrhea episodes for symptom control."
+    },
+    sideEffects: ["Constipation", "Abdominal cramps", "Dizziness", "Dry mouth"],
+    contraindications: ["Bloody diarrhea", "Fever", "C. difficile colitis", "Acute dysentery", "Children under 2"],
+    interactions: [
+      { drug: "P-glycoprotein inhibitors", severity: "moderate", effect: "Increased loperamide absorption and potential CNS effects" },
+      { drug: "Ritonavir", severity: "moderate", effect: "Increased loperamide levels" },
+      { drug: "Quinidine", severity: "moderate", effect: "May increase loperamide CNS penetration" }
+    ],
+    warnings: ["Abuse potential at high doses (cardiac effects)", "Do not use in invasive diarrhea", "Can cause toxic megacolon in colitis"],
+    isDangerous: false,
+    halfLife: "10-14 hours",
+    onsetOfAction: "1 hour"
+  },
+  {
+    id: "49",
+    name: "Clonazepam",
+    genericName: "Clonazepam",
+    brandNames: ["Klonopin", "Rivotril"],
+    class: "Benzodiazepines",
+    category: "Neurological/Psychiatric",
+    uses: [
+      "Epilepsy (absence, myoclonic, atonic seizures)",
+      "Panic disorder",
+      "Restless leg syndrome (off-label)"
+    ],
+    mechanism: "Enhances GABA-A receptor activity, increasing chloride conductance and neuronal inhibition.",
+    dosage: "0.5-2mg two to three times daily",
+    administration: {
+      route: "Oral",
+      timing: "Divided doses throughout the day",
+      withFood: false,
+      reason: "Can be taken with or without food. Divided dosing maintains stable levels."
+    },
+    sideEffects: ["Sedation", "Ataxia", "Dependence", "Cognitive impairment", "Respiratory depression"],
+    contraindications: ["Severe respiratory insufficiency", "Sleep apnea", "Severe hepatic impairment", "Acute narrow-angle glaucoma"],
+    interactions: [
+      { drug: "Opioids", severity: "severe", effect: "Risk of profound sedation and respiratory depression" },
+      { drug: "Alcohol", severity: "severe", effect: "Enhanced CNS depression" },
+      { drug: "CYP3A4 inhibitors", severity: "moderate", effect: "Increased clonazepam levels" }
+    ],
+    warnings: ["Schedule IV controlled substance", "Withdrawal seizures with abrupt discontinuation", "Tolerance and dependence develop"],
+    isDangerous: true,
+    halfLife: "18-50 hours",
+    onsetOfAction: "20-60 minutes"
+  },
+  {
+    id: "50",
+    name: "Gabapentin",
+    genericName: "Gabapentin",
+    brandNames: ["Neurontin", "Gralise"],
+    class: "Gabapentinoids",
+    category: "Neurological",
+    uses: [
+      "Epilepsy (partial seizures)",
+      "Postherpetic neuralgia",
+      "Neuropathic pain",
+      "Restless leg syndrome (off-label)"
+    ],
+    mechanism: "Binds to alpha-2-delta subunit of voltage-gated calcium channels, reducing neurotransmitter release. Not a GABA agonist despite name.",
+    dosage: "300-3600mg daily in divided doses",
+    administration: {
+      route: "Oral",
+      timing: "Three times daily (dose-dependent absorption)",
+      withFood: false,
+      reason: "Can be taken with or without food. Extended-release must be taken with evening meal."
+    },
+    sideEffects: ["Dizziness", "Somnolence", "Peripheral edema", "Ataxia", "Weight gain"],
+    contraindications: ["Hypersensitivity"],
+    interactions: [
+      { drug: "Antacids", severity: "mild", effect: "Reduced gabapentin absorption - separate by 2 hours" },
+      { drug: "CNS depressants", severity: "moderate", effect: "Enhanced sedation" },
+      { drug: "Morphine", severity: "moderate", effect: "Increased gabapentin levels and sedation" }
+    ],
+    warnings: ["Dose-dependent absorption (higher doses less absorbed)", "Adjust in renal impairment", "Suicidal ideation risk", "Misuse potential"],
+    isDangerous: false,
+    halfLife: "5-7 hours",
+    onsetOfAction: "Several days to weeks for pain; hours for anticonvulsant"
   }
 ];
 
@@ -861,7 +1679,7 @@ export const drugClasses = [
   { name: "Beta Blockers", category: "Cardiovascular", count: 1 },
   { name: "Glucocorticoids", category: "Anti-inflammatory", count: 1 },
   { name: "Loop Diuretics", category: "Diuretic", count: 1 },
-  { name: "Benzodiazepines", category: "Anxiolytic", count: 1 },
+  { name: "Benzodiazepines", category: "Anxiolytic", count: 2 },
   { name: "NSAIDs", category: "Analgesic", count: 1 },
   { name: "Antimalarials", category: "Antiparasitic", count: 1 },
   { name: "Thiazide Diuretics", category: "Diuretic", count: 1 },
@@ -869,4 +1687,24 @@ export const drugClasses = [
   { name: "Sulfonylureas", category: "Antidiabetic", count: 1 },
   { name: "SABAs", category: "Bronchodilator", count: 1 },
   { name: "Antiplatelets", category: "Cardiovascular", count: 1 },
+  { name: "Thyroid Hormones", category: "Endocrine", count: 1 },
+  { name: "Prokinetics", category: "Gastrointestinal", count: 2 },
+  { name: "Anticonvulsants", category: "Neurological", count: 4 },
+  { name: "SSRIs", category: "Psychiatric", count: 1 },
+  { name: "Tricyclic Antidepressants", category: "Psychiatric", count: 1 },
+  { name: "Atypical Antipsychotics", category: "Psychiatric", count: 2 },
+  { name: "Mood Stabilizers", category: "Psychiatric", count: 1 },
+  { name: "DMARDs", category: "Immunosuppressant", count: 1 },
+  { name: "Xanthine Oxidase Inhibitors", category: "Antigout", count: 1 },
+  { name: "Antigout Agents", category: "Antigout", count: 1 },
+  { name: "Tetracyclines", category: "Antibiotic", count: 1 },
+  { name: "Triazole Antifungals", category: "Antifungal", count: 1 },
+  { name: "Second-gen Antihistamines", category: "Antiallergy", count: 1 },
+  { name: "Leukotriene Antagonists", category: "Respiratory", count: 1 },
+  { name: "Potassium-sparing Diuretics", category: "Diuretic", count: 1 },
+  { name: "ARBs", category: "Antihypertensive", count: 1 },
+  { name: "H2 Antagonists", category: "Gastrointestinal", count: 1 },
+  { name: "Third-gen Cephalosporins", category: "Antibiotic", count: 1 },
+  { name: "Opioid Antidiarrheals", category: "Gastrointestinal", count: 1 },
+  { name: "Gabapentinoids", category: "Neurological", count: 1 },
 ];

@@ -786,6 +786,350 @@ export const quizzes: Quiz[] = [
         category: "Side Effects"
       }
     ]
+  },
+  {
+    id: "psychiatric",
+    title: "Psychiatric Medications",
+    description: "Test your knowledge on antidepressants, antipsychotics, and mood stabilizers",
+    category: "Psychiatry",
+    difficulty: "advanced",
+    icon: "🧠",
+    questions: [
+      {
+        id: "psy1",
+        question: "What is the black box warning associated with SSRIs like Sertraline?",
+        options: [
+          "Risk of weight gain",
+          "Increased suicidality in young adults",
+          "Risk of heart attack",
+          "Liver failure"
+        ],
+        correctAnswer: 1,
+        explanation: "SSRIs carry a black box warning for increased risk of suicidal thoughts and behaviors in children, adolescents, and young adults, especially during initial treatment.",
+        drugId: "31",
+        category: "Safety"
+      },
+      {
+        id: "psy2",
+        question: "Why should antidepressants not be stopped abruptly?",
+        options: [
+          "They are addictive",
+          "Discontinuation syndrome with flu-like symptoms and mood changes",
+          "They cause immediate relapse",
+          "No specific reason"
+        ],
+        correctAnswer: 1,
+        explanation: "Abrupt discontinuation can cause discontinuation syndrome with symptoms like dizziness, nausea, flu-like symptoms, insomnia, and mood disturbances. Gradual tapering is recommended.",
+        drugId: "31",
+        category: "Administration"
+      },
+      {
+        id: "psy3",
+        question: "What metabolic effect is most concerning with Olanzapine?",
+        options: [
+          "Hypoglycemia",
+          "Significant weight gain and metabolic syndrome",
+          "Weight loss",
+          "Hypotension only"
+        ],
+        correctAnswer: 1,
+        explanation: "Olanzapine is associated with significant weight gain, hyperglycemia, and dyslipidemia. Regular monitoring of metabolic parameters is essential.",
+        drugId: "33",
+        category: "Side Effects"
+      },
+      {
+        id: "psy4",
+        question: "What is the therapeutic range for Lithium?",
+        options: [
+          "0.1-0.5 mEq/L",
+          "0.6-1.2 mEq/L",
+          "2.0-3.0 mEq/L",
+          "5.0-10.0 mEq/L"
+        ],
+        correctAnswer: 1,
+        explanation: "Lithium has a narrow therapeutic index with a range of 0.6-1.2 mEq/L. Levels above 1.5 mEq/L can cause toxicity; above 2.0 mEq/L can be life-threatening.",
+        drugId: "35",
+        category: "Monitoring"
+      },
+      {
+        id: "psy5",
+        question: "Which drug combination with Lithium is particularly dangerous?",
+        options: [
+          "Paracetamol",
+          "NSAIDs and ACE inhibitors",
+          "Antacids",
+          "Antibiotics"
+        ],
+        correctAnswer: 1,
+        explanation: "NSAIDs and ACE inhibitors reduce lithium excretion, significantly increasing lithium levels and risk of toxicity. Thiazide diuretics are also problematic.",
+        drugId: "35",
+        category: "Interactions"
+      },
+      {
+        id: "psy6",
+        question: "What unique side effect is associated with Risperidone compared to other antipsychotics?",
+        options: [
+          "Weight loss",
+          "Hyperprolactinemia causing galactorrhea",
+          "Improved sexual function",
+          "Hair growth"
+        ],
+        correctAnswer: 1,
+        explanation: "Risperidone causes significant hyperprolactinemia, leading to amenorrhea, galactorrhea, gynecomastia, and sexual dysfunction, more than most other antipsychotics.",
+        drugId: "34",
+        category: "Side Effects"
+      }
+    ]
+  },
+  {
+    id: "neurology",
+    title: "Neurological Medications",
+    description: "Learn about anticonvulsants and drugs for neurological conditions",
+    category: "Neurology",
+    difficulty: "advanced",
+    icon: "⚡",
+    questions: [
+      {
+        id: "neuro1",
+        question: "Why is HLA-B*1502 testing recommended before starting Carbamazepine?",
+        options: [
+          "To check liver function",
+          "Risk of Stevens-Johnson syndrome in positive patients",
+          "To determine correct dose",
+          "To check kidney function"
+        ],
+        correctAnswer: 1,
+        explanation: "HLA-B*1502 allele carriers (common in Asian populations) have significantly increased risk of Stevens-Johnson syndrome/toxic epidermal necrolysis with carbamazepine.",
+        drugId: "28",
+        category: "Safety"
+      },
+      {
+        id: "neuro2",
+        question: "What is unique about Phenytoin's pharmacokinetics?",
+        options: [
+          "It has first-order kinetics",
+          "Zero-order kinetics at therapeutic doses - small dose changes cause large level changes",
+          "It is completely predictable",
+          "It has a very wide therapeutic range"
+        ],
+        correctAnswer: 1,
+        explanation: "Phenytoin follows zero-order (saturable) kinetics at therapeutic doses, meaning small dose increases can cause disproportionately large increases in plasma levels.",
+        drugId: "29",
+        category: "Pharmacokinetics"
+      },
+      {
+        id: "neuro3",
+        question: "What critical warning exists for Valproate in women of childbearing potential?",
+        options: [
+          "It causes infertility",
+          "Highly teratogenic - causes neural tube defects",
+          "It reduces contraceptive efficacy",
+          "No specific concerns"
+        ],
+        correctAnswer: 1,
+        explanation: "Valproate is highly teratogenic with up to 10% risk of major congenital malformations and neurodevelopmental disorders. It should be avoided in women of childbearing potential unless essential.",
+        drugId: "30",
+        category: "Pregnancy"
+      },
+      {
+        id: "neuro4",
+        question: "Which anticonvulsant significantly reduces oral contraceptive efficacy?",
+        options: [
+          "Valproate",
+          "Carbamazepine",
+          "Gabapentin",
+          "Levetiracetam"
+        ],
+        correctAnswer: 1,
+        explanation: "Carbamazepine is a strong CYP3A4 inducer that significantly reduces hormone levels, making hormonal contraceptives unreliable. Alternative contraception is needed.",
+        drugId: "28",
+        category: "Interactions"
+      },
+      {
+        id: "neuro5",
+        question: "Why does Gabapentin require three-times-daily dosing?",
+        options: [
+          "It has a very long half-life",
+          "Dose-dependent absorption - higher single doses are poorly absorbed",
+          "It causes insomnia",
+          "For better taste"
+        ],
+        correctAnswer: 1,
+        explanation: "Gabapentin absorption is saturable - as the dose increases, the percentage absorbed decreases. Divided dosing improves overall bioavailability.",
+        drugId: "50",
+        category: "Pharmacokinetics"
+      }
+    ]
+  },
+  {
+    id: "thyroid-endocrine",
+    title: "Thyroid & Endocrine Drugs",
+    description: "Understand medications for thyroid and hormonal conditions",
+    category: "Endocrine",
+    difficulty: "intermediate",
+    icon: "🦋",
+    questions: [
+      {
+        id: "thy1",
+        question: "When should Levothyroxine be taken?",
+        options: [
+          "With breakfast",
+          "On empty stomach, 30-60 minutes before breakfast",
+          "After dinner",
+          "With milk"
+        ],
+        correctAnswer: 1,
+        explanation: "Levothyroxine absorption is significantly reduced by food, fiber, calcium, and iron. It should be taken on an empty stomach, ideally 30-60 minutes before eating.",
+        drugId: "26",
+        category: "Administration"
+      },
+      {
+        id: "thy2",
+        question: "How long does it take for Levothyroxine to reach steady state?",
+        options: [
+          "1-2 days",
+          "1 week",
+          "6-8 weeks",
+          "6 months"
+        ],
+        correctAnswer: 2,
+        explanation: "Due to its long half-life (6-7 days), levothyroxine takes 6-8 weeks to reach steady state. TSH should be rechecked after this period following dose changes.",
+        drugId: "26",
+        category: "Pharmacokinetics"
+      },
+      {
+        id: "thy3",
+        question: "What supplements should be separated from Levothyroxine?",
+        options: [
+          "Vitamin B12",
+          "Calcium and Iron supplements",
+          "Vitamin D",
+          "Zinc"
+        ],
+        correctAnswer: 1,
+        explanation: "Calcium and iron bind to levothyroxine and significantly reduce absorption. They should be taken at least 4 hours apart from levothyroxine.",
+        drugId: "26",
+        category: "Interactions"
+      }
+    ]
+  },
+  {
+    id: "gout-arthritis",
+    title: "Gout & Arthritis Medications",
+    description: "Test your knowledge on drugs for gout and inflammatory conditions",
+    category: "Rheumatology",
+    difficulty: "intermediate",
+    icon: "🦴",
+    questions: [
+      {
+        id: "gout1",
+        question: "When should Allopurinol NOT be started?",
+        options: [
+          "In patients with kidney stones",
+          "During an acute gout attack",
+          "In elderly patients",
+          "In diabetic patients"
+        ],
+        correctAnswer: 1,
+        explanation: "Starting allopurinol during an acute gout attack can worsen and prolong the attack. It should be initiated 2-4 weeks after resolution, with NSAID or colchicine cover.",
+        drugId: "37",
+        category: "Clinical Practice"
+      },
+      {
+        id: "gout2",
+        question: "What is the critical drug interaction between Allopurinol and Azathioprine?",
+        options: [
+          "No interaction",
+          "Allopurinol blocks azathioprine metabolism - dose must be reduced 75%",
+          "Azathioprine increases allopurinol levels",
+          "They enhance each other's effect safely"
+        ],
+        correctAnswer: 1,
+        explanation: "Allopurinol inhibits xanthine oxidase which metabolizes azathioprine's active metabolite. Without dose reduction (by 75%), severe bone marrow suppression can occur.",
+        drugId: "37",
+        category: "Interactions"
+      },
+      {
+        id: "gout3",
+        question: "What is the main sign of Colchicine toxicity?",
+        options: [
+          "Constipation",
+          "Severe diarrhea and GI symptoms",
+          "Headache",
+          "Skin rash"
+        ],
+        correctAnswer: 1,
+        explanation: "GI symptoms (diarrhea, nausea, vomiting) are early warning signs of colchicine toxicity. Treatment should be stopped if these occur.",
+        drugId: "38",
+        category: "Toxicity"
+      },
+      {
+        id: "gout4",
+        question: "What is the most dangerous error with Methotrexate for rheumatoid arthritis?",
+        options: [
+          "Taking it with food",
+          "Accidentally taking it DAILY instead of WEEKLY",
+          "Taking it at night",
+          "Skipping folic acid"
+        ],
+        correctAnswer: 1,
+        explanation: "Methotrexate for RA/psoriasis is taken WEEKLY. Daily dosing is a fatal error that causes severe bone marrow suppression, hepatotoxicity, and death.",
+        drugId: "36",
+        category: "Safety"
+      }
+    ]
+  },
+  {
+    id: "antifungals-antivirals",
+    title: "Antifungal & Antimicrobial Agents",
+    description: "Review antifungal drugs and their interactions",
+    category: "Infectious Disease",
+    difficulty: "intermediate",
+    icon: "🍄",
+    questions: [
+      {
+        id: "af1",
+        question: "Why is Fluconazole a significant concern for drug interactions?",
+        options: [
+          "It has no interactions",
+          "Strong CYP inhibitor affecting many drugs",
+          "It is poorly absorbed",
+          "It causes allergy"
+        ],
+        correctAnswer: 1,
+        explanation: "Fluconazole is a potent inhibitor of CYP2C9, CYP2C19, and CYP3A4, leading to significant interactions with warfarin, statins, phenytoin, and many other drugs.",
+        drugId: "40",
+        category: "Interactions"
+      },
+      {
+        id: "af2",
+        question: "What unique dosing makes Fluconazole convenient for vaginal candidiasis?",
+        options: [
+          "Twice daily for 7 days",
+          "Single 150mg dose",
+          "Monthly injections",
+          "Topical only"
+        ],
+        correctAnswer: 1,
+        explanation: "A single oral 150mg dose of fluconazole is effective for uncomplicated vaginal candidiasis due to its long half-life (30 hours) and high tissue penetration.",
+        drugId: "40",
+        category: "Administration"
+      },
+      {
+        id: "af3",
+        question: "Why must patients avoid lying down after taking Doxycycline?",
+        options: [
+          "It causes dizziness",
+          "Risk of esophageal ulceration",
+          "It reduces absorption",
+          "It causes nausea"
+        ],
+        correctAnswer: 1,
+        explanation: "Doxycycline can cause severe esophageal ulceration if it lodges in the esophagus. Patients should take it with a full glass of water and remain upright for 30 minutes.",
+        drugId: "39",
+        category: "Administration"
+      }
+    ]
   }
 ];
 
@@ -1172,5 +1516,354 @@ export const caseStudies: CaseStudy[] = [
       "Patient education on reading product labels is essential"
     ],
     difficulty: "beginner"
+  },
+  {
+    id: "case7",
+    title: "Drug Interaction Crisis",
+    scenario: "A 55-year-old man on long-term medications presents to the pharmacy asking to buy ibuprofen for back pain. He mentions he takes 'blood pressure pills and something for his heart.'",
+    patientInfo: {
+      age: 55,
+      gender: "Male",
+      weight: 85,
+      height: 178,
+      allergies: ["None known"],
+      conditions: ["Hypertension", "Heart failure", "Chronic kidney disease stage 3"],
+      currentMedications: ["Lisinopril 20mg daily", "Furosemide 40mg daily", "Spironolactone 25mg daily"]
+    },
+    questions: [
+      {
+        question: "What is the major concern with this patient taking ibuprofen?",
+        options: [
+          "It might upset his stomach",
+          "NSAIDs can worsen renal function and reduce efficacy of his heart/BP medications",
+          "It will make him sleepy",
+          "No concerns - ibuprofen is safe"
+        ],
+        correctAnswer: 1,
+        explanation: "NSAIDs cause sodium retention, reduce kidney function, and counteract ACE inhibitors and diuretics. In this patient with CKD and heart failure, this could precipitate acute kidney injury or heart failure exacerbation."
+      },
+      {
+        question: "The 'triple whammy' drug combination includes ACE inhibitors, diuretics, and:",
+        options: [
+          "Paracetamol",
+          "NSAIDs",
+          "Antibiotics",
+          "Antacids"
+        ],
+        correctAnswer: 1,
+        explanation: "The 'triple whammy' is ACE inhibitor + diuretic + NSAID, which significantly increases risk of acute kidney injury. This patient is already on ACE inhibitor and diuretics."
+      },
+      {
+        question: "What alternative would you recommend for his back pain?",
+        options: [
+          "Higher dose of ibuprofen",
+          "Paracetamol with lifestyle measures",
+          "Aspirin",
+          "More diuretics"
+        ],
+        correctAnswer: 1,
+        explanation: "Paracetamol is the safest analgesic for this patient. Non-pharmacological approaches like heat, gentle exercise, and physiotherapy should also be recommended."
+      }
+    ],
+    learningPoints: [
+      "NSAIDs are dangerous in patients with CKD, heart failure, or on multiple antihypertensives",
+      "The 'triple whammy' (ACE-I/ARB + diuretic + NSAID) significantly increases AKI risk",
+      "Paracetamol is the analgesic of choice in high-risk patients",
+      "Always review patient's conditions before recommending OTC medications",
+      "Heart failure patients are particularly vulnerable to fluid retention from NSAIDs"
+    ],
+    difficulty: "intermediate"
+  },
+  {
+    id: "case8",
+    title: "Lithium Toxicity",
+    scenario: "A 42-year-old woman with bipolar disorder on Lithium therapy presents with tremor, confusion, and slurred speech. She mentions she started taking ibuprofen for joint pain a week ago and has had diarrhea for 3 days.",
+    patientInfo: {
+      age: 42,
+      gender: "Female",
+      weight: 68,
+      height: 165,
+      allergies: ["Penicillin"],
+      conditions: ["Bipolar disorder", "Osteoarthritis"],
+      currentMedications: ["Lithium 900mg daily", "Ibuprofen 400mg three times daily (self-started)"]
+    },
+    questions: [
+      {
+        question: "What is the most likely cause of her symptoms?",
+        options: [
+          "Flu infection",
+          "Lithium toxicity precipitated by NSAID use and dehydration",
+          "Side effect of osteoarthritis",
+          "Bipolar relapse"
+        ],
+        correctAnswer: 1,
+        explanation: "NSAIDs reduce lithium excretion, and dehydration from diarrhea further concentrates lithium. The symptoms (tremor, confusion, slurred speech) are classic lithium toxicity signs."
+      },
+      {
+        question: "What immediate action is required?",
+        options: [
+          "Continue medications and rest",
+          "Urgent medical evaluation - possible dialysis if severe",
+          "Take more lithium",
+          "Switch to another NSAID"
+        ],
+        correctAnswer: 1,
+        explanation: "Lithium toxicity is a medical emergency. The patient needs urgent evaluation, lithium level measurement, IV fluids, and potentially dialysis if levels are very high."
+      },
+      {
+        question: "What should this patient have been counseled about when starting lithium?",
+        options: [
+          "No special precautions needed",
+          "Avoid NSAIDs, maintain hydration, and maintain consistent salt intake",
+          "Take extra lithium if feeling unwell",
+          "NSAIDs improve lithium effectiveness"
+        ],
+        correctAnswer: 1,
+        explanation: "Lithium patients must avoid NSAIDs, maintain adequate hydration, have consistent sodium intake, and avoid dehydrating situations. Any new medication should be checked for interactions."
+      }
+    ],
+    learningPoints: [
+      "NSAIDs significantly reduce lithium excretion and increase levels",
+      "Dehydration from any cause can precipitate lithium toxicity",
+      "Early signs of toxicity include tremor, GI upset, and confusion",
+      "Lithium has a narrow therapeutic index requiring careful monitoring",
+      "Patient education on avoiding drug interactions is crucial for lithium therapy"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case9",
+    title: "Serotonin Syndrome Risk",
+    scenario: "A 35-year-old woman on Sertraline for depression comes to the pharmacy with a prescription for Tramadol for post-surgical pain. She mentions she also takes St. John's Wort occasionally.",
+    patientInfo: {
+      age: 35,
+      gender: "Female",
+      weight: 62,
+      height: 168,
+      allergies: ["Sulfa drugs"],
+      conditions: ["Major depressive disorder", "Recent knee surgery"],
+      currentMedications: ["Sertraline 100mg daily", "St. John's Wort (self-medicating)", "Tramadol 50mg QID (new prescription)"]
+    },
+    questions: [
+      {
+        question: "What serious condition could result from this combination?",
+        options: [
+          "Weight gain",
+          "Serotonin syndrome",
+          "Hair loss",
+          "Improved mood"
+        ],
+        correctAnswer: 1,
+        explanation: "Sertraline (SSRI) + Tramadol (serotonin reuptake inhibitor) + St. John's Wort (serotonin effects) creates very high serotonin syndrome risk, which can be life-threatening."
+      },
+      {
+        question: "Symptoms of serotonin syndrome include:",
+        options: [
+          "Lethargy and constipation",
+          "Hyperthermia, agitation, tremor, and hyperreflexia",
+          "Weight loss and improved concentration",
+          "Drowsiness only"
+        ],
+        correctAnswer: 1,
+        explanation: "Serotonin syndrome presents with hyperthermia, agitation, tremor, hyperreflexia, autonomic instability, and in severe cases, seizures, rhabdomyolysis, and death."
+      },
+      {
+        question: "What is the appropriate action for the pharmacist?",
+        options: [
+          "Dispense as prescribed",
+          "Contact prescriber about interaction and recommend alternative analgesic",
+          "Tell patient to stop sertraline",
+          "Double the tramadol dose"
+        ],
+        correctAnswer: 1,
+        explanation: "The pharmacist should contact the prescriber, explain the serotonin syndrome risk, and recommend alternative analgesia such as paracetamol or codeine (with caution)."
+      }
+    ],
+    learningPoints: [
+      "Tramadol has serotonergic activity and can cause serotonin syndrome with SSRIs",
+      "St. John's Wort also affects serotonin and has multiple drug interactions",
+      "Always screen for herbal supplements in drug interaction checks",
+      "Alternative analgesics should be considered in patients on serotonergic drugs",
+      "Serotonin syndrome can be rapidly fatal - recognition and prevention are key"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case10",
+    title: "Antibiotic Timing Challenge",
+    scenario: "A 28-year-old woman is prescribed Doxycycline 100mg twice daily for acne. She takes a multivitamin with iron every morning, drinks a glass of milk with breakfast, and takes antacids for occasional heartburn.",
+    patientInfo: {
+      age: 28,
+      gender: "Female",
+      weight: 58,
+      height: 165,
+      allergies: ["None"],
+      conditions: ["Moderate acne vulgaris", "Occasional heartburn"],
+      currentMedications: ["Multivitamin with iron (daily)", "Calcium-containing antacids (PRN)", "Oral contraceptive pill"]
+    },
+    questions: [
+      {
+        question: "What major issue affects doxycycline absorption with her current routine?",
+        options: [
+          "She's taking it too often",
+          "Iron, calcium (milk), and antacids all chelate and reduce doxycycline absorption",
+          "Doxycycline doesn't work for acne",
+          "She should take it at night only"
+        ],
+        correctAnswer: 1,
+        explanation: "Divalent and trivalent cations (calcium, magnesium, aluminum, iron) form insoluble complexes with tetracyclines, drastically reducing absorption - sometimes to near zero."
+      },
+      {
+        question: "How should she space her medications?",
+        options: [
+          "Take everything together for convenience",
+          "Doxycycline 2-3 hours before or after iron/calcium/antacids",
+          "Skip the multivitamin entirely",
+          "Take doxycycline with milk to reduce nausea"
+        ],
+        correctAnswer: 1,
+        explanation: "Doxycycline should be taken 2-3 hours before or after products containing divalent cations. Unlike other tetracyclines, it can be taken with food but not dairy or iron."
+      },
+      {
+        question: "What additional counseling is essential for this patient on doxycycline?",
+        options: [
+          "Increase sun exposure for vitamin D",
+          "Avoid sun exposure and use sunscreen - severe photosensitivity risk",
+          "Drink alcohol freely",
+          "Take double doses if missed"
+        ],
+        correctAnswer: 1,
+        explanation: "Doxycycline causes significant photosensitivity. Patients should avoid excessive sun exposure, use SPF 30+ sunscreen, and wear protective clothing."
+      }
+    ],
+    learningPoints: [
+      "Tetracyclines bind to metal ions reducing absorption dramatically",
+      "Separate doxycycline from calcium, iron, magnesium, and aluminum products by 2-3 hours",
+      "Doxycycline can be taken with non-dairy food to reduce GI upset",
+      "Severe photosensitivity is a major concern - sun protection is essential",
+      "Stay upright for 30 minutes after taking to prevent esophageal irritation"
+    ],
+    difficulty: "beginner"
+  },
+  {
+    id: "case11",
+    title: "Methotrexate Dosing Error",
+    scenario: "A community pharmacist receives a prescription for Methotrexate 7.5mg DAILY for a 65-year-old patient newly diagnosed with rheumatoid arthritis.",
+    patientInfo: {
+      age: 65,
+      gender: "Male",
+      weight: 78,
+      height: 172,
+      allergies: ["None"],
+      conditions: ["Rheumatoid arthritis", "Mild hypertension"],
+      currentMedications: ["Amlodipine 5mg daily"]
+    },
+    questions: [
+      {
+        question: "What is critically wrong with this prescription?",
+        options: [
+          "The dose is too low",
+          "Methotrexate for RA should be WEEKLY, not daily - this is a potentially fatal error",
+          "Methotrexate doesn't work for RA",
+          "The patient is too old"
+        ],
+        correctAnswer: 1,
+        explanation: "Methotrexate for rheumatoid arthritis and psoriasis is dosed WEEKLY. Daily dosing is a well-documented fatal error that causes severe bone marrow suppression and organ failure."
+      },
+      {
+        question: "What should the pharmacist do?",
+        options: [
+          "Dispense as written",
+          "Refuse to dispense and contact the prescriber immediately",
+          "Dispense half the quantity",
+          "Tell patient to take it every other day"
+        ],
+        correctAnswer: 1,
+        explanation: "This is a life-threatening error. The pharmacist must NOT dispense, must contact the prescriber to clarify the intended weekly dosing, and document the intervention."
+      },
+      {
+        question: "What else should be prescribed with methotrexate for RA?",
+        options: [
+          "Vitamin C",
+          "Folic acid 5mg weekly (different day to MTX)",
+          "Extra methotrexate for breakthrough symptoms",
+          "NSAIDs daily"
+        ],
+        correctAnswer: 1,
+        explanation: "Folic acid supplementation (5mg weekly, often on a different day than methotrexate) reduces side effects like mouth ulcers, nausea, and hepatotoxicity without reducing efficacy."
+      }
+    ],
+    learningPoints: [
+      "Methotrexate for RA/psoriasis is WEEKLY - daily dosing is a fatal error",
+      "This is one of the most common and dangerous prescribing errors",
+      "Pharmacists play a critical role in catching dosing errors",
+      "Folic acid supplementation is standard with low-dose methotrexate",
+      "Many hospitals now require 'weekly' to be written explicitly on MTX prescriptions"
+    ],
+    difficulty: "advanced"
+  },
+  {
+    id: "case12",
+    title: "Elderly Fall Risk Assessment",
+    scenario: "An 82-year-old woman is brought to the pharmacy by her daughter after two falls this week. She seems drowsy and slightly confused. Her medication list is extensive.",
+    patientInfo: {
+      age: 82,
+      gender: "Female",
+      weight: 52,
+      height: 155,
+      allergies: ["Aspirin"],
+      conditions: ["Hypertension", "Insomnia", "Anxiety", "Osteoarthritis", "Type 2 Diabetes"],
+      currentMedications: [
+        "Amlodipine 10mg daily",
+        "Temazepam 10mg at night",
+        "Diazepam 5mg twice daily",
+        "Amitriptyline 25mg at night",
+        "Metformin 500mg twice daily",
+        "Glibenclamide 5mg daily"
+      ]
+    },
+    questions: [
+      {
+        question: "Which medications are most likely contributing to her falls?",
+        options: [
+          "Metformin",
+          "Benzodiazepines (temazepam, diazepam) and amitriptyline",
+          "Amlodipine only",
+          "All medications equally"
+        ],
+        correctAnswer: 1,
+        explanation: "Benzodiazepines and tricyclic antidepressants are strongly associated with falls in elderly due to sedation, confusion, and orthostatic hypotension. These are on the Beers Criteria."
+      },
+      {
+        question: "According to Beers Criteria, which medications should be avoided in elderly?",
+        options: [
+          "Metformin and amlodipine",
+          "Benzodiazepines, tricyclic antidepressants, and long-acting sulfonylureas",
+          "All diabetes medications",
+          "Only sleeping pills"
+        ],
+        correctAnswer: 1,
+        explanation: "Beers Criteria specifically recommends avoiding benzodiazepines, TCAs, and long-acting sulfonylureas (glibenclamide) in elderly due to falls, confusion, and hypoglycemia risk."
+      },
+      {
+        question: "What additional danger does her diabetes regimen pose?",
+        options: [
+          "Too much weight loss",
+          "Hypoglycemia from glibenclamide contributing to falls and confusion",
+          "Kidney damage",
+          "No concerns"
+        ],
+        correctAnswer: 1,
+        explanation: "Glibenclamide's long half-life increases hypoglycemia risk in elderly, which can present as confusion and falls. Shorter-acting agents or different classes are preferred."
+      }
+    ],
+    learningPoints: [
+      "Multiple sedating medications dramatically increase fall risk in elderly",
+      "Beers Criteria identifies medications to avoid in older adults",
+      "Benzodiazepines should be avoided in elderly - use non-pharmacological sleep hygiene first",
+      "Long-acting sulfonylureas increase hypoglycemia and fall risk in elderly",
+      "Polypharmacy reviews are essential in elderly patients with new symptoms"
+    ],
+    difficulty: "intermediate"
   }
 ];
