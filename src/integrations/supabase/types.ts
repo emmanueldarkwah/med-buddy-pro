@@ -14,6 +14,177 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_case_studies: {
+        Row: {
+          category: string
+          created_at: string | null
+          id: string
+          patient_info: string
+          presentation: string
+          questions: Json
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          id?: string
+          patient_info: string
+          presentation: string
+          questions: Json
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          id?: string
+          patient_info?: string
+          presentation?: string
+          questions?: Json
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      admin_drugs: {
+        Row: {
+          administration: string | null
+          contraindications: string[] | null
+          created_at: string | null
+          dosage: string | null
+          drug_class: string | null
+          generic_name: string | null
+          id: string
+          interactions: string[] | null
+          mechanism: string | null
+          name: string
+          side_effects: string[] | null
+          updated_at: string | null
+          uses: string[] | null
+        }
+        Insert: {
+          administration?: string | null
+          contraindications?: string[] | null
+          created_at?: string | null
+          dosage?: string | null
+          drug_class?: string | null
+          generic_name?: string | null
+          id?: string
+          interactions?: string[] | null
+          mechanism?: string | null
+          name: string
+          side_effects?: string[] | null
+          updated_at?: string | null
+          uses?: string[] | null
+        }
+        Update: {
+          administration?: string | null
+          contraindications?: string[] | null
+          created_at?: string | null
+          dosage?: string | null
+          drug_class?: string | null
+          generic_name?: string | null
+          id?: string
+          interactions?: string[] | null
+          mechanism?: string | null
+          name?: string
+          side_effects?: string[] | null
+          updated_at?: string | null
+          uses?: string[] | null
+        }
+        Relationships: []
+      }
+      admin_quiz_questions: {
+        Row: {
+          correct_answer: number
+          created_at: string | null
+          explanation: string | null
+          id: string
+          options: string[]
+          question: string
+          quiz_category: string
+          updated_at: string | null
+        }
+        Insert: {
+          correct_answer: number
+          created_at?: string | null
+          explanation?: string | null
+          id?: string
+          options: string[]
+          question: string
+          quiz_category: string
+          updated_at?: string | null
+        }
+        Update: {
+          correct_answer?: number
+          created_at?: string | null
+          explanation?: string | null
+          id?: string
+          options?: string[]
+          question?: string
+          quiz_category?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      admin_safety_alerts: {
+        Row: {
+          created_at: string | null
+          description: string
+          details: string | null
+          id: string
+          severity: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          details?: string | null
+          id?: string
+          severity: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          details?: string | null
+          id?: string
+          severity?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          is_bookmarked: boolean | null
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          is_bookmarked?: boolean | null
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          is_bookmarked?: boolean | null
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_achievements: {
         Row: {
           achievement_id: string
@@ -218,15 +389,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -353,6 +551,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const

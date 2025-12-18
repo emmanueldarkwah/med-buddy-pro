@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2, Trash2, Pill, Calculator, AlertTriangle, Stethoscope, BookOpen, Sparkles } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Loader2, Trash2, Pill, Calculator, AlertTriangle, Stethoscope, BookOpen, Sparkles, Bookmark, BookmarkCheck, History, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,8 +7,15 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { BottomNav } from '@/components/BottomNav';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
-type Message = { role: 'user' | 'assistant'; content: string };
+type Message = { 
+  id?: string;
+  role: 'user' | 'assistant'; 
+  content: string;
+  is_bookmarked?: boolean;
+};
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pharmabot`;
 
@@ -90,17 +97,95 @@ const quickPrompts = [
 
 export default function PharmaBotPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [showHistory, setShowHistory] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Load chat history on mount
+  useEffect(() => {
+    if (user) {
+      loadChatHistory();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
+  const loadChatHistory = async () => {
+    if (!user) return;
+    
+    const { data, error } = await supabase
+      .from('chat_messages')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error('Error loading chat history:', error);
+      return;
+    }
+
+    if (data) {
+      setMessages(data.map(m => ({
+        id: m.id,
+        role: m.role as 'user' | 'assistant',
+        content: m.content,
+        is_bookmarked: m.is_bookmarked || false,
+      })));
+    }
+  };
+
+  const saveMessage = async (message: Message) => {
+    if (!user) return null;
+
+    const { data, error } = await supabase
+      .from('chat_messages')
+      .insert({
+        user_id: user.id,
+        role: message.role,
+        content: message.content,
+        is_bookmarked: message.is_bookmarked || false,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error saving message:', error);
+      return null;
+    }
+
+    return data;
+  };
+
+  const toggleBookmark = async (messageId: string, currentState: boolean) => {
+    if (!user) {
+      toast.error('Sign in to bookmark responses');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('chat_messages')
+      .update({ is_bookmarked: !currentState })
+      .eq('id', messageId);
+
+    if (error) {
+      toast.error('Failed to update bookmark');
+      return;
+    }
+
+    setMessages(prev => prev.map(m => 
+      m.id === messageId ? { ...m, is_bookmarked: !currentState } : m
+    ));
+
+    toast.success(currentState ? 'Bookmark removed' : 'Response bookmarked');
+  };
 
   const streamChat = async (allMessages: Message[]) => {
     const resp = await fetch(CHAT_URL, {
@@ -109,7 +194,7 @@ export default function PharmaBotPage() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
       },
-      body: JSON.stringify({ messages: allMessages }),
+      body: JSON.stringify({ messages: allMessages.map(m => ({ role: m.role, content: m.content })) }),
     });
 
     if (!resp.ok) {
@@ -154,7 +239,7 @@ export default function PharmaBotPage() {
             assistantContent += content;
             setMessages(prev => {
               const last = prev[prev.length - 1];
-              if (last?.role === "assistant") {
+              if (last?.role === "assistant" && !last.id) {
                 return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantContent } : m));
               }
               return [...prev, { role: "assistant", content: assistantContent }];
@@ -166,6 +251,8 @@ export default function PharmaBotPage() {
         }
       }
     }
+
+    return assistantContent;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -178,8 +265,28 @@ export default function PharmaBotPage() {
     setInput('');
     setIsLoading(true);
 
+    // Save user message
+    if (user) {
+      const savedUserMsg = await saveMessage(userMsg);
+      if (savedUserMsg) {
+        setMessages(prev => prev.map((m, i) => 
+          i === prev.length - 1 && m.role === 'user' ? { ...m, id: savedUserMsg.id } : m
+        ));
+      }
+    }
+
     try {
-      await streamChat(newMessages);
+      const assistantContent = await streamChat(newMessages);
+      
+      // Save assistant message
+      if (user && assistantContent) {
+        const savedAssistantMsg = await saveMessage({ role: 'assistant', content: assistantContent });
+        if (savedAssistantMsg) {
+          setMessages(prev => prev.map((m, i) => 
+            i === prev.length - 1 && m.role === 'assistant' ? { ...m, id: savedAssistantMsg.id } : m
+          ));
+        }
+      }
     } catch (error) {
       console.error('Chat error:', error);
       toast.error(error instanceof Error ? error.message : 'Failed to get response');
@@ -196,7 +303,18 @@ export default function PharmaBotPage() {
     setInput(prompt + " ");
   };
 
-  const clearChat = () => {
+  const clearChat = async () => {
+    if (user) {
+      const { error } = await supabase
+        .from('chat_messages')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (error) {
+        toast.error('Failed to clear chat history');
+        return;
+      }
+    }
     setMessages([]);
     toast.success('Chat cleared');
   };
@@ -204,6 +322,8 @@ export default function PharmaBotPage() {
   const activeQuestions = activeCategory 
     ? questionCategories.find(c => c.id === activeCategory)?.questions || []
     : [];
+
+  const bookmarkedMessages = messages.filter(m => m.is_bookmarked);
 
   return (
     <div className="min-h-screen bg-background flex flex-col pb-24">
@@ -224,13 +344,68 @@ export default function PharmaBotPage() {
               </div>
             </div>
           </div>
-          {messages.length > 0 && (
-            <Button variant="ghost" size="icon" onClick={clearChat}>
-              <Trash2 className="w-5 h-5" />
-            </Button>
-          )}
+          <div className="flex gap-1">
+            {user && (
+              <Button 
+                variant={showHistory ? "default" : "ghost"} 
+                size="icon" 
+                onClick={() => setShowHistory(!showHistory)}
+                className={showHistory ? "gradient-bot" : ""}
+              >
+                <History className="w-5 h-5" />
+              </Button>
+            )}
+            {messages.length > 0 && (
+              <Button variant="ghost" size="icon" onClick={clearChat}>
+                <Trash2 className="w-5 h-5" />
+              </Button>
+            )}
+          </div>
         </div>
       </header>
+
+      {/* Bookmarked Responses Sidebar */}
+      {showHistory && (
+        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onClick={() => setShowHistory(false)}>
+          <div 
+            className="absolute right-0 top-0 bottom-0 w-80 bg-card border-l border-border shadow-lg animate-slide-in-right"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="p-4 border-b border-border flex items-center justify-between">
+              <h2 className="font-semibold flex items-center gap-2">
+                <BookmarkCheck className="w-5 h-5 text-bot" />
+                Saved Responses
+              </h2>
+              <Button variant="ghost" size="icon" onClick={() => setShowHistory(false)}>
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            <ScrollArea className="h-[calc(100vh-80px)]">
+              <div className="p-4 space-y-3">
+                {bookmarkedMessages.length === 0 ? (
+                  <p className="text-sm text-muted-foreground text-center py-8">
+                    No saved responses yet. Tap the bookmark icon on any response to save it.
+                  </p>
+                ) : (
+                  bookmarkedMessages.map((msg) => (
+                    <div key={msg.id} className="p-3 rounded-xl bg-muted/50 border border-border/50">
+                      <p className="text-sm line-clamp-4">{msg.content}</p>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="mt-2 text-xs"
+                        onClick={() => msg.id && toggleBookmark(msg.id, true)}
+                      >
+                        <Bookmark className="w-3 h-3 mr-1 fill-current" /> Remove
+                      </Button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </ScrollArea>
+          </div>
+        </div>
+      )}
 
       {/* Chat Area */}
       <ScrollArea className="flex-1 p-4" ref={scrollRef}>
@@ -245,6 +420,11 @@ export default function PharmaBotPage() {
               <p className="text-muted-foreground text-sm max-w-sm">
                 Your AI pharmacy assistant. Ask about drugs, dosages, interactions, or any pharmacy-related questions.
               </p>
+              {!user && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  Sign in to save your chat history and bookmark responses.
+                </p>
+              )}
             </div>
 
             {/* Quick Prompts */}
@@ -331,7 +511,7 @@ export default function PharmaBotPage() {
           <div className="space-y-4 max-w-2xl mx-auto">
             {messages.map((msg, i) => (
               <div
-                key={i}
+                key={msg.id || i}
                 className={cn(
                   "flex gap-3 animate-slide-up",
                   msg.role === 'user' ? 'justify-end' : 'justify-start'
@@ -344,13 +524,32 @@ export default function PharmaBotPage() {
                 )}
                 <div
                   className={cn(
-                    "max-w-[80%] p-3 rounded-2xl",
+                    "max-w-[80%] rounded-2xl",
                     msg.role === 'user'
-                      ? 'gradient-primary text-white'
+                      ? 'gradient-primary text-white p-3'
                       : 'bg-muted'
                   )}
                 >
-                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                  <p className={cn(
+                    "text-sm whitespace-pre-wrap leading-relaxed",
+                    msg.role === 'assistant' && "p-3 pb-1"
+                  )}>{msg.content}</p>
+                  {msg.role === 'assistant' && msg.id && (
+                    <div className="px-2 pb-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-7 text-xs"
+                        onClick={() => toggleBookmark(msg.id!, msg.is_bookmarked || false)}
+                      >
+                        <Bookmark className={cn(
+                          "w-3 h-3 mr-1",
+                          msg.is_bookmarked && "fill-current text-bot"
+                        )} />
+                        {msg.is_bookmarked ? 'Saved' : 'Save'}
+                      </Button>
+                    </div>
+                  )}
                 </div>
                 {msg.role === 'user' && (
                   <div className="p-2 rounded-xl bg-muted h-fit shrink-0">
