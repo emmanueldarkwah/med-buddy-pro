@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Sparkles, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Pill, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -116,7 +116,7 @@ export default function AuthPage() {
       <div className="gradient-hero text-primary-foreground px-6 pt-16 pb-12 rounded-b-[3rem]">
         <div className="flex flex-col items-center text-center">
           <div className="w-20 h-20 rounded-3xl bg-primary-foreground/20 flex items-center justify-center mb-6">
-            <Sparkles className="w-10 h-10" />
+            <Pill className="w-10 h-10" />
           </div>
           <h1 className="text-3xl font-bold mb-2">AcuPharm</h1>
           <p className="text-primary-foreground/80 text-sm max-w-xs">
