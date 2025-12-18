@@ -14,7 +14,210 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      user_achievements: {
+        Row: {
+          achievement_id: string
+          id: string
+          unlocked_at: string | null
+          user_id: string
+        }
+        Insert: {
+          achievement_id: string
+          id?: string
+          unlocked_at?: string | null
+          user_id: string
+        }
+        Update: {
+          achievement_id?: string
+          id?: string
+          unlocked_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_bookmarks: {
+        Row: {
+          created_at: string | null
+          id: string
+          item_id: string
+          item_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          item_id: string
+          item_type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          item_id?: string
+          item_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_daily_challenges: {
+        Row: {
+          challenge_date: string
+          completed: boolean | null
+          created_at: string | null
+          id: string
+          questions_answered: number
+          score: number
+          user_id: string
+        }
+        Insert: {
+          challenge_date: string
+          completed?: boolean | null
+          created_at?: string | null
+          id?: string
+          questions_answered: number
+          score: number
+          user_id: string
+        }
+        Update: {
+          challenge_date?: string
+          completed?: boolean | null
+          created_at?: string | null
+          id?: string
+          questions_answered?: number
+          score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_drug_notes: {
+        Row: {
+          created_at: string | null
+          drug_id: string
+          id: string
+          note: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          drug_id: string
+          id?: string
+          note?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          drug_id?: string
+          id?: string
+          note?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_flashcard_progress: {
+        Row: {
+          drug_id: string
+          id: string
+          known_card_indices: number[] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          drug_id: string
+          id?: string
+          known_card_indices?: number[] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          drug_id?: string
+          id?: string
+          known_card_indices?: number[] | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_progress: {
+        Row: {
+          avatar_url: string | null
+          calculator_uses: number | null
+          correct_answers: number | null
+          created_at: string | null
+          id: string
+          interaction_checks: number | null
+          is_dark_mode: boolean | null
+          last_study_date: string | null
+          study_streak: number | null
+          theme: string | null
+          total_questions_answered: number | null
+          updated_at: string | null
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          calculator_uses?: number | null
+          correct_answers?: number | null
+          created_at?: string | null
+          id?: string
+          interaction_checks?: number | null
+          is_dark_mode?: boolean | null
+          last_study_date?: string | null
+          study_streak?: number | null
+          theme?: string | null
+          total_questions_answered?: number | null
+          updated_at?: string | null
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          calculator_uses?: number | null
+          correct_answers?: number | null
+          created_at?: string | null
+          id?: string
+          interaction_checks?: number | null
+          is_dark_mode?: boolean | null
+          last_study_date?: string | null
+          study_streak?: number | null
+          theme?: string | null
+          total_questions_answered?: number | null
+          updated_at?: string | null
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      user_quiz_results: {
+        Row: {
+          completed_at: string | null
+          id: string
+          quiz_id: string
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          quiz_id: string
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          quiz_id?: string
+          score?: number
+          total_questions?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
