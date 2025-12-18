@@ -1,4 +1,4 @@
-import { Home, Pill, GraduationCap, BookOpen, MoreHorizontal } from 'lucide-react';
+import { Home, Pill, GraduationCap, BookOpen, Bot, MoreHorizontal } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -7,6 +7,7 @@ const navItems = [
   { icon: Pill, label: 'Drugs', path: '/drugs', color: 'drugs' },
   { icon: GraduationCap, label: 'Quizzes', path: '/quizzes', color: 'quizzes' },
   { icon: BookOpen, label: 'Cases', path: '/cases', color: 'cases' },
+  { icon: Bot, label: 'PharmaBot', path: '/pharmabot', color: 'bot' },
   { icon: MoreHorizontal, label: 'More', path: '/more', color: 'more' },
 ];
 
@@ -15,6 +16,7 @@ const colorStyles: Record<string, { gradient: string; glow: string }> = {
   drugs: { gradient: 'gradient-drugs', glow: 'shadow-[0_0_24px_hsl(262_83%_58%/0.25)]' },
   quizzes: { gradient: 'gradient-quizzes', glow: 'shadow-[0_0_24px_hsl(174_62%_35%/0.25)]' },
   cases: { gradient: 'gradient-cases', glow: 'shadow-[0_0_24px_hsl(24_95%_55%/0.25)]' },
+  bot: { gradient: 'gradient-bot', glow: 'shadow-[0_0_24px_hsl(280_70%_50%/0.25)]' },
   more: { gradient: 'gradient-more', glow: 'shadow-[0_0_24px_hsl(220_70%_50%/0.25)]' },
 };
 

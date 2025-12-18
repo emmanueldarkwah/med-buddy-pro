@@ -78,6 +78,10 @@ export default {
           DEFAULT: "hsl(var(--more))",
           foreground: "hsl(var(--more-foreground))",
         },
+        bot: {
+          DEFAULT: "hsl(var(--bot))",
+          foreground: "hsl(var(--bot-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
