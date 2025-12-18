@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
+import { useCloudSync } from '@/hooks/useCloudSync';
 
 interface Achievement {
   id: string;
@@ -116,6 +117,63 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     localStorage.setItem('acupharm-state', JSON.stringify(state));
   }, [state]);
+
+  // Cloud sync callback
+  const handleCloudDataLoaded = useCallback((data: any) => {
+    setState(prev => {
+      const updatedAchievements = prev.achievements.map(a => {
+        if (data.unlockedAchievementIds?.includes(a.id)) {
+          return { ...a, unlockedAt: new Date() };
+        }
+        return a;
+      });
+
+      return {
+        ...prev,
+        ...(data.studyStreak !== undefined && { studyStreak: data.studyStreak }),
+        ...(data.lastStudyDate !== undefined && { lastStudyDate: data.lastStudyDate }),
+        ...(data.totalQuestionsAnswered !== undefined && { totalQuestionsAnswered: data.totalQuestionsAnswered }),
+        ...(data.correctAnswers !== undefined && { correctAnswers: data.correctAnswers }),
+        ...(data.interactionChecks !== undefined && { interactionChecks: data.interactionChecks }),
+        ...(data.calculatorUses !== undefined && { calculatorUses: data.calculatorUses }),
+        ...(data.username && { username: data.username }),
+        ...(data.avatarUrl !== undefined && { avatarUrl: data.avatarUrl }),
+        ...(data.theme && { theme: data.theme }),
+        ...(data.isDarkMode !== undefined && { isDarkMode: data.isDarkMode }),
+        ...(data.favoriteDrugs && { favoriteDrugs: data.favoriteDrugs }),
+        ...(data.favoriteQuizzes && { favoriteQuizzes: data.favoriteQuizzes }),
+        ...(data.drugNotes && { drugNotes: data.drugNotes }),
+        ...(data.dailyChallenges && { dailyChallenges: data.dailyChallenges }),
+        ...(data.completedQuizzes && { completedQuizzes: data.completedQuizzes }),
+        ...(data.flashcardProgress && { flashcardProgress: data.flashcardProgress }),
+        achievements: updatedAchievements,
+      };
+    });
+  }, []);
+
+  // Initialize cloud sync
+  useCloudSync(
+    {
+      studyStreak: state.studyStreak,
+      lastStudyDate: state.lastStudyDate,
+      totalQuestionsAnswered: state.totalQuestionsAnswered,
+      correctAnswers: state.correctAnswers,
+      interactionChecks: state.interactionChecks,
+      calculatorUses: state.calculatorUses,
+      username: state.username,
+      avatarUrl: state.avatarUrl,
+      theme: state.theme,
+      isDarkMode: state.isDarkMode,
+    },
+    state.favoriteDrugs,
+    state.favoriteQuizzes,
+    state.drugNotes,
+    state.achievements,
+    state.dailyChallenges,
+    state.flashcardProgress,
+    state.completedQuizzes,
+    handleCloudDataLoaded
+  );
 
   useEffect(() => {
     const root = document.documentElement;
